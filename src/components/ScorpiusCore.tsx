@@ -1,5 +1,5 @@
 "use client";
-import { Canvas, useFrame, extend, useThree } from "@react-three/fiber";
+import { Canvas, useFrame, extend } from "@react-three/fiber";
 import { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
 import {
@@ -8,8 +8,8 @@ import {
   DepthOfField,
 } from "@react-three/postprocessing";
 import { shaderMaterial } from "@react-three/drei";
-import gsap from "gsap";
 import { useScrollSync } from "./useScrollSync";
+import { useDramaticCamera } from "./useDramaticCamera";
 
 // --- GLSL NOISE UTILS (Simplex/FBM) ---
 const noiseGLSL = `
@@ -159,57 +159,31 @@ function WireframeSphere({ scroll }: { scroll: number }) {
   );
 }
 
-function CameraController({ scroll }: { scroll: number }) {
-  const { camera } = useThree();
+function Scene({ scroll, mouse }: { scroll: number; mouse: [number, number] }) {
+  // Use the dramatic camera system
+  useDramaticCamera(scroll, 0.12);
 
-  // Multi-angle GSAP camera animation
-  useEffect(() => {
-    // Keyframes for camera at scroll stops - DRAMATIC ANGLES
-    const keyframes = [
-      { scroll: 0.0, pos: [0, 0, 8], fov: 45 },
-      { scroll: 0.25, pos: [4, 3, 5], fov: 75 },
-      { scroll: 0.5, pos: [-3, 4, 3], fov: 90 },
-      { scroll: 0.75, pos: [5, -2, 6], fov: 65 },
-      { scroll: 1.0, pos: [0, -3, 9], fov: 35 },
-    ];
-    // Interpolate between keyframes
-    let prev = keyframes[0],
-      next = keyframes[keyframes.length - 1];
-    for (let i = 1; i < keyframes.length; i++) {
-      if (scroll <= keyframes[i].scroll) {
-        prev = keyframes[i - 1];
-        next = keyframes[i];
-        break;
-      }
-    }
-    const t = (scroll - prev.scroll) / (next.scroll - prev.scroll);
-    const lerp = (a: number, b: number) => a + (b - a) * t;
-    const pos = [
-      lerp(prev.pos[0], next.pos[0]),
-      lerp(prev.pos[1], next.pos[1]),
-      lerp(prev.pos[2], next.pos[2]),
-    ];
-    const fov = lerp(prev.fov, next.fov);
-
-    gsap.to(camera.position, {
-      x: pos[0],
-      y: pos[1],
-      z: pos[2],
-      duration: 0.8,
-      ease: "power2.out",
-      overwrite: "auto",
-    });
-    gsap.to(camera, {
-      fov,
-      duration: 0.8,
-      ease: "power2.out",
-      overwrite: "auto",
-      onUpdate: () => camera.updateProjectionMatrix(),
-    });
-    camera.lookAt(0, 0, 0);
-  }, [scroll, camera]);
-
-  return null;
+  return (
+    <>
+      <ambientLight intensity={0.25} />
+      <pointLight position={[0, 0, 8]} intensity={2} color="#00fff7" />
+      <WireframeSphere scroll={scroll} />
+      <EnergyLayer scroll={scroll} mouse={mouse} />
+      <EffectComposer>
+        <Bloom
+          luminanceThreshold={0.15}
+          luminanceSmoothing={0.8}
+          intensity={2.2}
+        />
+        <DepthOfField
+          focusDistance={0.015 + 0.02 * scroll}
+          focalLength={0.05}
+          bokehScale={3 + 2 * scroll}
+          height={700}
+        />
+      </EffectComposer>
+    </>
+  );
 }
 
 export default function ScorpiusCore() {
@@ -228,25 +202,8 @@ export default function ScorpiusCore() {
   }, []);
 
   return (
-    <Canvas camera={{ position: [0, 0, 7], fov: 50 }}>
-      <CameraController scroll={scroll} />
-      <ambientLight intensity={0.25} />
-      <pointLight position={[0, 0, 8]} intensity={2} color="#00fff7" />
-      <WireframeSphere scroll={scroll} />
-      <EnergyLayer scroll={scroll} mouse={mouse} />
-      <EffectComposer>
-        <Bloom
-          luminanceThreshold={0.15}
-          luminanceSmoothing={0.8}
-          intensity={2.2}
-        />
-        <DepthOfField
-          focusDistance={0.015 + 0.02 * scroll}
-          focalLength={0.05}
-          bokehScale={3 + 2 * scroll}
-          height={700}
-        />
-      </EffectComposer>
+    <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
+      <Scene scroll={scroll} mouse={mouse} />
     </Canvas>
   );
 }
