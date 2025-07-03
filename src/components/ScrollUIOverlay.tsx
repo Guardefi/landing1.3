@@ -73,6 +73,29 @@ const sections = [
     subtitle: "When Fortune 500 Meets Medieval War Tactics",
     desc: "Advanced tier capabilities that separate the knights from the peasants. Enterprise-grade digital battlefield tools.",
     align: "right",
+    sticky: true,
+    stickyCards: [
+      {
+        title: "🔮 Quantum Security",
+        subtitle: "Quantum-Grade Encryption",
+        desc: "Unbreakable quantum encryption protocols that secure data at the subatomic level.",
+      },
+      {
+        title: "🧪 Simulation Sandbox",
+        subtitle: "Safe Testing Environment",
+        desc: "Isolated simulation environments for testing attack vectors without risk.",
+      },
+      {
+        title: "📋 Compliance Grid",
+        subtitle: "Regulatory Compliance",
+        desc: "Automated compliance monitoring across SOC2, ISO27001, and custom frameworks.",
+      },
+      {
+        title: "🛂 Access Control Matrix",
+        subtitle: "Identity & Access Management",
+        desc: "Military-grade access controls with biometric authentication and zero-trust architecture.",
+      },
+    ],
     features: [
       "🔮 Quantum Security",
       "🧪 Simulation Sandbox",

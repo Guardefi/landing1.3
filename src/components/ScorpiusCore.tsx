@@ -271,32 +271,41 @@ function PetalBloom({
         "right", // Adaptive Defense Layers
         "center", // Enterprise Command
         "left", // Under-the-Hood Firepower + 4 sticky cards
-        "right", // Enterprise Arsenal
+        "right", // Enterprise Arsenal + 4 sticky cards
         "center", // Pricing
         "left", // Testimonials
         "center", // CTA
       ];
 
-      const stickyIndex = 5; // Under-the-Hood Firepower index
-      const stickySubSections = 4; // 4 sticky cards
       const totalSections = sections.length;
+      const totalStickySubSections = 8; // 4 for firepower + 4 for arsenal
 
-      // Adjust scroll calculation for sticky section
-      const scrollPosition = scroll * (totalSections + stickySubSections - 1);
+      // Adjust scroll calculation for multiple sticky sections
+      const scrollPosition =
+        scroll * (totalSections + totalStickySubSections - 1);
 
       let sectionIndex;
-      if (
-        scrollPosition >= stickyIndex &&
-        scrollPosition <= stickyIndex + stickySubSections
-      ) {
-        // We're in the sticky section
-        sectionIndex = stickyIndex;
-      } else if (scrollPosition > stickyIndex + stickySubSections) {
-        // After sticky section, adjust for the extra sub-sections
-        sectionIndex = Math.floor(scrollPosition - stickySubSections + 1);
+      let adjustedScrollPos = scrollPosition;
+
+      // Handle Under-the-Hood Firepower (index 5)
+      if (adjustedScrollPos >= 5 && adjustedScrollPos <= 9) {
+        // 5 + 4 sticky cards
+        sectionIndex = 5;
+      } else if (adjustedScrollPos > 9) {
+        adjustedScrollPos -= 4; // Subtract firepower sticky cards
+
+        // Handle Enterprise Arsenal (index 6, but adjusted to 6 after firepower)
+        if (adjustedScrollPos >= 6 && adjustedScrollPos <= 10) {
+          // 6 + 4 sticky cards
+          sectionIndex = 6;
+        } else if (adjustedScrollPos > 10) {
+          adjustedScrollPos -= 4; // Subtract arsenal sticky cards
+          sectionIndex = Math.floor(adjustedScrollPos);
+        } else {
+          sectionIndex = Math.floor(adjustedScrollPos);
+        }
       } else {
-        // Before sticky section
-        sectionIndex = Math.floor(scrollPosition);
+        sectionIndex = Math.floor(adjustedScrollPos);
       }
 
       const currentAlign = sections[sectionIndex] || "center";
@@ -343,32 +352,41 @@ function WireframeSphere({ scroll }: { scroll: number }) {
       "right", // Adaptive Defense Layers
       "center", // Enterprise Command
       "left", // Under-the-Hood Firepower + 4 sticky cards
-      "right", // Enterprise Arsenal
+      "right", // Enterprise Arsenal + 4 sticky cards
       "center", // Pricing
       "left", // Testimonials
       "center", // CTA
     ];
 
-    const stickyIndex = 5; // Under-the-Hood Firepower index
-    const stickySubSections = 4; // 4 sticky cards
     const totalSections = sections.length;
+    const totalStickySubSections = 8; // 4 for firepower + 4 for arsenal
 
-    // Adjust scroll calculation for sticky section
-    const scrollPosition = scroll * (totalSections + stickySubSections - 1);
+    // Adjust scroll calculation for multiple sticky sections
+    const scrollPosition =
+      scroll * (totalSections + totalStickySubSections - 1);
 
     let sectionIndex;
-    if (
-      scrollPosition >= stickyIndex &&
-      scrollPosition <= stickyIndex + stickySubSections
-    ) {
-      // We're in the sticky section
-      sectionIndex = stickyIndex;
-    } else if (scrollPosition > stickyIndex + stickySubSections) {
-      // After sticky section, adjust for the extra sub-sections
-      sectionIndex = Math.floor(scrollPosition - stickySubSections + 1);
+    let adjustedScrollPos = scrollPosition;
+
+    // Handle Under-the-Hood Firepower (index 5)
+    if (adjustedScrollPos >= 5 && adjustedScrollPos <= 9) {
+      // 5 + 4 sticky cards
+      sectionIndex = 5;
+    } else if (adjustedScrollPos > 9) {
+      adjustedScrollPos -= 4; // Subtract firepower sticky cards
+
+      // Handle Enterprise Arsenal (index 6, but adjusted to 6 after firepower)
+      if (adjustedScrollPos >= 6 && adjustedScrollPos <= 10) {
+        // 6 + 4 sticky cards
+        sectionIndex = 6;
+      } else if (adjustedScrollPos > 10) {
+        adjustedScrollPos -= 4; // Subtract arsenal sticky cards
+        sectionIndex = Math.floor(adjustedScrollPos);
+      } else {
+        sectionIndex = Math.floor(adjustedScrollPos);
+      }
     } else {
-      // Before sticky section
-      sectionIndex = Math.floor(scrollPosition);
+      sectionIndex = Math.floor(adjustedScrollPos);
     }
 
     const currentAlign = sections[sectionIndex] || "center";
