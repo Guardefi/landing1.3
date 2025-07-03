@@ -17,10 +17,10 @@ body {
 
 /* Glass morphism effect for overlays */
 .glass-morphism {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 255, 247, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 255, 247, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 /* Custom scrollbar */
@@ -104,6 +104,22 @@ body {
   outline: 2px solid #00fff7;
   outline-offset: 2px;
   transition: outline 0.2s ease;
+}
+
+/* Star twinkling animation */
+@keyframes twinkle {
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
 }
 
 /* Reduced motion support */

@@ -102,7 +102,7 @@ export default function ScrollUIOverlay() {
           align={sec.align as "left" | "center" | "right"}
         >
           <div
-            className={`max-w-3xl mx-auto p-8 rounded-xl backdrop-blur bg-black/40 shadow-lg glass-morphism corner-accent
+            className={`max-w-3xl mx-auto p-8 rounded-xl backdrop-blur bg-black/70 shadow-lg glass-morphism corner-accent
             ${sec.align === "left" ? "text-left ml-0 md:ml-16" : ""}
             ${sec.align === "right" ? "text-right mr-0 md:mr-16" : ""}
             ${sec.align === "center" ? "text-center mx-auto" : ""}`}
