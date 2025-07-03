@@ -475,8 +475,88 @@ export default function ScrollUIOverlay() {
                 </div>
               )}
 
-              {/* Pricing */}
-              {sec.pricing && (
+              {/* Full-Screen Pricing Tiers */}
+              {sec.fullScreenPricing && sec.pricingTiers && (
+                <div className="w-screen h-screen flex items-center justify-center -ml-8 -mt-8">
+                  <div className="max-w-7xl w-full px-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-[80vh]">
+                      {sec.pricingTiers.map((tier, idx) => (
+                        <div
+                          key={idx}
+                          className={`relative flex flex-col h-full rounded-2xl p-8 transition-all duration-500 hover:scale-105 ${
+                            tier.popular
+                              ? "bg-gradient-to-b from-cyan-400/20 to-war-room-void ring-2 ring-cyan-400 shadow-2xl shadow-cyan-400/20"
+                              : "bg-gradient-to-b from-war-room-charcoal/80 to-war-room-void border border-gray-600 hover:border-cyan-400/50"
+                          }`}
+                        >
+                          {tier.popular && (
+                            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                              <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 text-black px-6 py-2 rounded-full text-sm font-terminal font-bold">
+                                MOST POPULAR
+                              </span>
+                            </div>
+                          )}
+
+                          {/* Header */}
+                          <div className="text-center mb-6">
+                            <h3 className="text-4xl font-command font-bold text-white mb-2">
+                              {tier.name}
+                            </h3>
+                            <div className="flex items-baseline justify-center mb-3">
+                              <span className="text-5xl font-command text-cyan-400">
+                                {tier.price}
+                              </span>
+                              {tier.period && (
+                                <span className="text-xl text-gray-400 ml-1">
+                                  {tier.period}
+                                </span>
+                              )}
+                            </div>
+                            <p className="text-gray-300 text-sm italic">
+                              {tier.description}
+                            </p>
+                          </div>
+
+                          {/* Features */}
+                          <div className="flex-1 mb-6">
+                            <h4 className="text-lg font-terminal text-cyan-400 mb-4 uppercase tracking-wide border-b border-cyan-400/30 pb-2">
+                              What You Get
+                            </h4>
+                            <div className="space-y-3 max-h-96 overflow-y-auto custom-scrollbar">
+                              {tier.features.map((feature, i) => (
+                                <div
+                                  key={i}
+                                  className="flex items-start text-sm text-gray-300"
+                                >
+                                  <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-2 flex-shrink-0 animate-pulse"></div>
+                                  <span>{feature}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* CTA Button */}
+                          <button
+                            className={`
+                            w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 font-command
+                            ${
+                              tier.popular
+                                ? "bg-cyan-400 text-black hover:bg-cyan-300 shadow-lg shadow-cyan-400/30"
+                                : "bg-transparent border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black hover:shadow-lg hover:shadow-cyan-400/30"
+                            }
+                          `}
+                          >
+                            {tier.cta}
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Regular Pricing (legacy) */}
+              {sec.pricing && !sec.fullScreenPricing && (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                   {sec.pricing.map((tier, idx) => (
                     <div

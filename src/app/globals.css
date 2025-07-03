@@ -122,6 +122,25 @@ body {
   }
 }
 
+/* Custom scrollbar for pricing features */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(42, 42, 42, 0.3);
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #00ffff;
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #00d4d4;
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   *,
