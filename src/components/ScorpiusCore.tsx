@@ -164,13 +164,13 @@ function CameraController({ scroll }: { scroll: number }) {
 
   // Multi-angle GSAP camera animation
   useEffect(() => {
-    // Keyframes for camera at scroll stops
+    // Keyframes for camera at scroll stops - DRAMATIC ANGLES
     const keyframes = [
-      { scroll: 0.0, pos: [0, 0, 7], fov: 50 },
-      { scroll: 0.25, pos: [1, 0.5, 6], fov: 55 },
-      { scroll: 0.5, pos: [0, 1.2, 4.5], fov: 60 },
-      { scroll: 0.75, pos: [-1, 0.5, 6], fov: 55 },
-      { scroll: 1.0, pos: [0, 0, 7], fov: 50 },
+      { scroll: 0.0, pos: [0, 0, 8], fov: 45 },
+      { scroll: 0.25, pos: [4, 3, 5], fov: 75 },
+      { scroll: 0.5, pos: [-3, 4, 3], fov: 90 },
+      { scroll: 0.75, pos: [5, -2, 6], fov: 65 },
+      { scroll: 1.0, pos: [0, -3, 9], fov: 35 },
     ];
     // Interpolate between keyframes
     let prev = keyframes[0],
