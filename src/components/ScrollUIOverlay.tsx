@@ -4,6 +4,13 @@ import { useScrollSync } from "./useScrollSync";
 
 const sections = [
   {
+    title: "Hello Dark Forest,",
+    subtitle: "Meet Scorpius.",
+    desc: "In the vast expanse of the digital cosmos, where threats lurk in every shadow, a new guardian awakens.",
+    align: "center",
+    intro: true,
+  },
+  {
     title: "ScorpiusCore",
     subtitle: "The Next-Gen Cyber Defense Engine",
     desc: "A living, breathing core of wireframe intelligence and pulsing quantum energy. The heart of your war room.",
@@ -102,18 +109,25 @@ export default function ScrollUIOverlay() {
           align={sec.align as "left" | "center" | "right"}
         >
           <div
-            className={`max-w-3xl mx-auto p-8 rounded-xl backdrop-blur bg-black/70 shadow-lg glass-morphism corner-accent
+            className={`${sec.intro ? "max-w-4xl" : "max-w-3xl"} mx-auto p-8 rounded-xl backdrop-blur shadow-lg text-center
+            ${sec.intro ? "bg-transparent border-none" : "bg-black/70 glass-morphism corner-accent"}
             ${sec.align === "left" ? "text-left ml-0 md:ml-16" : ""}
             ${sec.align === "right" ? "text-right mr-0 md:mr-16" : ""}
             ${sec.align === "center" ? "text-center mx-auto" : ""}`}
           >
-            <h1 className="text-4xl md:text-6xl font-bold cyan-glow mb-4">
+            <h1
+              className={`font-bold cyan-glow mb-4 ${sec.intro ? "text-6xl md:text-8xl lg:text-9xl" : "text-4xl md:text-6xl"}`}
+            >
               {sec.title}
             </h1>
-            <h2 className="text-xl md:text-2xl text-cyan-400 mb-4">
+            <h2
+              className={`text-cyan-400 mb-4 ${sec.intro ? "text-3xl md:text-4xl lg:text-5xl font-light" : "text-xl md:text-2xl"}`}
+            >
               {sec.subtitle}
             </h2>
-            <p className="text-base md:text-lg text-gray-200 mb-6">
+            <p
+              className={`text-gray-200 mb-6 ${sec.intro ? "text-xl md:text-2xl lg:text-3xl leading-relaxed" : "text-base md:text-lg"}`}
+            >
               {sec.desc}
             </p>
 

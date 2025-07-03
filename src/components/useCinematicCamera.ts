@@ -3,16 +3,17 @@ import * as THREE from "three";
 
 // Define dramatic keyframes for position, fov, rotation, and X offset for text readability
 const KEYFRAMES = [
-  { s: 0.0, pos: [0, 2, 12], fov: 40, rot: [-0.1, 0, 0], xOff: 0 }, // ScorpiusCore
-  { s: 0.11, pos: [8, 4, 8], fov: 60, rot: [-0.2, 0.5, 0], xOff: 3 }, // Quantum Detection
-  { s: 0.22, pos: [0, 10, 6], fov: 75, rot: [-0.7, 0, 0], xOff: 0 }, // Adaptive Defense
-  { s: 0.33, pos: [-8, 4, 8], fov: 60, rot: [-0.2, -0.5, 0], xOff: -3 }, // Enterprise Command
-  { s: 0.44, pos: [6, -2, 9], fov: 55, rot: [0.2, 0.3, 0], xOff: 2 }, // Firepower Modules
-  { s: 0.55, pos: [-6, 6, 7], fov: 65, rot: [-0.3, -0.4, 0], xOff: -2 }, // Enterprise Arsenal
-  { s: 0.66, pos: [0, 0, 11], fov: 45, rot: [0, 0, 0], xOff: 0 }, // Pricing
-  { s: 0.77, pos: [4, 8, 5], fov: 70, rot: [-0.5, 0.2, 0], xOff: 3 }, // Social Proof
-  { s: 0.88, pos: [0, -3, 13], fov: 35, rot: [0.3, 0, 0], xOff: 0 }, // Final CTA
-  { s: 1.0, pos: [0, 2, 12], fov: 40, rot: [-0.1, 0, 0], xOff: 0 }, // Return home
+  { s: 0.0, pos: [0, 0, 25], fov: 25, rot: [0, 0, 0], xOff: 0 }, // Intro - Far back
+  { s: 0.1, pos: [0, 2, 12], fov: 40, rot: [-0.1, 0, 0], xOff: 0 }, // ScorpiusCore - Dramatic zoom in
+  { s: 0.2, pos: [8, 4, 8], fov: 60, rot: [-0.2, 0.5, 0], xOff: 3 }, // Quantum Detection
+  { s: 0.3, pos: [0, 10, 6], fov: 75, rot: [-0.7, 0, 0], xOff: 0 }, // Adaptive Defense
+  { s: 0.4, pos: [-8, 4, 8], fov: 60, rot: [-0.2, -0.5, 0], xOff: -3 }, // Enterprise Command
+  { s: 0.5, pos: [6, -2, 9], fov: 55, rot: [0.2, 0.3, 0], xOff: 2 }, // Firepower Modules
+  { s: 0.6, pos: [-6, 6, 7], fov: 65, rot: [-0.3, -0.4, 0], xOff: -2 }, // Enterprise Arsenal
+  { s: 0.7, pos: [0, 0, 11], fov: 45, rot: [0, 0, 0], xOff: 0 }, // Pricing
+  { s: 0.8, pos: [4, 8, 5], fov: 70, rot: [-0.5, 0.2, 0], xOff: 3 }, // Social Proof
+  { s: 0.9, pos: [0, -3, 13], fov: 35, rot: [0.3, 0, 0], xOff: 0 }, // Final CTA
+  { s: 1.0, pos: [0, 0, 25], fov: 25, rot: [0, 0, 0], xOff: 0 }, // Return to far
 ] as const;
 
 export function useCinematicCamera(scroll: number, ease = 0.1) {

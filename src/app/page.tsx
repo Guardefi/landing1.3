@@ -8,7 +8,7 @@ const ScorpiusCore = dynamic(() => import("@/components/ScorpiusCore"), {
 export default function Home() {
   return (
     <main
-      className="relative w-screen h-[900vh] bg-black"
+      className="relative w-screen h-[1000vh] bg-black"
       id="scroll-container"
     >
       {/* Starfield background */}

@@ -30,11 +30,11 @@ float snoise(vec3 v) {
              i.z + vec4(0.0, i1.z, i2.z, 1.0 ))
            + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))
            + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));
-  float n_ = 1.0/7.0; 
+  float n_ = 1.0/7.0;
   vec3  ns = n_ * D.wyz - D.xzx;
-  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  
+  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
   vec4 x_ = floor(j * ns.z);
-  vec4 y_ = floor(j - 7.0 * x_ );    
+  vec4 y_ = floor(j - 7.0 * x_ );
   vec4 x = x_ *ns.x + ns.y;
   vec4 y = y_ *ns.x + ns.y;
   vec4 h = 1.0 - abs(x) - abs(y);
@@ -86,19 +86,19 @@ const PetalMaterial = shaderMaterial(
     void main() {
       vNormal = normal;
       vPos = position;
-      
+
       // Organic petal-like displacement
       float n1 = fbm(normal * 3.0 + uTime * 0.2);
       float n2 = snoise(position * 2.0 + uTime * 0.5);
-      
+
       // Mouse interaction creates blooming effect
       float mouseDist = length((position.xy/2.0) - uMouse);
       float bloom = smoothstep(0.8, 0.2, mouseDist) * 0.5;
-      
+
       // Petal-like expansion based on scroll
       float petal = sin(atan(position.x, position.z) * 6.0 + uTime) * 0.1;
       float displacement = (n1 * 0.2 + n2 * 0.15) + bloom + petal * uPulse;
-      
+
       vec3 newPos = position + normal * displacement;
       gl_Position = projectionMatrix * modelViewMatrix * vec4(newPos, 1.0);
     }
@@ -114,23 +114,23 @@ const PetalMaterial = shaderMaterial(
     void main() {
       // Fresnel for edge glow
       float fresnel = pow(1.0 - dot(normalize(vNormal), vec3(0.,0.,1.)), 1.8);
-      
+
       // Organic noise patterns
       float noise1 = fbm(vPos * 2.5 + uTime * 0.3);
       float noise2 = snoise(vPos * 4.0 + uTime * 0.6);
-      
+
       // Mouse interaction creates localized blooms
       float mouseDist = length((vPos.xy/2.0) - uMouse);
       float mouseBloom = smoothstep(0.6, 0.0, mouseDist) * 0.8;
-      
+
       // Petal color shifts - from cyan to white to pink
       vec3 baseColor = mix(vec3(0.0, 0.9, 1.0), vec3(0.8, 1.0, 1.0), noise1);
       vec3 petalColor = mix(baseColor, vec3(1.0, 0.8, 1.0), fresnel * 0.3);
-      
+
       // Energy intensity with bloom effect
       float energy = fresnel * (0.6 + 0.4 * noise1) + mouseBloom + noise2 * 0.2;
       energy += uPulse * 0.3;
-      
+
       gl_FragColor = vec4(petalColor, energy * 0.7 + 0.2);
     }
   `,
@@ -255,7 +255,7 @@ export default function ScorpiusCore() {
   }, []);
 
   return (
-    <Canvas camera={{ position: [0, 2, 12], fov: 40 }}>
+    <Canvas camera={{ position: [0, 0, 25], fov: 25 }}>
       <Scene scroll={scroll} mouse={mouse} />
     </Canvas>
   );
