@@ -361,7 +361,7 @@ export default function ScrollUIOverlay() {
                     {sec.carouselImages.map((image, idx) => (
                       <div
                         key={idx}
-                        className="relative min-w-full h-64 group"
+                        className="relative min-w-full h-80 group"
                         style={{ width: `${100 / sec.carouselImages.length}%` }}
                       >
                         <img
