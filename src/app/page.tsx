@@ -8,7 +8,7 @@ const ScorpiusCore = dynamic(() => import("@/components/ScorpiusCore"), {
 export default function Home() {
   return (
     <main
-      className="relative w-screen h-[600vh] bg-[#10141a]"
+      className="relative w-screen h-[900vh] bg-[#10141a]"
       id="scroll-container"
     >
       <div className="sticky top-0 left-0 w-screen h-screen pointer-events-none z-0">
