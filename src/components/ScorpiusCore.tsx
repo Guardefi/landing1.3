@@ -9,7 +9,7 @@ import {
 } from "@react-three/postprocessing";
 import { shaderMaterial } from "@react-three/drei";
 import { useScrollSync } from "./useScrollSync";
-import { useDramaticCamera } from "./useDramaticCamera";
+import { useCinematicCamera } from "./useCinematicCamera";
 
 // --- GLSL NOISE UTILS (Simplex/FBM) ---
 const noiseGLSL = `
@@ -160,8 +160,8 @@ function WireframeSphere({ scroll }: { scroll: number }) {
 }
 
 function Scene({ scroll, mouse }: { scroll: number; mouse: [number, number] }) {
-  // Use the dramatic camera system
-  useDramaticCamera(scroll, 0.12);
+  // Use the cinematic camera system with rotation and scene tilt
+  useCinematicCamera(scroll, 0.12);
 
   return (
     <>
@@ -202,7 +202,7 @@ export default function ScorpiusCore() {
   }, []);
 
   return (
-    <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
+    <Canvas camera={{ position: [0, 2, 12], fov: 40 }}>
       <Scene scroll={scroll} mouse={mouse} />
     </Canvas>
   );
