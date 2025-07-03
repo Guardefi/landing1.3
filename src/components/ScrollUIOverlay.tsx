@@ -517,23 +517,23 @@ export default function ScrollUIOverlay() {
                                 </span>
                               )}
                             </div>
-                            <p className="text-gray-300 text-sm italic">
+                            <p className="text-gray-300 text-xs italic">
                               {tier.description}
                             </p>
                           </div>
 
                           {/* Features */}
-                          <div className="flex-1 mb-6">
-                            <h4 className="text-lg font-terminal text-cyan-400 mb-4 uppercase tracking-wide border-b border-cyan-400/30 pb-2">
+                          <div className="flex-1 mb-4">
+                            <h4 className="text-sm font-terminal text-cyan-400 mb-3 uppercase tracking-wide border-b border-cyan-400/30 pb-1">
                               What You Get
                             </h4>
-                            <div className="space-y-3 max-h-96 overflow-y-auto custom-scrollbar">
+                            <div className="space-y-2 max-h-80 overflow-y-auto custom-scrollbar">
                               {tier.features.map((feature, i) => (
                                 <div
                                   key={i}
-                                  className="flex items-start text-sm text-gray-300"
+                                  className="flex items-start text-xs text-gray-300"
                                 >
-                                  <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-2 flex-shrink-0 animate-pulse"></div>
+                                  <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mr-2 mt-1.5 flex-shrink-0 animate-pulse"></div>
                                   <span>{feature}</span>
                                 </div>
                               ))}
