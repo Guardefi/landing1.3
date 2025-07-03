@@ -1,77 +1,41 @@
-'use client';
-import dynamic from 'next/dynamic';
-import LandingHero from '@/components/LandingHero';
-import ModulesShowcase from '@/components/ModulesShowcase';
-import EnterpriseModules from '@/components/EnterpriseModules';
-import PricingTiers from '@/components/PricingTiers';
-import SocialProof from '@/components/SocialProof';
-import FinalCTA from '@/components/FinalCTA';
+import dynamic from "next/dynamic";
+import ScrollUIOverlay from "@/components/ScrollUIOverlay";
 
-const ScorpiusCore = dynamic(() => import('@/components/ScorpiusCore'), { 
+const ScorpiusCore = dynamic(() => import("@/components/ScorpiusCore"), {
   ssr: false,
-  loading: () => (
-    <div className="fixed inset-0 flex items-center justify-center bg-war-room-void">
-      <div className="text-cyan-400 font-terminal text-lg">
-        Initializing War Room<span className="loading-dots"></span>
-      </div>
-    </div>
-  )
 });
 
 export default function Home() {
   return (
-    <div className="relative">
-      {/* 3D Sphere Experience Section */}
-      <div className="relative h-[500vh]">
-        {/* 3D + Space Background, sticky for sphere section */}
-        <div className="fixed inset-0 z-0 pointer-events-none">
-          <ScorpiusCore />
+    <main
+      className="relative w-screen h-[1000vh] bg-black"
+      id="scroll-container"
+    >
+      {/* Starfield background */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-black">
+          {/* Generate random stars */}
+          {Array.from({ length: 200 }).map((_, i) => (
+            <div
+              key={i}
+              className="absolute bg-white rounded-full opacity-70"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                width: `${Math.random() * 2 + 1}px`,
+                height: `${Math.random() * 2 + 1}px`,
+                animationDelay: `${Math.random() * 3}s`,
+                animation: `twinkle ${2 + Math.random() * 3}s infinite ease-in-out alternate`,
+              }}
+            />
+          ))}
         </div>
-        
-        {/* Progress indicator */}
-        <div className="fixed top-0 left-0 w-full h-1 z-50 bg-war-room-steel">
-          <div className="h-full bg-cyan-400 transition-all duration-150 progress-bar" />
-        </div>
-        
-        {/* Invisible scroll sections for sphere interaction */}
-        <section className="scroll-section opacity-0" id="greeting" data-scroll-animate="fade-in">
-          <div className="h-screen"></div>
-        </section>
-        <section className="scroll-section opacity-0" id="hero" data-scroll-animate="fade-in">
-          <div className="h-screen"></div>
-        </section>
-        <section className="scroll-section opacity-0" id="modules" data-scroll-animate="fade-in">
-          <div className="h-screen"></div>
-        </section>
-        <section className="scroll-section opacity-0" id="enterprise" data-scroll-animate="fade-in">
-          <div className="h-screen"></div>
-        </section>
-        <section className="scroll-section opacity-0" id="cta" data-scroll-animate="fade-in">
-          <div className="h-screen"></div>
-        </section>
       </div>
-      
-      {/* Actual Page Content Sections */}
-      <div className="relative z-10 bg-war-room-void">
-        <section className="min-h-screen" data-scroll-animate="fade-in">
-          <LandingHero />
-        </section>
-        <section className="min-h-screen" data-scroll-animate="fade-in">
-          <ModulesShowcase />
-        </section>
-        <section className="min-h-screen" data-scroll-animate="fade-in">
-          <EnterpriseModules />
-        </section>
-        <section className="min-h-screen" data-scroll-animate="fade-in">
-          <PricingTiers />
-        </section>
-        <section className="min-h-screen" data-scroll-animate="fade-in">
-          <SocialProof />
-        </section>
-        <section className="min-h-screen" data-scroll-animate="fade-in">
-          <FinalCTA />
-        </section>
+
+      <div className="sticky top-0 left-0 w-screen h-screen pointer-events-none z-10">
+        <ScorpiusCore />
       </div>
-    </div>
+      <ScrollUIOverlay />
+    </main>
   );
-} 
+}
