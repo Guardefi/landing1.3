@@ -331,6 +331,11 @@ export default function ScrollUIOverlay() {
     active = Math.min(Math.floor(adjustedScrollPos), totalSections - 1);
   }
 
+  // Ensure we can reach the final section (pricing)
+  if (scroll > 0.95) {
+    active = totalSections - 1;
+  }
+
   return (
     <div className="pointer-events-none fixed inset-0 flex flex-col items-center justify-center z-10">
       {sections.map((sec, i) => {
