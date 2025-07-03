@@ -32,6 +32,57 @@ const sections = [
     subtitle: "Total Control. Infinite Insight.",
     desc: "Executive dashboards, compliance, and instant incident response. All at your fingertips.",
     align: "center",
+    carousel: true,
+    carouselImages: [
+      {
+        title: "Executive Dashboard",
+        desc: "Real-time threat intelligence overview",
+        image:
+          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
+      },
+      {
+        title: "Threat Map",
+        desc: "Global attack visualization",
+        image:
+          "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&crop=center",
+      },
+      {
+        title: "Analytics Hub",
+        desc: "Advanced security metrics",
+        image:
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=center",
+      },
+      {
+        title: "Compliance Center",
+        desc: "Regulatory monitoring",
+        image:
+          "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop&crop=center",
+      },
+      {
+        title: "Incident Response",
+        desc: "Emergency action protocols",
+        image:
+          "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop&crop=center",
+      },
+      {
+        title: "Network Monitor",
+        desc: "Infrastructure surveillance",
+        image:
+          "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=600&fit=crop&crop=center",
+      },
+      {
+        title: "Alert System",
+        desc: "Priority notification center",
+        image:
+          "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&crop=center",
+      },
+      {
+        title: "Command Console",
+        desc: "Central control interface",
+        image:
+          "https://images.unsplash.com/photo-1551033406-611cf9a28f67?w=800&h=600&fit=crop&crop=center",
+      },
+    ],
   },
   {
     title: "Under-the-Hood Firepower",
@@ -203,6 +254,7 @@ export default function ScrollUIOverlay() {
       {sections.map((sec, i) => {
         const isActive = active === i;
         const isStickySection = sec.sticky && isActive;
+        const isCarouselSection = sec.carousel && isActive;
 
         return (
           <AnimatedSection
@@ -270,6 +322,59 @@ export default function ScrollUIOverlay() {
                       {feature}
                     </div>
                   ))}
+                </div>
+              )}
+
+              {/* Carousel Images for Enterprise Command */}
+              {isCarouselSection && sec.carouselImages && (
+                <div className="mb-6 relative overflow-hidden rounded-xl">
+                  <div
+                    className="flex transition-transform duration-700 ease-out"
+                    style={{
+                      transform: `translateX(-${activeCarouselImage * 100}%)`,
+                      width: `${sec.carouselImages.length * 100}%`,
+                    }}
+                  >
+                    {sec.carouselImages.map((image, idx) => (
+                      <div
+                        key={idx}
+                        className="relative min-w-full h-64 group"
+                        style={{ width: `${100 / sec.carouselImages.length}%` }}
+                      >
+                        <img
+                          src={image.image}
+                          alt={image.title}
+                          className="w-full h-full object-cover rounded-lg"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent rounded-lg">
+                          <div className="absolute bottom-4 left-4 right-4">
+                            <h4 className="text-xl font-command font-bold text-cyan-400 mb-1">
+                              {image.title}
+                            </h4>
+                            <p className="text-sm text-gray-300">
+                              {image.desc}
+                            </p>
+                          </div>
+                        </div>
+                        {/* Cyber glow effect */}
+                        <div className="absolute inset-0 border-2 border-cyan-400/0 group-hover:border-cyan-400/50 transition-all duration-300 rounded-lg"></div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Progress indicators */}
+                  <div className="flex justify-center mt-4 space-x-2">
+                    {sec.carouselImages.map((_, idx) => (
+                      <div
+                        key={idx}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          idx === activeCarouselImage
+                            ? "bg-cyan-400 scale-125"
+                            : "bg-gray-600 hover:bg-gray-500"
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </div>
               )}
 
