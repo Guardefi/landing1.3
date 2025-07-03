@@ -227,33 +227,36 @@ export default function ScrollUIOverlay() {
                 {sec.desc}
               </p>
 
-              {/* Sticky Cards for Under-the-Hood Firepower */}
-              {isStickySection && sec.stickyCards && activeStickyCard >= 0 && (
-                <div className="mb-6">
-                  <div
-                    className="bg-war-room-charcoal/80 rounded-lg p-6 border border-cyan-400/30"
-                    style={{
-                      opacity:
-                        activeStickyCard < sec.stickyCards.length ? 1 : 0,
-                      transition: "opacity 0.5s ease-in-out",
-                    }}
-                  >
-                    {activeStickyCard < sec.stickyCards.length && (
-                      <>
-                        <h3 className="text-3xl font-command font-bold text-cyan-400 mb-2">
-                          {sec.stickyCards[activeStickyCard].title}
-                        </h3>
-                        <h4 className="text-xl text-white mb-3">
-                          {sec.stickyCards[activeStickyCard].subtitle}
-                        </h4>
-                        <p className="text-gray-300">
-                          {sec.stickyCards[activeStickyCard].desc}
-                        </p>
-                      </>
-                    )}
+              {/* Sticky Cards for any sticky section */}
+              {isStickySection &&
+                sec.stickyCards &&
+                activeStickyCard >= 0 &&
+                currentSticky === i && (
+                  <div className="mb-6">
+                    <div
+                      className="bg-war-room-charcoal/80 rounded-lg p-6 border border-cyan-400/30"
+                      style={{
+                        opacity:
+                          activeStickyCard < sec.stickyCards.length ? 1 : 0,
+                        transition: "opacity 0.5s ease-in-out",
+                      }}
+                    >
+                      {activeStickyCard < sec.stickyCards.length && (
+                        <>
+                          <h3 className="text-3xl font-command font-bold text-cyan-400 mb-2">
+                            {sec.stickyCards[activeStickyCard].title}
+                          </h3>
+                          <h4 className="text-xl text-white mb-3">
+                            {sec.stickyCards[activeStickyCard].subtitle}
+                          </h4>
+                          <p className="text-gray-300">
+                            {sec.stickyCards[activeStickyCard].desc}
+                          </p>
+                        </>
+                      )}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
               {/* Regular Features */}
               {sec.features && !isStickySection && (
