@@ -354,7 +354,8 @@ export default function ScrollUIOverlay() {
             bg-black/70 glass-morphism corner-accent
             ${sec.align === "left" ? "text-left ml-0 md:ml-16" : ""}
             ${sec.align === "right" ? "text-right mr-0 md:mr-16" : ""}
-            ${sec.align === "center" ? "text-center mx-auto" : ""}`}
+            ${sec.align === "center" ? "text-center mx-auto" : ""}
+            ${sec.fullScreenPricing ? "hidden" : ""}`}
             >
               <h1 className="font-bold cyan-glow mb-4 text-4xl md:text-6xl">
                 {sec.title}
@@ -482,7 +483,7 @@ export default function ScrollUIOverlay() {
 
               {/* Full-Screen Pricing Tiers */}
               {sec.fullScreenPricing && sec.pricingTiers && (
-                <div className="fixed inset-0 flex items-center justify-center z-50">
+                <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50 backdrop-blur-sm">
                   <div className="max-w-6xl w-full px-4 mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 justify-items-center">
                       {sec.pricingTiers.map((tier, idx) => (
