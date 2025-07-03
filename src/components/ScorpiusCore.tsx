@@ -263,21 +263,42 @@ function PetalBloom({
     }
 
     if (groupRef.current) {
-      // Text alignment sections (matching ScrollUIOverlay sections)
+      // Text alignment sections (matching ScrollUIOverlay sections with sticky adjustments)
       const sections = [
         "center", // Hello Dark Forest
         "center", // ScorpiusCore
         "left", // Quantum Threat Detection
         "right", // Adaptive Defense Layers
         "center", // Enterprise Command
-        "left", // Under-the-Hood Firepower
+        "left", // Under-the-Hood Firepower + 4 sticky cards
         "right", // Enterprise Arsenal
         "center", // Pricing
         "left", // Testimonials
         "center", // CTA
       ];
 
-      const sectionIndex = Math.floor(scroll * (sections.length - 1));
+      const stickyIndex = 5; // Under-the-Hood Firepower index
+      const stickySubSections = 4; // 4 sticky cards
+      const totalSections = sections.length;
+
+      // Adjust scroll calculation for sticky section
+      const scrollPosition = scroll * (totalSections + stickySubSections - 1);
+
+      let sectionIndex;
+      if (
+        scrollPosition >= stickyIndex &&
+        scrollPosition <= stickyIndex + stickySubSections
+      ) {
+        // We're in the sticky section
+        sectionIndex = stickyIndex;
+      } else if (scrollPosition > stickyIndex + stickySubSections) {
+        // After sticky section, adjust for the extra sub-sections
+        sectionIndex = Math.floor(scrollPosition - stickySubSections + 1);
+      } else {
+        // Before sticky section
+        sectionIndex = Math.floor(scrollPosition);
+      }
+
       const currentAlign = sections[sectionIndex] || "center";
 
       let targetX = 0;
@@ -314,21 +335,42 @@ function WireframeSphere({ scroll }: { scroll: number }) {
   useFrame((state) => {
     meshRef.current.rotation.y += 0.005 + scroll * 0.04;
 
-    // Text alignment sections (matching ScrollUIOverlay sections)
+    // Text alignment sections (matching ScrollUIOverlay sections with sticky adjustments)
     const sections = [
       "center", // Hello Dark Forest
       "center", // ScorpiusCore
       "left", // Quantum Threat Detection
       "right", // Adaptive Defense Layers
       "center", // Enterprise Command
-      "left", // Under-the-Hood Firepower
+      "left", // Under-the-Hood Firepower + 4 sticky cards
       "right", // Enterprise Arsenal
       "center", // Pricing
       "left", // Testimonials
       "center", // CTA
     ];
 
-    const sectionIndex = Math.floor(scroll * (sections.length - 1));
+    const stickyIndex = 5; // Under-the-Hood Firepower index
+    const stickySubSections = 4; // 4 sticky cards
+    const totalSections = sections.length;
+
+    // Adjust scroll calculation for sticky section
+    const scrollPosition = scroll * (totalSections + stickySubSections - 1);
+
+    let sectionIndex;
+    if (
+      scrollPosition >= stickyIndex &&
+      scrollPosition <= stickyIndex + stickySubSections
+    ) {
+      // We're in the sticky section
+      sectionIndex = stickyIndex;
+    } else if (scrollPosition > stickyIndex + stickySubSections) {
+      // After sticky section, adjust for the extra sub-sections
+      sectionIndex = Math.floor(scrollPosition - stickySubSections + 1);
+    } else {
+      // Before sticky section
+      sectionIndex = Math.floor(scrollPosition);
+    }
+
     const currentAlign = sections[sectionIndex] || "center";
 
     let targetX = 0;
