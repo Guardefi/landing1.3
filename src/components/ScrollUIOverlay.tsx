@@ -59,14 +59,14 @@ const sections = [
     ],
   },
   {
-    title: "Pricing / Access Tiers",
-    subtitle: "Choose Your Level of Defense",
-    desc: "From indie builders to Fortune 500 fortresses. Every tier built for the digital battlefield.",
+    title: "Pricing Tiers",
+    subtitle: "Choose Your Plan for Enterprise-Grade Defense",
+    desc: "Scalable, enterprise-grade defense for every organization.",
     align: "center",
     pricing: [
-      { name: "Starter", price: "$99/month", icon: "🏁" },
-      { name: "Professional", price: "$499/month", icon: "🛰️", popular: true },
-      { name: "Enterprise", price: "Custom", icon: "🛡️" },
+      { name: "Pro", price: "$199/mo", icon: "⚡" },
+      { name: "Elite", price: "$999/mo", icon: "🚀", popular: true },
+      { name: "Enterprise", price: "Contact Us", icon: "🛡️" },
     ],
   },
   {
