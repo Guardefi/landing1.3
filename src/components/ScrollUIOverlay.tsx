@@ -195,21 +195,27 @@ const sections = [
 export default function ScrollUIOverlay() {
   const scroll = useScrollSync();
 
-  // Find sticky sections
+  // Find sticky sections and carousel sections
   const stickyIndices = sections
     .map((sec, i) => (sec.sticky ? i : -1))
     .filter((i) => i >= 0);
+  const carouselIndex = sections.findIndex((sec) => sec.carousel);
   const totalSections = sections.length;
   const totalStickySubSections = stickyIndices.reduce(
     (sum, index) => sum + (sections[index]?.stickyCards?.length || 0),
     0,
   );
+  const carouselSubSections =
+    sections[carouselIndex]?.carouselImages?.length || 0;
 
-  // Adjust scroll calculation for multiple sticky sections
+  // Adjust scroll calculation for multiple sticky sections and carousel
   let active;
   let activeStickyCard = -1;
   let currentSticky = -1;
-  const scrollPosition = scroll * (totalSections + totalStickySubSections - 1);
+  let carouselProgress = 0;
+  let activeCarouselImage = -1;
+  const scrollPosition =
+    scroll * (totalSections + totalStickySubSections + carouselSubSections - 1);
 
   // Check each section sequentially
   let adjustedScrollPos = scrollPosition;
@@ -217,6 +223,7 @@ export default function ScrollUIOverlay() {
   for (let i = 0; i < totalSections; i++) {
     const section = sections[i];
     const stickySubSections = section.stickyCards?.length || 0;
+    const carouselSubSections = section.carouselImages?.length || 0;
 
     if (
       section.sticky &&
@@ -232,10 +239,26 @@ export default function ScrollUIOverlay() {
           ? Math.floor(stickyProgress * stickySubSections)
           : -1;
       break;
+    } else if (
+      section.carousel &&
+      adjustedScrollPos >= i &&
+      adjustedScrollPos <= i + carouselSubSections
+    ) {
+      // We're in the carousel section
+      active = i;
+      carouselProgress = (adjustedScrollPos - i) / carouselSubSections;
+      activeCarouselImage = Math.floor(carouselProgress * carouselSubSections);
+      break;
     } else if (section.sticky && adjustedScrollPos > i + stickySubSections) {
       // Passed this sticky section, adjust scroll position
       adjustedScrollPos -= stickySubSections;
-    } else if (!section.sticky) {
+    } else if (
+      section.carousel &&
+      adjustedScrollPos > i + carouselSubSections
+    ) {
+      // Passed carousel section, adjust scroll position
+      adjustedScrollPos -= carouselSubSections;
+    } else if (!section.sticky && !section.carousel) {
       // Regular section
       if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
         active = i;
