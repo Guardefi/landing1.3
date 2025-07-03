@@ -482,9 +482,9 @@ export default function ScrollUIOverlay() {
 
               {/* Full-Screen Pricing Tiers */}
               {sec.fullScreenPricing && sec.pricingTiers && (
-                <div className="w-screen h-screen flex items-center justify-center -ml-8 -mt-8">
-                  <div className="max-w-7xl w-full px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-[80vh]">
+                <div className="fixed inset-0 flex items-center justify-center z-50">
+                  <div className="max-w-6xl w-full px-4 mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 justify-items-center">
                       {sec.pricingTiers.map((tier, idx) => (
                         <div
                           key={idx}
