@@ -34,11 +34,11 @@ float snoise(vec3 v) {
              i.z + vec4(0.0, i1.z, i2.z, 1.0 ))
            + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))
            + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));
-  float n_ = 1.0/7.0; 
+  float n_ = 1.0/7.0;
   vec3  ns = n_ * D.wyz - D.xzx;
-  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  
+  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
   vec4 x_ = floor(j * ns.z);
-  vec4 y_ = floor(j - 7.0 * x_ );    
+  vec4 y_ = floor(j - 7.0 * x_ );
   vec4 x = x_ *ns.x + ns.y;
   vec4 y = y_ *ns.x + ns.y;
   vec4 h = 1.0 - abs(x) - abs(y);
@@ -159,10 +159,8 @@ function WireframeSphere({ scroll }: { scroll: number }) {
   );
 }
 
-export default function ScorpiusCore() {
-  const scroll = useScrollSync();
+function CameraController({ scroll }: { scroll: number }) {
   const { camera } = useThree();
-  const [mouse, setMouse] = useState<[number, number]>([0, 0]);
 
   // Multi-angle GSAP camera animation
   useEffect(() => {
@@ -211,6 +209,13 @@ export default function ScorpiusCore() {
     camera.lookAt(0, 0, 0);
   }, [scroll, camera]);
 
+  return null;
+}
+
+export default function ScorpiusCore() {
+  const scroll = useScrollSync();
+  const [mouse, setMouse] = useState<[number, number]>([0, 0]);
+
   // Mouse interaction for energy shader
   useEffect(() => {
     function onPointerMove(e: MouseEvent) {
@@ -224,6 +229,7 @@ export default function ScorpiusCore() {
 
   return (
     <Canvas camera={{ position: [0, 0, 7], fov: 50 }}>
+      <CameraController scroll={scroll} />
       <ambientLight intensity={0.25} />
       <pointLight position={[0, 0, 8]} intensity={2} color="#00fff7" />
       <WireframeSphere scroll={scroll} />
