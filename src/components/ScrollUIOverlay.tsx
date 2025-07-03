@@ -144,40 +144,59 @@ const sections = [
 export default function ScrollUIOverlay() {
   const scroll = useScrollSync();
 
-  // Find sticky section index
-  const stickyIndex = sections.findIndex((sec) => sec.sticky);
+  // Find sticky sections
+  const stickyIndices = sections
+    .map((sec, i) => (sec.sticky ? i : -1))
+    .filter((i) => i >= 0);
   const totalSections = sections.length;
-  const stickySubSections = sections[stickyIndex]?.stickyCards?.length || 0;
+  const totalStickySubSections = stickyIndices.reduce(
+    (sum, index) => sum + (sections[index]?.stickyCards?.length || 0),
+    0,
+  );
 
-  // Adjust scroll calculation for sticky section
+  // Adjust scroll calculation for multiple sticky sections
   let active;
-  const scrollPosition = scroll * (totalSections + stickySubSections - 1);
+  let activeStickyCard = -1;
+  let currentSticky = -1;
+  const scrollPosition = scroll * (totalSections + totalStickySubSections - 1);
 
-  if (
-    stickyIndex >= 0 &&
-    scrollPosition >= stickyIndex &&
-    scrollPosition <= stickyIndex + stickySubSections
-  ) {
-    // We're in the sticky section
-    active = stickyIndex;
-  } else if (scrollPosition > stickyIndex + stickySubSections) {
-    // After sticky section, adjust for the extra sub-sections
-    active = Math.floor(scrollPosition - stickySubSections + 1);
-  } else {
-    // Before sticky section
-    active = Math.floor(scrollPosition);
+  // Check each section sequentially
+  let adjustedScrollPos = scrollPosition;
+
+  for (let i = 0; i < totalSections; i++) {
+    const section = sections[i];
+    const stickySubSections = section.stickyCards?.length || 0;
+
+    if (
+      section.sticky &&
+      adjustedScrollPos >= i &&
+      adjustedScrollPos <= i + stickySubSections
+    ) {
+      // We're in this sticky section
+      active = i;
+      currentSticky = i;
+      const stickyProgress = (adjustedScrollPos - i) / stickySubSections;
+      activeStickyCard =
+        stickyProgress > 0
+          ? Math.floor(stickyProgress * stickySubSections)
+          : -1;
+      break;
+    } else if (section.sticky && adjustedScrollPos > i + stickySubSections) {
+      // Passed this sticky section, adjust scroll position
+      adjustedScrollPos -= stickySubSections;
+    } else if (!section.sticky) {
+      // Regular section
+      if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
+        active = i;
+        break;
+      }
+    }
   }
 
-  // Calculate sticky card progress
-  const stickyProgress =
-    stickyIndex >= 0 &&
-    scrollPosition >= stickyIndex &&
-    scrollPosition <= stickyIndex + stickySubSections
-      ? (scrollPosition - stickyIndex) / stickySubSections
-      : 0;
-
-  const activeStickyCard =
-    stickyProgress > 0 ? Math.floor(stickyProgress * stickySubSections) : -1;
+  // If no section matched, use fallback
+  if (active === undefined) {
+    active = Math.min(Math.floor(adjustedScrollPos), totalSections - 1);
+  }
 
   return (
     <div className="pointer-events-none fixed inset-0 flex flex-col items-center justify-center z-10">
