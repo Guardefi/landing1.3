@@ -12,6 +12,7 @@
     "@react-three/drei": "^9.88.13",
     "@react-three/fiber": "^8.15.11",
     "@react-three/postprocessing": "^2.19.1",
+    "@stripe/stripe-js": "^7.4.0",
     "framer-motion": "^10.16.16",
     "gsap": "^3.13.0",
     "lenis": "^1.0.42",

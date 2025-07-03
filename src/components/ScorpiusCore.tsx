@@ -7,6 +7,84 @@ import { shaderMaterial } from "@react-three/drei";
 import { useScrollSync } from "./useScrollSync";
 import { useCinematicCamera } from "./useCinematicCamera";
 
+// Galaxy background component
+function GalaxyBackground() {
+  const galaxyRef = useRef<THREE.Points>(null!);
+  const [geometry, setGeometry] = useState<THREE.BufferGeometry>();
+
+  useEffect(() => {
+    const count = 15000;
+    const positions = new Float32Array(count * 3);
+    const colors = new Float32Array(count * 3);
+    const sizes = new Float32Array(count);
+
+    // Create spiral galaxy structure
+    for (let i = 0; i < count; i++) {
+      const i3 = i * 3;
+      const radius = Math.random() * 20;
+      const spinAngle = radius * 0.3;
+      const branchAngle = ((i % 6) * (Math.PI * 2)) / 6;
+
+      const x = Math.cos(branchAngle + spinAngle) * radius;
+      const z = Math.sin(branchAngle + spinAngle) * radius;
+      const y = (Math.random() - 0.5) * 4;
+
+      // Add randomness
+      const randomX = (Math.random() - 0.5) * 0.8;
+      const randomY = (Math.random() - 0.5) * 0.8;
+      const randomZ = (Math.random() - 0.5) * 0.8;
+
+      positions[i3] = x + randomX;
+      positions[i3 + 1] = y + randomY;
+      positions[i3 + 2] = z + randomZ;
+
+      // Colors - cyan to purple gradient
+      const mixedColor = new THREE.Color();
+      const distanceRatio = radius / 20;
+      mixedColor.lerpColors(
+        new THREE.Color(0x00ffff),
+        new THREE.Color(0x8000ff),
+        distanceRatio,
+      );
+
+      colors[i3] = mixedColor.r;
+      colors[i3 + 1] = mixedColor.g;
+      colors[i3 + 2] = mixedColor.b;
+
+      sizes[i] = Math.random() * 6 + 2;
+    }
+
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    geo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+    geo.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
+    setGeometry(geo);
+  }, []);
+
+  useFrame((state) => {
+    if (galaxyRef.current) {
+      galaxyRef.current.rotation.y += 0.0002;
+      galaxyRef.current.rotation.x =
+        Math.sin(state.clock.elapsedTime * 0.1) * 0.05;
+    }
+  });
+
+  if (!geometry) return null;
+
+  return (
+    <points ref={galaxyRef} geometry={geometry}>
+      <pointsMaterial
+        size={0.005}
+        sizeAttenuation
+        vertexColors
+        transparent
+        opacity={0.8}
+        blending={THREE.AdditiveBlending}
+      />
+    </points>
+  );
+}
+
 // Noise GLSL for advanced shader effects
 const noiseGLSL = `
 vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
@@ -173,6 +251,7 @@ function PetalBloom({
   mouse: [number, number];
 }) {
   const meshRef = useRef<THREE.Mesh>(null!);
+  const groupRef = useRef<THREE.Group>(null!);
 
   useFrame((state) => {
     if (meshRef.current) {
@@ -182,10 +261,72 @@ function PetalBloom({
       material.uMouse = mouse;
       meshRef.current.rotation.y += 0.004 + scroll * 0.02;
     }
+
+    if (groupRef.current) {
+      // Text alignment sections (matching ScrollUIOverlay sections with sticky adjustments)
+      const sections = [
+        "center", // Hello Dark Forest
+        "center", // ScorpiusCore
+        "left", // Quantum Threat Detection
+        "right", // Adaptive Defense Layers
+        "center", // Enterprise Command
+        "left", // Under-the-Hood Firepower + 4 sticky cards
+        "right", // Enterprise Arsenal + 4 sticky cards
+        "center", // Pricing
+        "left", // Testimonials
+        "center", // CTA
+      ];
+
+      const totalSections = sections.length;
+      const totalStickySubSections = 8; // 4 for firepower + 4 for arsenal
+
+      // Adjust scroll calculation for multiple sticky sections
+      const scrollPosition =
+        scroll * (totalSections + totalStickySubSections - 1);
+
+      let sectionIndex;
+      let adjustedScrollPos = scrollPosition;
+
+      // Handle Under-the-Hood Firepower (index 5)
+      if (adjustedScrollPos >= 5 && adjustedScrollPos <= 9) {
+        // 5 + 4 sticky cards
+        sectionIndex = 5;
+      } else if (adjustedScrollPos > 9) {
+        adjustedScrollPos -= 4; // Subtract firepower sticky cards
+
+        // Handle Enterprise Arsenal (index 6, but adjusted to 6 after firepower)
+        if (adjustedScrollPos >= 6 && adjustedScrollPos <= 10) {
+          // 6 + 4 sticky cards
+          sectionIndex = 6;
+        } else if (adjustedScrollPos > 10) {
+          adjustedScrollPos -= 4; // Subtract arsenal sticky cards
+          sectionIndex = Math.floor(adjustedScrollPos);
+        } else {
+          sectionIndex = Math.floor(adjustedScrollPos);
+        }
+      } else {
+        sectionIndex = Math.floor(adjustedScrollPos);
+      }
+
+      const currentAlign = sections[sectionIndex] || "center";
+
+      let targetX = 0;
+      if (currentAlign === "left") {
+        targetX = 4; // Move sphere to right when text is on left
+      } else if (currentAlign === "right") {
+        targetX = -4; // Move sphere to left when text is on right
+      }
+
+      // Smooth transition between positions
+      groupRef.current.position.x +=
+        (targetX - groupRef.current.position.x) * 0.05;
+      groupRef.current.position.y = Math.sin(scroll * Math.PI * 2) * 0.3;
+      groupRef.current.position.z = Math.cos(scroll * Math.PI * 2) * 0.2;
+    }
   });
 
   return (
-    <group>
+    <group ref={groupRef}>
       <mesh ref={meshRef} scale={1.18}>
         <sphereGeometry args={[2.2, 128, 128]} />
         {/* @ts-ignore */}
@@ -202,8 +343,65 @@ function WireframeSphere({ scroll }: { scroll: number }) {
 
   useFrame((state) => {
     meshRef.current.rotation.y += 0.005 + scroll * 0.04;
-    meshRef.current.position.x = Math.sin(scroll * Math.PI * 2) * 0.2;
-    meshRef.current.position.y = Math.cos(scroll * Math.PI * 2) * 0.15;
+
+    // Text alignment sections (matching ScrollUIOverlay sections with sticky adjustments)
+    const sections = [
+      "center", // Hello Dark Forest
+      "center", // ScorpiusCore
+      "left", // Quantum Threat Detection
+      "right", // Adaptive Defense Layers
+      "center", // Enterprise Command
+      "left", // Under-the-Hood Firepower + 4 sticky cards
+      "right", // Enterprise Arsenal + 4 sticky cards
+      "center", // Pricing
+      "left", // Testimonials
+      "center", // CTA
+    ];
+
+    const totalSections = sections.length;
+    const totalStickySubSections = 8; // 4 for firepower + 4 for arsenal
+
+    // Adjust scroll calculation for multiple sticky sections
+    const scrollPosition =
+      scroll * (totalSections + totalStickySubSections - 1);
+
+    let sectionIndex;
+    let adjustedScrollPos = scrollPosition;
+
+    // Handle Under-the-Hood Firepower (index 5)
+    if (adjustedScrollPos >= 5 && adjustedScrollPos <= 9) {
+      // 5 + 4 sticky cards
+      sectionIndex = 5;
+    } else if (adjustedScrollPos > 9) {
+      adjustedScrollPos -= 4; // Subtract firepower sticky cards
+
+      // Handle Enterprise Arsenal (index 6, but adjusted to 6 after firepower)
+      if (adjustedScrollPos >= 6 && adjustedScrollPos <= 10) {
+        // 6 + 4 sticky cards
+        sectionIndex = 6;
+      } else if (adjustedScrollPos > 10) {
+        adjustedScrollPos -= 4; // Subtract arsenal sticky cards
+        sectionIndex = Math.floor(adjustedScrollPos);
+      } else {
+        sectionIndex = Math.floor(adjustedScrollPos);
+      }
+    } else {
+      sectionIndex = Math.floor(adjustedScrollPos);
+    }
+
+    const currentAlign = sections[sectionIndex] || "center";
+
+    let targetX = 0;
+    if (currentAlign === "left") {
+      targetX = 4; // Move sphere to right when text is on left
+    } else if (currentAlign === "right") {
+      targetX = -4; // Move sphere to left when text is on right
+    }
+
+    // Smooth transition between positions
+    meshRef.current.position.x += (targetX - meshRef.current.position.x) * 0.05;
+    meshRef.current.position.y = Math.sin(scroll * Math.PI * 2) * 0.3;
+    meshRef.current.position.z = Math.cos(scroll * Math.PI * 2) * 0.2;
   });
 
   return (
@@ -220,9 +418,11 @@ function Scene({ scroll, mouse }: { scroll: number; mouse: [number, number] }) {
 
   return (
     <>
+      <GalaxyBackground />
       <ambientLight intensity={0.3} />
       <pointLight position={[0, 0, 12]} intensity={2} color="#00fff7" />
       <pointLight position={[6, 6, 6]} intensity={1} color="#008b8b" />
+      <pointLight position={[-6, -6, 6]} intensity={0.5} color="#8000ff" />
 
       <PetalBloom scroll={scroll} mouse={mouse} />
       <WireframeSphere scroll={scroll} />
