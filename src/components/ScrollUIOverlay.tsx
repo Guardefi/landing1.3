@@ -488,7 +488,7 @@ export default function ScrollUIOverlay() {
                       {sec.pricingTiers.map((tier, idx) => (
                         <div
                           key={idx}
-                          className={`relative flex flex-col h-full rounded-2xl p-8 transition-all duration-500 hover:scale-105 ${
+                          className={`relative flex flex-col w-full max-w-sm h-[70vh] rounded-2xl p-6 transition-all duration-500 hover:scale-105 mx-auto ${
                             tier.popular
                               ? "bg-gradient-to-b from-cyan-400/20 to-war-room-void ring-2 ring-cyan-400 shadow-2xl shadow-cyan-400/20"
                               : "bg-gradient-to-b from-war-room-charcoal/80 to-war-room-void border border-gray-600 hover:border-cyan-400/50"
@@ -503,16 +503,16 @@ export default function ScrollUIOverlay() {
                           )}
 
                           {/* Header */}
-                          <div className="text-center mb-6">
-                            <h3 className="text-4xl font-command font-bold text-white mb-2">
+                          <div className="text-center mb-4">
+                            <h3 className="text-3xl font-command font-bold text-white mb-2">
                               {tier.name}
                             </h3>
-                            <div className="flex items-baseline justify-center mb-3">
-                              <span className="text-5xl font-command text-cyan-400">
+                            <div className="flex items-baseline justify-center mb-2">
+                              <span className="text-4xl font-command text-cyan-400">
                                 {tier.price}
                               </span>
                               {tier.period && (
-                                <span className="text-xl text-gray-400 ml-1">
+                                <span className="text-lg text-gray-400 ml-1">
                                   {tier.period}
                                 </span>
                               )}
