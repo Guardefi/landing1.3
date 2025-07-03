@@ -336,6 +336,17 @@ export default function ScrollUIOverlay() {
     active = totalSections - 1;
   }
 
+  // Debug logging (remove in production)
+  if (typeof window !== "undefined") {
+    console.log("Scroll debug:", {
+      scroll: scroll.toFixed(3),
+      active,
+      totalSections,
+      scrollPosition: scrollPosition.toFixed(2),
+      lastSectionIndex: totalSections - 1,
+    });
+  }
+
   return (
     <div className="pointer-events-none fixed inset-0 flex flex-col items-center justify-center z-10">
       {sections.map((sec, i) => {
