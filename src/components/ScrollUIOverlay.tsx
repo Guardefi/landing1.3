@@ -331,20 +331,9 @@ export default function ScrollUIOverlay() {
     active = Math.min(Math.floor(adjustedScrollPos), totalSections - 1);
   }
 
-  // Ensure we can reach the final section (pricing)
-  if (scroll > 0.95) {
-    active = totalSections - 1;
-  }
-
-  // Debug logging (remove in production)
-  if (typeof window !== "undefined") {
-    console.log("Scroll debug:", {
-      scroll: scroll.toFixed(3),
-      active,
-      totalSections,
-      scrollPosition: scrollPosition.toFixed(2),
-      lastSectionIndex: totalSections - 1,
-    });
+  // Ensure we can reach the final section (pricing) - simplified approach
+  if (scroll > 0.9) {
+    active = totalSections - 1; // Force show pricing section when near the end
   }
 
   return (
