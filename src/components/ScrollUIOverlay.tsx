@@ -242,6 +242,9 @@ export default function ScrollUIOverlay() {
     .map((sec, i) => (sec.sticky ? i : -1))
     .filter((i) => i >= 0);
   const carouselIndex = sections.findIndex((sec) => sec.carousel);
+  const ctaIndices = sections
+    .map((sec, i) => (sec.cta ? i : -1))
+    .filter((i) => i >= 0);
   const totalSections = sections.length;
   const totalStickySubSections = stickyIndices.reduce(
     (sum, index) => sum + (sections[index]?.stickyCards?.length || 0),
@@ -249,6 +252,7 @@ export default function ScrollUIOverlay() {
   );
   const carouselSubSections =
     sections[carouselIndex]?.carouselImages?.length || 0;
+  const totalCtaExtraSpace = ctaIndices.length * 0.5; // Extra space for CTA sections
 
   // Adjust scroll calculation for multiple sticky sections and carousel
   let active;
@@ -257,7 +261,12 @@ export default function ScrollUIOverlay() {
   let carouselProgress = 0;
   let activeCarouselImage = -1;
   const scrollPosition =
-    scroll * (totalSections + totalStickySubSections + carouselSubSections - 1);
+    scroll *
+    (totalSections +
+      totalStickySubSections +
+      carouselSubSections +
+      totalCtaExtraSpace -
+      1);
 
   // Check each section sequentially
   let adjustedScrollPos = scrollPosition;
