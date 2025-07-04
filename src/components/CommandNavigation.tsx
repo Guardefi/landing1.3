@@ -111,7 +111,7 @@ export default function CommandNavigation() {
             <MetalButton
               variant="cyber"
               className="px-4 py-2"
-              onClick={() => scrollToSection(3)}
+              onClick={() => scrollToSection(2)}
             >
               <Play className="w-4 h-4 mr-1" />
               Watch Demo
@@ -164,7 +164,7 @@ export default function CommandNavigation() {
 
             <button
               onClick={() => {
-                scrollToSection(3);
+                scrollToSection(2);
                 setIsMobileMenuOpen(false);
               }}
               className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
