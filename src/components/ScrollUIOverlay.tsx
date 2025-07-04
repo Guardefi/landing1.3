@@ -10,12 +10,6 @@ const sections = [
     align: "center",
   },
   {
-    title: "ScorpiusCore",
-    subtitle: "The Next-Gen Cyber Defense Engine",
-    desc: "A living, breathing core of wireframe intelligence and pulsing quantum energy. The heart of your war room.",
-    align: "center",
-  },
-  {
     title: "Quantum Threat Detection",
     subtitle: "See the Unseen",
     desc: "AI-powered, zero-latency threat recognition. Every anomaly, every shadow, instantly mapped and neutralized.",
