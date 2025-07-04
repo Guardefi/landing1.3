@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import AnimatedSection from "./AnimatedSection";
 import { useScrollSync } from "./useScrollSync";
 import { CyberpunkImageSlider } from "./ui/cyberpunk-image-slider";
