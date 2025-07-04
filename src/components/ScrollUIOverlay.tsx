@@ -135,29 +135,10 @@ const sections = [
     ],
   },
   {
-    title: "Battle-Tested by Leaders",
-    subtitle: "Trusted by Fortune 500 & DeFi Protocols",
-    desc: "ScorpiusCore protects over $847B in digital assets. Join the defense against the Dark Forest.",
-    align: "left",
-    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
-    testimonials: [
-      {
-        quote:
-          "ScorpiusCore detected a flash loan attack 3 seconds before execution. Saved us $2.3M.",
-        author: "Marcus Chen, CTO",
-      },
-      {
-        quote:
-          "The medieval aesthetic with Fortune 500 functionality is exactly what our board needed.",
-        author: "Sarah Williams, CISO",
-      },
-    ],
-  },
-  {
     title: "Ready to Deploy?",
     subtitle: "The Dark Forest is Watching",
     desc: "Book a live demo or deploy now—because 'maybe secure' is just another way to say next victim.",
-    align: "center",
+    align: "left",
     cta: true,
     image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
   },
@@ -242,6 +223,9 @@ export default function ScrollUIOverlay() {
     .map((sec, i) => (sec.sticky ? i : -1))
     .filter((i) => i >= 0);
   const carouselIndex = sections.findIndex((sec) => sec.carousel);
+  const ctaIndices = sections
+    .map((sec, i) => (sec.cta ? i : -1))
+    .filter((i) => i >= 0);
   const totalSections = sections.length;
   const totalStickySubSections = stickyIndices.reduce(
     (sum, index) => sum + (sections[index]?.stickyCards?.length || 0),
@@ -249,6 +233,7 @@ export default function ScrollUIOverlay() {
   );
   const carouselSubSections =
     sections[carouselIndex]?.carouselImages?.length || 0;
+  const totalCtaExtraSpace = ctaIndices.length * 0.5; // Extra space for CTA sections
 
   // Adjust scroll calculation for multiple sticky sections and carousel
   let active;
@@ -257,7 +242,12 @@ export default function ScrollUIOverlay() {
   let carouselProgress = 0;
   let activeCarouselImage = -1;
   const scrollPosition =
-    scroll * (totalSections + totalStickySubSections + carouselSubSections - 1);
+    scroll *
+    (totalSections +
+      totalStickySubSections +
+      carouselSubSections +
+      totalCtaExtraSpace -
+      1);
 
   // Check each section sequentially
   let adjustedScrollPos = scrollPosition;
@@ -300,11 +290,21 @@ export default function ScrollUIOverlay() {
     ) {
       // Passed carousel section, adjust scroll position
       adjustedScrollPos -= carouselSubSections;
+    } else if (section.cta) {
+      // CTA section - give it extra visibility space
+      if (adjustedScrollPos >= i && adjustedScrollPos < i + 1.5) {
+        active = i;
+        break;
+      } else if (adjustedScrollPos >= i + 1.5) {
+        // Passed CTA section, adjust for its extra space
+        adjustedScrollPos -= 0.5;
+      }
     } else if (
       !section.sticky &&
       !section.carousel &&
       !section.cyberpunkSlider &&
-      !section.demoVideo
+      !section.demoVideo &&
+      !section.cta
     ) {
       // Regular section
       if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
@@ -331,9 +331,9 @@ export default function ScrollUIOverlay() {
     active = Math.min(Math.floor(adjustedScrollPos), totalSections - 1);
   }
 
-  // Ensure we can reach the final section (pricing) - simplified approach
-  if (scroll > 0.85) {
-    active = totalSections - 1; // Force show pricing section when near the end
+  // Ensure we can reach the final section (pricing) - only when very close to end
+  if (scroll > 0.95) {
+    active = totalSections - 1; // Force show pricing section only when at the very end
   }
 
   // Debug log removed to prevent infinite loop
@@ -345,25 +345,38 @@ export default function ScrollUIOverlay() {
         {sections.map((sec, i) => {
           if (!sec.image) return null;
           const isActive = active === i;
+          const isNextSectionPricing = sections[i + 1]?.fullScreenPricing;
+          const isPricingSection = sec.fullScreenPricing;
+
+          // Calculate transition opacity for CTA -> Pricing fade
+          let finalOpacity = isActive ? 0.3 : 0;
+          if (sec.cta && isActive && adjustedScrollPos > i + 1) {
+            // Fade out CTA background as we approach pricing
+            const fadeProgress = Math.min((adjustedScrollPos - i - 1) / 0.5, 1);
+            finalOpacity = 0.3 * (1 - fadeProgress);
+          }
 
           return (
             <div
               key={i}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                isActive ? "opacity-30" : "opacity-0"
-              }`}
+              className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+              style={{ opacity: finalOpacity }}
             >
               <img
                 src={sec.image}
                 alt={sec.title}
                 className="w-full h-full object-cover"
               />
-              {/* Enhanced overlay for demo video - darker and more blurred */}
+              {/* Enhanced overlay for different section types */}
               <div
                 className={`absolute inset-0 transition-all duration-1000 ${
                   sec.demoVideo
                     ? "bg-black/80 backdrop-blur-[8px]"
-                    : "bg-black/60 backdrop-blur-[1px]"
+                    : sec.cta
+                      ? "bg-black/70 backdrop-blur-[2px]"
+                      : isPricingSection
+                        ? "bg-black/90 backdrop-blur-[4px]"
+                        : "bg-black/60 backdrop-blur-[1px]"
                 }`}
               />
             </div>
@@ -625,7 +638,7 @@ export default function ScrollUIOverlay() {
 
                 {/* Full-Screen Pricing Tiers */}
                 {sec.fullScreenPricing && sec.pricingTiers && (
-                  <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50 backdrop-blur-sm">
+                  <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50 backdrop-blur-sm pt-16">
                     <div className="max-w-6xl w-full px-4 mx-auto">
                       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 justify-items-center">
                         {sec.pricingTiers.map((tier, idx) => (
