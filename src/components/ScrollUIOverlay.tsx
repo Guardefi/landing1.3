@@ -11,7 +11,7 @@ import {
   Bot,
   Radio,
   Shield,
-  Flask,
+  TestTube,
   ClipboardCheck,
   KeyRound,
 } from "lucide-react";
