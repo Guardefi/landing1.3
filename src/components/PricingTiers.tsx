@@ -1,16 +1,13 @@
 "use client";
 import { motion, useReducedMotion } from "framer-motion";
-import { loadStripe } from "@stripe/stripe-js";
 import { FeatureCard } from "./ui/grid-feature-cards";
 import { Zap, Crown, Building2 } from "lucide-react";
-
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
-);
+import PayButton from "./payments/PayButton";
+import { STRIPE_PRICE_IDS } from "@/lib/stripe";
 
 const TIERS = [
   {
-    id: "price_pro",
+    id: STRIPE_PRICE_IDS.PRO,
     title: "Pro Defense",
     icon: Zap,
     price: "$199",
@@ -31,9 +28,10 @@ const TIERS = [
     ],
     cta: "Deploy Pro Defense",
     popular: false,
+    mode: "subscription" as const,
   },
   {
-    id: "price_elite",
+    id: STRIPE_PRICE_IDS.ENTERPRISE,
     title: "Elite Arsenal",
     icon: Crown,
     price: "$999",
@@ -56,6 +54,7 @@ const TIERS = [
     ],
     cta: "Deploy Elite Arsenal",
     popular: true,
+    mode: "subscription" as const,
   },
   {
     id: "contact_us",
@@ -83,24 +82,17 @@ const TIERS = [
     ],
     cta: "Contact War Room",
     popular: false,
+    mode: null,
   },
 ];
 
 export default function PricingTiers() {
-  const handleCheckout = async (priceId: string) => {
-    if (priceId === "contact_us") {
-      // Redirect to contact form or modal
-      window.location.href = "/contact";
-      return;
-    }
-    const stripe = await stripePromise;
-    if (!stripe) return;
-    await stripe.redirectToCheckout({
-      lineItems: [{ price: priceId, quantity: 1 }],
-      mode: "subscription",
-      successUrl: window.location.href,
-      cancelUrl: window.location.href,
-    });
+  const handleContactUs = () => {
+    // For demo purposes, could link to a contact form
+    window.open(
+      "mailto:contact@scorpius.io?subject=Enterprise%20Command%20Inquiry",
+      "_blank",
+    );
   };
 
   return (
@@ -234,16 +226,22 @@ export default function PricingTiers() {
                   </div>
 
                   {/* CTA Button */}
-                  <button
-                    onClick={() => handleCheckout(tier.id)}
-                    className={`w-full py-4 rounded-lg font-bold text-sm transition-all duration-300 font-command ${
-                      tier.popular
-                        ? "bg-cyber-cyan-bright text-black hover:bg-cyber-cyan-intense shadow-lg shadow-cyber-cyan-bright/30"
-                        : "bg-transparent border border-cyber-cyan-base text-cyber-cyan-base hover:bg-cyber-cyan-base hover:text-black hover:shadow-lg hover:shadow-cyber-cyan-base/30"
-                    }`}
-                  >
-                    {tier.cta}
-                  </button>
+                  {tier.mode ? (
+                    <PayButton
+                      priceId={tier.id}
+                      mode={tier.mode}
+                      className="w-full"
+                    >
+                      {tier.cta}
+                    </PayButton>
+                  ) : (
+                    <button
+                      onClick={handleContactUs}
+                      className="w-full py-4 rounded-lg font-bold text-sm transition-all duration-300 font-command bg-transparent border border-cyber-cyan-base text-cyber-cyan-base hover:bg-cyber-cyan-base hover:text-black hover:shadow-lg hover:shadow-cyber-cyan-base/30"
+                    >
+                      {tier.cta}
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
