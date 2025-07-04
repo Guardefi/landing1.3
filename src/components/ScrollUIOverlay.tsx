@@ -22,18 +22,22 @@ const sections = [
     desc: "A new guardian awakens in the digital cosmos.",
     align: "center",
     heroSection: true,
+    image: "https://images.pexels.com/photos/7672875/pexels-photo-7672875.jpeg",
   },
   {
     title: "Quantum Threat Detection",
     subtitle: "See the Unseen",
     desc: "AI-powered, zero-latency threat recognition. Every anomaly, every shadow, instantly mapped and neutralized.",
     align: "left",
+    image:
+      "https://images.pexels.com/photos/30901558/pexels-photo-30901558.jpeg",
   },
   {
     title: "Adaptive Defense Layers",
     subtitle: "Multi-Protocol. Multi-Chain. Multi-Reality.",
     desc: "Dynamic energy shields and protocol firewalls, adapting in real-time to the evolving threatscape.",
     align: "right",
+    image: "https://images.pexels.com/photos/237807/pexels-photo-237807.jpeg",
   },
   {
     title: "Watch Scorpius in Action",
@@ -41,6 +45,7 @@ const sections = [
     desc: "See how Scorpius identifies and neutralizes threats in milliseconds.",
     align: "center",
     demoVideo: true,
+    image: "https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg",
   },
   {
     title: "Enterprise Command",
@@ -48,6 +53,7 @@ const sections = [
     desc: "Executive dashboards, compliance, and instant incident response. All at your fingertips.",
     align: "center",
     cyberpunkSlider: true,
+    image: "https://images.pexels.com/photos/3582392/pexels-photo-3582392.jpeg",
   },
   {
     title: "Under-the-Hood Firepower",
@@ -55,6 +61,7 @@ const sections = [
     desc: "Seven combat-ready modules forged in quantum cybersecurity fires. Each weapon designed for digital warfare.",
     align: "left",
     sticky: true,
+    image: "https://images.pexels.com/photos/5952651/pexels-photo-5952651.jpeg",
     stickyCards: [
       {
         title: "Hive Alert",
