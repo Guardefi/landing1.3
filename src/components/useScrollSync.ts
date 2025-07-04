@@ -1,38 +1,79 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export function useScrollSync() {
   const [scroll, setScroll] = useState(0);
+  const lastScrollTime = useRef(Date.now());
+  const scrollAccumulator = useRef(0);
+  const lastRawScroll = useRef(0);
+  const stickyLocked = useRef(false);
 
   useEffect(() => {
     const onScroll = () => {
       const max = document.body.scrollHeight - window.innerHeight;
       const rawScroll = window.scrollY / max;
+      const now = Date.now();
+      const deltaTime = now - lastScrollTime.current;
 
       // Define demo section boundaries (section index 3 out of total sections)
       const totalSections = 11;
       const demoSectionIndex = 3;
       const demoStartPercent = demoSectionIndex / totalSections;
       const demoEndPercent = (demoSectionIndex + 1) / totalSections;
+      const demoCenter =
+        demoStartPercent + 0.5 * (demoEndPercent - demoStartPercent);
 
       let adjustedScrollValue = rawScroll;
 
-      // Apply sticky behavior to demo section
-      if (rawScroll >= demoStartPercent && rawScroll <= demoEndPercent) {
+      // Check if we're in demo section
+      const inDemoSection =
+        rawScroll >= demoStartPercent && rawScroll <= demoEndPercent;
+
+      if (inDemoSection) {
         const demoProgress =
           (rawScroll - demoStartPercent) / (demoEndPercent - demoStartPercent);
 
-        // Create a sticky zone in the middle 60% of demo section
-        if (demoProgress >= 0.2 && demoProgress <= 0.8) {
-          // Apply resistance - slow down scroll progression in sticky zone
-          const stickyProgress = (demoProgress - 0.2) / 0.6;
-          const easedProgress =
-            0.2 + stickyProgress * stickyProgress * stickyProgress * 0.6;
-          adjustedScrollValue =
-            demoStartPercent +
-            easedProgress * (demoEndPercent - demoStartPercent);
+        // Calculate scroll delta since last frame
+        const scrollDelta = Math.abs(rawScroll - lastRawScroll.current);
+
+        // Accumulate scroll intent when in sticky zone (middle 70% of demo section)
+        if (demoProgress >= 0.15 && demoProgress <= 0.85) {
+          if (!stickyLocked.current) {
+            stickyLocked.current = true;
+            scrollAccumulator.current = 0;
+          }
+
+          // Accumulate scroll attempts
+          if (deltaTime > 0) {
+            scrollAccumulator.current += scrollDelta * 100; // Amplify small movements
+          }
+
+          // Require significant accumulated scroll to exit (much higher threshold)
+          const exitThreshold = 0.15; // Need 15% worth of scroll accumulation to exit
+
+          if (scrollAccumulator.current < exitThreshold) {
+            // Lock to demo center until enough scroll accumulated
+            adjustedScrollValue = demoCenter;
+          } else {
+            // Allow exit once threshold met
+            stickyLocked.current = false;
+            scrollAccumulator.current = 0;
+            adjustedScrollValue = rawScroll;
+          }
+        } else {
+          // At edges of demo section - allow easier entry/exit
+          stickyLocked.current = false;
+          scrollAccumulator.current = 0;
+          adjustedScrollValue = rawScroll;
         }
+      } else {
+        // Outside demo section - reset sticky state
+        stickyLocked.current = false;
+        scrollAccumulator.current = 0;
+        adjustedScrollValue = rawScroll;
       }
 
+      lastScrollTime.current = now;
+      lastRawScroll.current = rawScroll;
       setScroll(adjustedScrollValue);
     };
 
