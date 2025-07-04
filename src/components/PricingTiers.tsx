@@ -15,7 +15,8 @@ const TIERS = [
     icon: Zap,
     price: "$199",
     interval: "mo",
-    description: "Unlimited scans • Core modules access • Basic support • Standard SLA (99.9%)",
+    description:
+      "Unlimited scans • Core modules access • Basic support • Standard SLA (99.9%)",
     features: [
       "Unlimited scans",
       "Core modules access",
@@ -31,7 +32,8 @@ const TIERS = [
     icon: Crown,
     price: "$999",
     interval: "mo",
-    description: "Unlimited scans • All modules + integrations • Priority support • Enhanced SLA (99.95%)",
+    description:
+      "Unlimited scans • All modules + integrations • Priority support • Enhanced SLA (99.95%)",
     features: [
       "Unlimited scans",
       "All modules + integrations",
@@ -47,7 +49,8 @@ const TIERS = [
     icon: Building2,
     price: "Contact Us",
     interval: "",
-    description: "Custom integrations • Dedicated account manager • 24/7 support • Custom SLAs & compliance",
+    description:
+      "Custom integrations • Dedicated account manager • 24/7 support • Custom SLAs & compliance",
     features: [
       "Custom integrations",
       "Dedicated account manager",
@@ -77,7 +80,10 @@ export default function PricingTiers() {
   };
 
   return (
-    <section id="pricing" className="py-16 md:py-32 relative bg-gradient-to-b from-war-room-abyss to-war-room-void">
+    <section
+      id="pricing"
+      className="py-16 md:py-32 relative bg-gradient-to-b from-war-room-abyss to-war-room-void"
+    >
       {/* Background effects */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.05),transparent_70%)]" />
 
@@ -87,7 +93,8 @@ export default function PricingTiers() {
             TACTICAL PRICING
           </h2>
           <p className="text-cyber-cyan-base/80 mt-4 text-sm tracking-wide text-balance md:text-base font-terminal">
-            Choose your defense level for the digital battlefield. Every tier engineered for tactical supremacy.
+            Choose your defense level for the digital battlefield. Every tier
+            engineered for tactical supremacy.
           </p>
         </AnimatedContainer>
 
@@ -119,7 +126,9 @@ export default function PricingTiers() {
                 <div className="text-lg font-command text-cyber-cyan-bright">
                   {tier.price}
                   {tier.interval && (
-                    <span className="text-sm text-cyber-cyan-base/60">/{tier.interval}</span>
+                    <span className="text-sm text-cyber-cyan-base/60">
+                      /{tier.interval}
+                    </span>
                   )}
                 </div>
               </div>
@@ -147,11 +156,15 @@ export default function PricingTiers() {
 
 type ViewAnimationProps = {
   delay?: number;
-  className?: React.ComponentProps<typeof motion.div>['className'];
+  className?: React.ComponentProps<typeof motion.div>["className"];
   children: React.ReactNode;
 };
 
-function AnimatedContainer({ className, delay = 0.1, children }: ViewAnimationProps) {
+function AnimatedContainer({
+  className,
+  delay = 0.1,
+  children,
+}: ViewAnimationProps) {
   const shouldReduceMotion = useReducedMotion();
 
   if (shouldReduceMotion) {
@@ -160,8 +173,8 @@ function AnimatedContainer({ className, delay = 0.1, children }: ViewAnimationPr
 
   return (
     <motion.div
-      initial={{ filter: 'blur(4px)', translateY: -8, opacity: 0 }}
-      whileInView={{ filter: 'blur(0px)', translateY: 0, opacity: 1 }}
+      initial={{ filter: "blur(4px)", translateY: -8, opacity: 0 }}
+      whileInView={{ filter: "blur(0px)", translateY: 0, opacity: 1 }}
       viewport={{ once: true }}
       transition={{ delay, duration: 0.8 }}
       className={className}
@@ -169,5 +182,4 @@ function AnimatedContainer({ className, delay = 0.1, children }: ViewAnimationPr
       {children}
     </motion.div>
   );
-}
 }
