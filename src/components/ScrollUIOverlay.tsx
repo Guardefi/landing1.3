@@ -428,6 +428,7 @@ export default function ScrollUIOverlay() {
               key={i}
               active={isActive}
               align={sec.align as "left" | "center" | "right"}
+              fastFadeOut={sec.title === "Enterprise Arsenal"}
             >
               <GlowCard
                 customSize={true}
