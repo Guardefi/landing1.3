@@ -334,18 +334,25 @@ export default function ScrollUIOverlay() {
               key={i}
               className="fixed inset-0 flex flex-col justify-between items-center z-20 pointer-events-none"
             >
-              {/* Top text */}
-              <div className="pt-16 animate-fade-in-slow">
-                <h1 className="font-bold cyan-glow text-4xl md:text-6xl font-command text-center">
-                  {sec.title}
-                </h1>
+              {/* Top text group */}
+              <div className="pt-16 space-y-4">
+                <div className="animate-fade-in-slow">
+                  <h1 className="font-bold cyan-glow text-4xl md:text-6xl font-command text-center">
+                    {sec.title}
+                  </h1>
+                </div>
+                <div className="animate-fade-in-slower">
+                  <h2 className="text-cyan-400 text-2xl md:text-4xl font-command text-center">
+                    {sec.subtitle}
+                  </h2>
+                </div>
               </div>
 
               {/* Bottom text */}
-              <div className="pb-16 animate-fade-in-slower">
-                <h2 className="text-cyan-400 text-2xl md:text-4xl font-command text-center">
-                  {sec.subtitle}
-                </h2>
+              <div className="pb-16 animate-fade-in-slowest">
+                <p className="text-cyber-cyan-base/80 text-lg md:text-xl font-terminal text-center">
+                  {sec.desc}
+                </p>
               </div>
             </div>
           );
