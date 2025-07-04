@@ -349,8 +349,34 @@ export default function ScrollUIOverlay() {
   });
 
   return (
-    <div className="pointer-events-none fixed inset-0 flex flex-col items-center justify-center z-10">
-      {sections.map((sec, i) => {
+    <>
+      {/* Background Image that flips with each section */}
+      <div className="fixed inset-0 z-[5] pointer-events-none">
+        {sections.map((sec, i) => {
+          if (!sec.image) return null;
+          const isActive = active === i;
+
+          return (
+            <div
+              key={i}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                isActive ? 'opacity-30' : 'opacity-0'
+              }`}
+            >
+              <img
+                src={sec.image}
+                alt={sec.title}
+                className="w-full h-full object-cover"
+              />
+              {/* Overlay to darken the image and maintain readability */}
+              <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]" />
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="pointer-events-none fixed inset-0 flex flex-col items-center justify-center z-10">
+        {sections.map((sec, i) => {
         const isActive = active === i;
         const isStickySection = sec.sticky && isActive;
         const isCarouselSection = sec.carousel && isActive;
