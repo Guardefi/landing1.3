@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const session = await stripe.checkout.Session.create({
+    const session = await stripe.checkout.sessions.create({
       mode: mode as "payment" | "subscription",
       line_items: [
         {
