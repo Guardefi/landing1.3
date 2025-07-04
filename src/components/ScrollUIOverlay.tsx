@@ -364,7 +364,9 @@ export default function ScrollUIOverlay() {
             active={isActive}
             align={sec.align as "left" | "center" | "right"}
           >
-            <div
+            <GlowCard
+              customSize={true}
+              glowColor="cyan"
               className={`max-w-3xl mx-auto p-8 rounded-xl backdrop-blur shadow-lg text-center
             bg-black/70 glass-morphism corner-accent
             ${sec.align === "left" ? "text-left ml-0 md:ml-16" : ""}
@@ -646,7 +648,7 @@ export default function ScrollUIOverlay() {
                   </button>
                 </div>
               )}
-            </div>
+            </GlowCard>
           </AnimatedSection>
         );
       })}
