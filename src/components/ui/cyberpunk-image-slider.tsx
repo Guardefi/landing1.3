@@ -130,11 +130,11 @@ export const CyberpunkImageSlider = () => {
                   <img
                     src={image}
                     alt={`Cyber defense interface ${(index % images.length) + 1}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover opacity-40"
                     loading="lazy"
                   />
                   {/* Cyber overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-cyan-400/20"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-cyan-400/10"></div>
                   {/* Scanning line effect */}
                   <div className="scan-line"></div>
                   {/* Corner accents */}
