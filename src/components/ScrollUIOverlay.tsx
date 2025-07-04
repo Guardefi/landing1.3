@@ -369,7 +369,7 @@ export default function ScrollUIOverlay() {
 
               {/* Cyberpunk Image Slider for Enterprise Command */}
               {sec.cyberpunkSlider && isActive && (
-                <div className="mb-6 -mx-8 -my-8">
+                <div className="mb-6">
                   <CyberpunkImageSlider />
                 </div>
               )}
