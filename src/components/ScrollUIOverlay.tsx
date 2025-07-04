@@ -300,11 +300,21 @@ export default function ScrollUIOverlay() {
     ) {
       // Passed carousel section, adjust scroll position
       adjustedScrollPos -= carouselSubSections;
+    } else if (section.cta) {
+      // CTA section - give it extra visibility space
+      if (adjustedScrollPos >= i && adjustedScrollPos < i + 1.5) {
+        active = i;
+        break;
+      } else if (adjustedScrollPos >= i + 1.5) {
+        // Passed CTA section, adjust for its extra space
+        adjustedScrollPos -= 0.5;
+      }
     } else if (
       !section.sticky &&
       !section.carousel &&
       !section.cyberpunkSlider &&
-      !section.demoVideo
+      !section.demoVideo &&
+      !section.cta
     ) {
       // Regular section
       if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
