@@ -505,6 +505,10 @@ export default function ScrollUIOverlay() {
                         <video
                           className="w-full h-full object-cover"
                           controls
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
                           poster="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=1200&h=675&fit=crop"
                         >
                           <source
