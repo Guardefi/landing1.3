@@ -116,9 +116,9 @@ export default function PricingTiers() {
 
         <AnimatedContainer
           delay={0.4}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto"
         >
-          {TIERS.map((tier, i) => (
+          {TIERS.slice(0, 2).map((tier, i) => (
             <div key={tier.id} className="relative min-h-[700px]">
               {tier.popular && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
@@ -247,6 +247,134 @@ export default function PricingTiers() {
             </div>
           ))}
         </AnimatedContainer>
+
+        {/* Separate Enterprise Section */}
+        <div className="mt-20 relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyber-cyan-bright/10 to-transparent h-px" />
+
+          <AnimatedContainer delay={0.8} className="mt-12">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-command text-cyber-cyan-bright mb-2">
+                ENTERPRISE COMMAND CENTER
+              </h3>
+              <p className="text-cyber-cyan-base/80 font-terminal text-sm">
+                For Fortune 500 companies requiring maximum tactical control
+              </p>
+            </div>
+
+            <div className="max-w-2xl mx-auto">
+              {TIERS.slice(2).map((tier, i) => (
+                <div key={tier.id} className="relative">
+                  <div className="h-full bg-gradient-to-br from-war-room-charcoal/80 to-war-room-steel/50 border-2 border-cyber-cyan-bright/60 transition-all duration-300 rounded-lg overflow-hidden relative shadow-2xl shadow-cyber-cyan-bright/20">
+                    {/* Premium Badge */}
+                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
+                      <span className="bg-gradient-to-r from-cyber-cyan-bright to-cyber-cyan-intense text-black px-6 py-2 rounded-full text-sm font-terminal font-bold uppercase tracking-wider">
+                        ENTERPRISE ONLY
+                      </span>
+                    </div>
+
+                    {/* Enhanced Grid Pattern */}
+                    <div className="pointer-events-none absolute top-0 left-1/2 -mt-2 -ml-20 h-full w-full [mask-image:linear-gradient(white,transparent)]">
+                      <div className="from-cyber-cyan-bright/30 to-cyber-cyan-bright/10 absolute inset-0 bg-gradient-to-r [mask-image:radial-gradient(farthest-side_at_top,white,transparent)] opacity-100">
+                        <svg
+                          className="fill-cyber-cyan-bright/20 stroke-cyber-cyan-bright/40 absolute inset-0 h-full w-full mix-blend-overlay"
+                          aria-hidden="true"
+                        >
+                          <defs>
+                            <pattern
+                              id={`enterprise-grid-${i}`}
+                              width="20"
+                              height="20"
+                              patternUnits="userSpaceOnUse"
+                              x="-12"
+                              y="4"
+                            >
+                              <path d="M.5 20V.5H20" fill="none" />
+                            </pattern>
+                          </defs>
+                          <rect
+                            width="100%"
+                            height="100%"
+                            strokeWidth="0"
+                            fill={`url(#enterprise-grid-${i})`}
+                          />
+                        </svg>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="relative z-10 p-8 h-full flex flex-col">
+                      {/* Header */}
+                      <div className="mb-6">
+                        <div className="flex items-center justify-between mb-4">
+                          <tier.icon
+                            className="text-cyber-cyan-bright size-10"
+                            strokeWidth={1}
+                            aria-hidden
+                          />
+                          <div className="text-right">
+                            <div className="text-3xl font-command text-cyber-cyan-bright">
+                              {tier.price}
+                              {tier.interval && (
+                                <span className="text-sm text-cyber-cyan-base/60">
+                                  /{tier.interval}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                        <h3 className="text-2xl font-command font-bold text-cyber-cyan-bright mb-4">
+                          {tier.title}
+                        </h3>
+
+                        <p className="text-cyber-cyan-base/90 text-base font-terminal leading-relaxed">
+                          {tier.description}
+                        </p>
+                      </div>
+
+                      {/* Features List */}
+                      <div className="flex-1 mb-8">
+                        <h4 className="text-base font-terminal text-cyber-cyan-bright mb-6 uppercase tracking-wide border-b border-cyber-cyan-bright/40 pb-3">
+                          Enterprise Capabilities
+                        </h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {tier.features.map((feature, idx) => (
+                            <div
+                              key={idx}
+                              className="flex items-start text-sm text-cyber-cyan-base/90"
+                            >
+                              <div className="w-2 h-2 bg-cyber-cyan-bright rounded-full mr-3 mt-2 flex-shrink-0 animate-pulse"></div>
+                              <span className="font-terminal">{feature}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* CTA Button */}
+                      {tier.mode ? (
+                        <PayButton
+                          priceId={tier.id}
+                          mode={tier.mode}
+                          className="w-full"
+                        >
+                          {tier.cta}
+                        </PayButton>
+                      ) : (
+                        <button
+                          onClick={handleContactUs}
+                          className="w-full py-4 rounded-lg font-bold text-base transition-all duration-300 font-command bg-cyber-cyan-bright text-black hover:bg-cyber-cyan-intense shadow-lg shadow-cyber-cyan-bright/40 hover:shadow-cyber-cyan-bright/60"
+                        >
+                          {tier.cta}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </AnimatedContainer>
+        </div>
       </div>
     </section>
   );

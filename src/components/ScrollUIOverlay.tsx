@@ -135,14 +135,6 @@ const sections = [
     ],
   },
   {
-    title: "Ready to Deploy?",
-    subtitle: "The Dark Forest is Watching",
-    desc: "Book a live demo or deploy now—because 'maybe secure' is just another way to say next victim.",
-    align: "left",
-    cta: true,
-    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
-  },
-  {
     title: "Choose Your Defense Level",
     subtitle: "Pricing Tiers",
     desc: "From indie builders to Fortune 500 enterprises. Every tier forged for the digital battlefield.",
