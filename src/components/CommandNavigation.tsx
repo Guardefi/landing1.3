@@ -3,14 +3,18 @@ import { MetalButton } from "./ui/liquid-glass-button";
 import { Terminal, Play, DollarSign, MessageCircle } from "lucide-react";
 import { useState } from "react";
 
-const scrollToSection = (sectionIndex: number) => {
+const navigateToSection = (sectionIndex: number) => {
+  // Emit custom event to force section display
+  const event = new CustomEvent("navigateToSection", {
+    detail: { sectionIndex },
+  });
+  window.dispatchEvent(event);
+
+  // Also scroll for visual feedback
   const container = document.getElementById("scroll-container");
   if (container) {
-    // Calculate scroll position based on section index
-    // Each section is roughly 10% of the total height (100vh out of 1000vh)
     const targetScrollPercentage = sectionIndex * 0.1;
     const targetScrollTop = targetScrollPercentage * container.scrollHeight;
-
     window.scrollTo({
       top: targetScrollTop,
       behavior: "smooth",
