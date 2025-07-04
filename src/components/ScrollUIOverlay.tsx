@@ -274,6 +274,12 @@ export default function ScrollUIOverlay() {
     const stickySubSections = section.stickyCards?.length || 0;
     const carouselSubSections = section.carouselImages?.length || 0;
 
+    // Calculate the effective size of this section
+    let sectionSize = 1;
+    if (section.demoVideo) {
+      sectionSize = demoSectionWeight; // Demo section takes more scroll space
+    }
+
     if (
       section.sticky &&
       adjustedScrollPos >= i &&
@@ -307,16 +313,14 @@ export default function ScrollUIOverlay() {
     ) {
       // Passed carousel section, adjust scroll position
       adjustedScrollPos -= carouselSubSections;
-    } else if (
-      !section.sticky &&
-      !section.carousel &&
-      !section.cyberpunkSlider &&
-      !section.demoVideo
-    ) {
-      // Regular section
-      if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
+    } else if (section.demoVideo) {
+      // Demo video section with sticky behavior
+      if (adjustedScrollPos >= i && adjustedScrollPos < i + sectionSize) {
         active = i;
         break;
+      } else if (adjustedScrollPos >= i + sectionSize) {
+        // Passed demo section, adjust for its extra weight
+        adjustedScrollPos -= sectionSize - 1;
       }
     } else if (section.cyberpunkSlider) {
       // Cyberpunk slider section
@@ -324,8 +328,13 @@ export default function ScrollUIOverlay() {
         active = i;
         break;
       }
-    } else if (section.demoVideo) {
-      // Demo video section
+    } else if (
+      !section.sticky &&
+      !section.carousel &&
+      !section.cyberpunkSlider &&
+      !section.demoVideo
+    ) {
+      // Regular section
       if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
         active = i;
         break;
