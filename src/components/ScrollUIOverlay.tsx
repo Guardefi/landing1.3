@@ -355,25 +355,37 @@ export default function ScrollUIOverlay() {
         {sections.map((sec, i) => {
           if (!sec.image) return null;
           const isActive = active === i;
+          const isNextSectionPricing = sections[i + 1]?.fullScreenPricing;
+          const isPricingSection = sec.fullScreenPricing;
+
+          // Calculate transition opacity for CTA -> Pricing fade
+          let sectionOpacity = isActive ? "opacity-30" : "opacity-0";
+          if (sec.cta && isActive && adjustedScrollPos > i + 1) {
+            // Fade out CTA background as we approach pricing
+            const fadeProgress = Math.min((adjustedScrollPos - i - 1) / 0.5, 1);
+            sectionOpacity = `opacity-${Math.round(30 * (1 - fadeProgress))}`;
+          }
 
           return (
             <div
               key={i}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                isActive ? "opacity-30" : "opacity-0"
-              }`}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${sectionOpacity}`}
             >
               <img
                 src={sec.image}
                 alt={sec.title}
                 className="w-full h-full object-cover"
               />
-              {/* Enhanced overlay for demo video - darker and more blurred */}
+              {/* Enhanced overlay for different section types */}
               <div
                 className={`absolute inset-0 transition-all duration-1000 ${
                   sec.demoVideo
                     ? "bg-black/80 backdrop-blur-[8px]"
-                    : "bg-black/60 backdrop-blur-[1px]"
+                    : sec.cta
+                      ? "bg-black/70 backdrop-blur-[2px]"
+                      : isPricingSection
+                        ? "bg-black/90 backdrop-blur-[4px]"
+                        : "bg-black/60 backdrop-blur-[1px]"
                 }`}
               />
             </div>
