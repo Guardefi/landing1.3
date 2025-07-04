@@ -1,16 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export function useScrollSync() {
   const [scroll, setScroll] = useState(0);
-  const [adjustedScroll, setAdjustedScroll] = useState(0);
+  const lastScrollTime = useRef(Date.now());
+  const scrollVelocity = useRef(0);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const onScroll = () => {
       const max = document.body.scrollHeight - window.innerHeight;
-      const rawScroll = window.scrollY / max;
+      const currentScrollY = window.scrollY;
+      const rawScroll = currentScrollY / max;
+      const now = Date.now();
+      const deltaTime = now - lastScrollTime.current;
+
+      // Calculate scroll velocity
+      if (deltaTime > 0) {
+        const deltaY = currentScrollY - lastScrollY.current;
+        scrollVelocity.current = Math.abs(deltaY) / deltaTime;
+      }
 
       // Define demo section boundaries (section index 3 out of total sections)
-      // Assuming 11 total sections based on the sections array
       const totalSections = 11;
       const demoSectionIndex = 3;
       const demoStartPercent = demoSectionIndex / totalSections;
@@ -20,35 +30,36 @@ export function useScrollSync() {
 
       // Apply sticky behavior to demo section
       if (rawScroll >= demoStartPercent && rawScroll <= demoEndPercent) {
-        // When in demo section, require more scroll to progress
         const demoProgress =
           (rawScroll - demoStartPercent) / (demoEndPercent - demoStartPercent);
 
-        // Create a sticky zone in the middle 60% of the demo section
-        const stickyZoneStart = 0.2;
-        const stickyZoneEnd = 0.8;
+        // Create sticky behavior - require high velocity to exit
+        const minVelocityToExit = 0.5; // Minimum scroll velocity needed to exit demo
 
-        if (demoProgress >= stickyZoneStart && demoProgress <= stickyZoneEnd) {
-          // Apply strong resistance in the sticky zone
-          const stickyProgress =
-            (demoProgress - stickyZoneStart) /
-            (stickyZoneEnd - stickyZoneStart);
-          // Use a dampening curve that makes it harder to scroll through
-          const dampenedProgress =
-            stickyZoneStart + stickyProgress * stickyProgress * 0.6;
-          adjustedScrollValue =
-            demoStartPercent +
-            dampenedProgress * (demoEndPercent - demoStartPercent);
+        // In the middle 70% of the demo section, apply strong resistance
+        if (demoProgress >= 0.15 && demoProgress <= 0.85) {
+          if (scrollVelocity.current < minVelocityToExit) {
+            // If scrolling slowly, keep user in the center of the demo section
+            adjustedScrollValue =
+              demoStartPercent + 0.5 * (demoEndPercent - demoStartPercent);
+          } else {
+            // Allow normal progression if scrolling with intent (fast)
+            adjustedScrollValue = rawScroll;
+          }
+        } else {
+          // Allow easier entry/exit at the edges
+          adjustedScrollValue = rawScroll;
         }
       }
 
-      setScroll(rawScroll);
-      setAdjustedScroll(adjustedScrollValue);
+      lastScrollTime.current = now;
+      lastScrollY.current = currentScrollY;
+      setScroll(adjustedScrollValue);
     };
 
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  return adjustedScroll;
+  return scroll;
 }
