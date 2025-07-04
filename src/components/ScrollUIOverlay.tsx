@@ -10,7 +10,7 @@ import {
   Bot,
   Radio,
   Shield,
-  Flask,
+  TestTube,
   ClipboardCheck,
   KeyRound,
 } from "lucide-react";
@@ -34,6 +34,13 @@ const sections = [
     subtitle: "Multi-Protocol. Multi-Chain. Multi-Reality.",
     desc: "Dynamic energy shields and protocol firewalls, adapting in real-time to the evolving threatscape.",
     align: "right",
+  },
+  {
+    title: "Watch Scorpius in Action",
+    subtitle: "Live Demo: Real-Time Threat Detection",
+    desc: "See how Scorpius identifies and neutralizes threats in milliseconds.",
+    align: "center",
+    demoVideo: true,
   },
   {
     title: "Enterprise Command",
@@ -96,7 +103,7 @@ const sections = [
       },
       {
         title: "Simulation Sandbox",
-        icon: Flask,
+        icon: TestTube,
         description:
           "Isolated simulation environments for testing attack vectors without risk.",
       },
@@ -286,7 +293,8 @@ export default function ScrollUIOverlay() {
     } else if (
       !section.sticky &&
       !section.carousel &&
-      !section.cyberpunkSlider
+      !section.cyberpunkSlider &&
+      !section.demoVideo
     ) {
       // Regular section
       if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
@@ -295,6 +303,12 @@ export default function ScrollUIOverlay() {
       }
     } else if (section.cyberpunkSlider) {
       // Cyberpunk slider section
+      if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
+        active = i;
+        break;
+      }
+    } else if (section.demoVideo) {
+      // Demo video section
       if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
         active = i;
         break;
@@ -444,6 +458,58 @@ export default function ScrollUIOverlay() {
                 <div className="fixed inset-0 z-30 flex items-center justify-center pointer-events-none">
                   <div className="bg-red-500 text-white p-8 text-2xl">
                     CYBERPUNK SLIDER DETECTED - SECTION ACTIVE
+                  </div>
+                </div>
+              )}
+
+              {/* Demo Video Section - inline display */}
+              {sec.demoVideo && (
+                <div className="mb-8 pointer-events-auto">
+                  <div className="relative mx-auto max-w-4xl">
+                    <div className="relative aspect-video rounded-2xl overflow-hidden border-2 border-cyber-cyan-dim/40 hover:border-cyber-cyan-bright/60 transition-all duration-300 bg-war-room-charcoal/60 backdrop-blur">
+                      <video
+                        className="w-full h-full object-cover"
+                        controls
+                        poster="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=1200&h=675&fit=crop"
+                      >
+                        <source
+                          src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                          type="video/mp4"
+                        />
+                        Your browser does not support the video tag.
+                      </video>
+
+                      {/* Cyber overlay effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-cyber-cyan-dim/10 via-transparent to-cyber-cyan-dim/10 pointer-events-none" />
+                    </div>
+
+                    {/* Demo features */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 text-sm">
+                      <div className="bg-war-room-charcoal/60 backdrop-blur rounded-lg p-4 border border-cyber-cyan-dim/30">
+                        <div className="text-cyber-cyan-bright font-terminal mb-2">
+                          ⚡ Real-Time Detection
+                        </div>
+                        <div className="text-gray-300">
+                          Watch threats identified in milliseconds
+                        </div>
+                      </div>
+                      <div className="bg-war-room-charcoal/60 backdrop-blur rounded-lg p-4 border border-cyber-cyan-dim/30">
+                        <div className="text-cyber-cyan-bright font-terminal mb-2">
+                          🛡️ Auto Response
+                        </div>
+                        <div className="text-gray-300">
+                          See automated countermeasures deploy
+                        </div>
+                      </div>
+                      <div className="bg-war-room-charcoal/60 backdrop-blur rounded-lg p-4 border border-cyber-cyan-dim/30">
+                        <div className="text-cyber-cyan-bright font-terminal mb-2">
+                          📊 Live Analytics
+                        </div>
+                        <div className="text-gray-300">
+                          Monitor security metrics in real-time
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
