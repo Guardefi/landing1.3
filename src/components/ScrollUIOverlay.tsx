@@ -20,6 +20,7 @@ const sections = [
     subtitle: "Meet Scorpius.",
     desc: "A new guardian awakens in the digital cosmos.",
     align: "center",
+    heroSection: true,
   },
   {
     title: "Quantum Threat Detection",
@@ -325,6 +326,30 @@ export default function ScrollUIOverlay() {
         const isActive = active === i;
         const isStickySection = sec.sticky && isActive;
         const isCarouselSection = sec.carousel && isActive;
+
+        // Special rendering for hero section
+        if (sec.heroSection && isActive) {
+          return (
+            <div
+              key={i}
+              className="fixed inset-0 flex flex-col justify-between items-center z-20 pointer-events-none"
+            >
+              {/* Top text */}
+              <div className="pt-16 animate-fade-in-slow">
+                <h1 className="font-bold cyan-glow text-4xl md:text-6xl font-command text-center">
+                  {sec.title}
+                </h1>
+              </div>
+
+              {/* Bottom text */}
+              <div className="pb-16 animate-fade-in-slower">
+                <h2 className="text-cyan-400 text-2xl md:text-4xl font-command text-center">
+                  {sec.subtitle}
+                </h2>
+              </div>
+            </div>
+          );
+        }
 
         return (
           <AnimatedSection
