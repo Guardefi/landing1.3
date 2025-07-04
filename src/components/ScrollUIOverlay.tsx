@@ -466,8 +466,10 @@ export default function ScrollUIOverlay() {
 
               {/* Image Auto Slider for Digital Arsenal Gallery */}
               {sec.imageSlider && isActive && (
-                <div className="fixed inset-0 z-30 pointer-events-none">
-                  <ImageAutoSlider />
+                <div className="fixed inset-0 z-30 flex items-center justify-center pointer-events-none">
+                  <div className="bg-green-500 text-white p-8 text-2xl">
+                    IMAGE SLIDER DETECTED - SECTION ACTIVE
+                  </div>
                 </div>
               )}
 
