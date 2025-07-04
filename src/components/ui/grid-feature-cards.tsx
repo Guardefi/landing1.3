@@ -32,13 +32,11 @@ export function FeatureCard({
           />
         </div>
       </div>
-      {feature.icon && (
-        <feature.icon
-          className="text-cyber-cyan-bright size-6"
-          strokeWidth={1}
-          aria-hidden
-        />
-      )}
+      {React.createElement(feature.icon || Box, {
+        className: "text-cyber-cyan-bright size-6",
+        strokeWidth: 1,
+        "aria-hidden": true,
+      })}
       <h3 className="mt-10 text-sm md:text-base font-command text-cyber-cyan-bright">
         {feature.title}
       </h3>
