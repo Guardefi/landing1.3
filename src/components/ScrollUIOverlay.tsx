@@ -411,7 +411,7 @@ export default function ScrollUIOverlay() {
               <GlowCard
                 customSize={true}
                 glowColor="cyan"
-                className={`max-w-3xl mx-auto p-8 rounded-xl backdrop-blur shadow-lg text-center
+                className={`${sec.demoVideo ? "max-w-7xl" : "max-w-3xl"} mx-auto p-8 rounded-xl backdrop-blur shadow-lg text-center
             bg-black/70 glass-morphism corner-accent
             ${sec.align === "left" ? "text-left ml-0 md:ml-16" : ""}
             ${sec.align === "right" ? "text-right mr-0 md:mr-16" : ""}
