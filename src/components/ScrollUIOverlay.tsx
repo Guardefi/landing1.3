@@ -380,7 +380,7 @@ export default function ScrollUIOverlay() {
 
               {/* Cyberpunk Image Slider for Enterprise Command */}
               {sec.cyberpunkSlider && isActive && (
-                <div className="w-screen h-screen flex items-center justify-center">
+                <div className="fixed inset-0 z-30 flex items-center justify-center pointer-events-none">
                   <CyberpunkImageSlider />
                 </div>
               )}
