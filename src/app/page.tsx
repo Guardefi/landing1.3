@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import ScrollUIOverlay from "@/components/ScrollUIOverlay";
 import PricingTiers from "@/components/PricingTiers";
 import WarRoomFooter from "@/components/WarRoomFooter";
+import CommandNavigation from "@/components/CommandNavigation";
 
 const ScorpiusCore = dynamic(() => import("@/components/ScorpiusCore"), {
   ssr: false,
@@ -10,6 +11,9 @@ const ScorpiusCore = dynamic(() => import("@/components/ScorpiusCore"), {
 export default function Home() {
   return (
     <>
+      {/* Command Navigation */}
+      <CommandNavigation />
+
       <main
         className="relative w-screen h-[1000vh] bg-black"
         id="scroll-container"
