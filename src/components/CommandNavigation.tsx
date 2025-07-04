@@ -29,16 +29,16 @@ const ContactPopup = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-      <div className="bg-war-room-void border-2 border-cyber-cyan-dim/40 rounded-2xl p-8 max-w-md w-full mx-4 relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+      <div className="bg-war-room-void border-2 border-cyber-cyan-dim/40 rounded-2xl p-6 md:p-8 max-w-md w-full relative">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-cyber-cyan-base hover:text-cyber-cyan-bright transition-colors"
+          className="absolute top-4 right-4 text-cyber-cyan-base hover:text-cyber-cyan-bright transition-colors text-xl"
         >
           ✕
         </button>
 
-        <h2 className="text-2xl font-command text-cyber-cyan-bright mb-6">
+        <h2 className="text-xl md:text-2xl font-command text-cyber-cyan-bright mb-6">
           Contact War Room
         </h2>
 
@@ -49,7 +49,7 @@ const ContactPopup = ({
             </label>
             <input
               type="text"
-              className="w-full bg-war-room-charcoal border border-cyber-cyan-dim/30 rounded-lg px-4 py-2 text-white focus:border-cyber-cyan-bright focus:outline-none"
+              className="w-full bg-war-room-charcoal border border-cyber-cyan-dim/30 rounded-lg px-4 py-3 text-white focus:border-cyber-cyan-bright focus:outline-none text-sm md:text-base"
               placeholder="Your name"
             />
           </div>
@@ -60,7 +60,7 @@ const ContactPopup = ({
             </label>
             <input
               type="email"
-              className="w-full bg-war-room-charcoal border border-cyber-cyan-dim/30 rounded-lg px-4 py-2 text-white focus:border-cyber-cyan-bright focus:outline-none"
+              className="w-full bg-war-room-charcoal border border-cyber-cyan-dim/30 rounded-lg px-4 py-3 text-white focus:border-cyber-cyan-bright focus:outline-none text-sm md:text-base"
               placeholder="your@email.com"
             />
           </div>
@@ -71,14 +71,14 @@ const ContactPopup = ({
             </label>
             <textarea
               rows={4}
-              className="w-full bg-war-room-charcoal border border-cyber-cyan-dim/30 rounded-lg px-4 py-2 text-white focus:border-cyber-cyan-bright focus:outline-none resize-none"
+              className="w-full bg-war-room-charcoal border border-cyber-cyan-dim/30 rounded-lg px-4 py-3 text-white focus:border-cyber-cyan-bright focus:outline-none resize-none text-sm md:text-base"
               placeholder="Tell us about your security needs..."
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-cyber-cyan-bright text-black font-command font-bold py-3 rounded-lg hover:bg-cyber-cyan-intense transition-colors"
+            className="w-full bg-cyber-cyan-bright text-black font-command font-bold py-3 rounded-lg hover:bg-cyber-cyan-intense transition-colors text-sm md:text-base"
           >
             Send Message
           </button>
