@@ -101,6 +101,8 @@ const sections = [
     desc: "Advanced tier capabilities that separate the knights from the peasants. Enterprise-grade digital battlefield tools.",
     align: "right",
     sticky: true,
+    image:
+      "https://images.pexels.com/photos/17323801/pexels-photo-17323801.jpeg",
     stickyCards: [
       {
         title: "Quantum Security",
