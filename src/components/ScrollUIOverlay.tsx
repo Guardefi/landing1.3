@@ -1,18 +1,13 @@
 "use client";
 import AnimatedSection from "./AnimatedSection";
 import { useScrollSync } from "./useScrollSync";
+import { CyberpunkImageSlider } from "./ui/cyberpunk-image-slider";
 
 const sections = [
   {
     title: "Hello Dark Forest,",
     subtitle: "Meet Scorpius.",
     desc: "A new guardian awakens in the digital cosmos.",
-    align: "center",
-  },
-  {
-    title: "ScorpiusCore",
-    subtitle: "The Next-Gen Cyber Defense Engine",
-    desc: "A living, breathing core of wireframe intelligence and pulsing quantum energy. The heart of your war room.",
     align: "center",
   },
   {
@@ -32,57 +27,7 @@ const sections = [
     subtitle: "Total Control. Infinite Insight.",
     desc: "Executive dashboards, compliance, and instant incident response. All at your fingertips.",
     align: "center",
-    carousel: true,
-    carouselImages: [
-      {
-        title: "Executive Dashboard",
-        desc: "Real-time threat intelligence overview",
-        image:
-          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
-      },
-      {
-        title: "Threat Map",
-        desc: "Global attack visualization",
-        image:
-          "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&crop=center",
-      },
-      {
-        title: "Analytics Hub",
-        desc: "Advanced security metrics",
-        image:
-          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=center",
-      },
-      {
-        title: "Compliance Center",
-        desc: "Regulatory monitoring",
-        image:
-          "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop&crop=center",
-      },
-      {
-        title: "Incident Response",
-        desc: "Emergency action protocols",
-        image:
-          "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop&crop=center",
-      },
-      {
-        title: "Network Monitor",
-        desc: "Infrastructure surveillance",
-        image:
-          "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=600&fit=crop&crop=center",
-      },
-      {
-        title: "Alert System",
-        desc: "Priority notification center",
-        image:
-          "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&crop=center",
-      },
-      {
-        title: "Command Console",
-        desc: "Central control interface",
-        image:
-          "https://images.unsplash.com/photo-1551033406-611cf9a28f67?w=800&h=600&fit=crop&crop=center",
-      },
-    ],
+    cyberpunkSlider: true,
   },
   {
     title: "Under-the-Hood Firepower",
@@ -317,8 +262,18 @@ export default function ScrollUIOverlay() {
     ) {
       // Passed carousel section, adjust scroll position
       adjustedScrollPos -= carouselSubSections;
-    } else if (!section.sticky && !section.carousel) {
+    } else if (
+      !section.sticky &&
+      !section.carousel &&
+      !section.cyberpunkSlider
+    ) {
       // Regular section
+      if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
+        active = i;
+        break;
+      }
+    } else if (section.cyberpunkSlider) {
+      // Cyberpunk slider section
       if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
         active = i;
         break;
@@ -364,7 +319,8 @@ export default function ScrollUIOverlay() {
             ${sec.align === "left" ? "text-left ml-0 md:ml-16" : ""}
             ${sec.align === "right" ? "text-right mr-0 md:mr-16" : ""}
             ${sec.align === "center" ? "text-center mx-auto" : ""}
-            ${sec.fullScreenPricing ? "hidden" : ""}`}
+            ${sec.fullScreenPricing ? "hidden" : ""}
+            ${sec.cyberpunkSlider ? "hidden" : ""}`}
             >
               <h1 className="font-bold cyan-glow mb-4 text-4xl md:text-6xl">
                 {sec.title}
@@ -419,6 +375,15 @@ export default function ScrollUIOverlay() {
                       {feature}
                     </div>
                   ))}
+                </div>
+              )}
+
+              {/* Cyberpunk Image Slider for Enterprise Command */}
+              {sec.cyberpunkSlider && isActive && (
+                <div className="fixed inset-0 z-30 flex items-center justify-center pointer-events-none">
+                  <div className="bg-red-500 text-white p-8 text-2xl">
+                    CYBERPUNK SLIDER DETECTED - SECTION ACTIVE
+                  </div>
                 </div>
               )}
 
