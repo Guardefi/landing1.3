@@ -336,14 +336,7 @@ export default function ScrollUIOverlay() {
     active = totalSections - 1; // Force show pricing section when near the end
   }
 
-  // Debug log to see what's happening
-  console.log("Scroll debug:", {
-    scroll: scroll.toFixed(3),
-    active,
-    totalSections,
-    isLastSection: active === totalSections - 1,
-    lastSectionData: sections[totalSections - 1]?.title,
-  });
+  // Debug log removed to prevent infinite loop
 
   return (
     <>
