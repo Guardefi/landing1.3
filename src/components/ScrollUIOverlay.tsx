@@ -104,7 +104,7 @@ const sections = [
       },
       {
         title: "Simulation Sandbox",
-        icon: Flask,
+        icon: TestTube,
         description:
           "Isolated simulation environments for testing attack vectors without risk.",
       },
