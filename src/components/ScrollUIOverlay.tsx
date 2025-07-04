@@ -309,7 +309,8 @@ export default function ScrollUIOverlay() {
             ${sec.align === "left" ? "text-left ml-0 md:ml-16" : ""}
             ${sec.align === "right" ? "text-right mr-0 md:mr-16" : ""}
             ${sec.align === "center" ? "text-center mx-auto" : ""}
-            ${sec.fullScreenPricing ? "hidden" : ""}`}
+            ${sec.fullScreenPricing ? "hidden" : ""}
+            ${sec.cyberpunkSlider ? "hidden" : ""}`}
             >
               <h1 className="font-bold cyan-glow mb-4 text-4xl md:text-6xl">
                 {sec.title}
@@ -369,7 +370,7 @@ export default function ScrollUIOverlay() {
 
               {/* Cyberpunk Image Slider for Enterprise Command */}
               {sec.cyberpunkSlider && isActive && (
-                <div className="mb-6">
+                <div className="w-screen h-screen flex items-center justify-center">
                   <CyberpunkImageSlider />
                 </div>
               )}
