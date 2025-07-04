@@ -291,6 +291,16 @@ export default function ScrollUIOverlay() {
         // Passed CTA section, adjust for its extra space
         adjustedScrollPos -= 0.5;
       }
+    } else if (section.fullScreenPricing) {
+      // Pricing section - add extra buffer space before it
+      if (adjustedScrollPos >= i + 0.3 && adjustedScrollPos < i + 1) {
+        active = i;
+        break;
+      } else if (adjustedScrollPos >= i && adjustedScrollPos < i + 0.3) {
+        // Buffer zone before pricing - no active section
+        active = -1;
+        break;
+      }
     } else if (
       !section.sticky &&
       !section.carousel &&

@@ -98,7 +98,7 @@ export default function PricingTiers() {
   return (
     <section
       id="pricing"
-      className="py-16 md:py-32 relative bg-gradient-to-b from-war-room-abyss to-war-room-void"
+      className="pt-32 md:pt-48 pb-16 md:pb-32 relative bg-gradient-to-b from-war-room-abyss to-war-room-void"
     >
       {/* Background effects */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.05),transparent_70%)]" />
