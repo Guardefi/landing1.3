@@ -159,8 +159,7 @@ const sections = [
     desc: "Book a live demo or deploy now—because 'maybe secure' is just another way to say next victim.",
     align: "center",
     cta: true,
-    image:
-      "https://images.pexels.com/photos/17323801/pexels-photo-17323801.jpeg",
+    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
   },
   {
     title: "Choose Your Defense Level",
