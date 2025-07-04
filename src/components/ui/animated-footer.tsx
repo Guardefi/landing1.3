@@ -84,9 +84,9 @@ const Footer: React.FC<FooterProps> = ({
   return (
     <footer
       ref={footerRef}
-      className="bg-war-room-void text-cyber-cyan-base relative flex flex-col w-full h-full justify-between lg:h-screen select-none border-t border-cyber-cyan-dim/30"
+      className="bg-war-room-void text-cyber-cyan-base relative flex flex-col w-full justify-between select-none border-t border-cyber-cyan-dim/30"
     >
-      <div className="container mx-auto flex flex-col md:flex-row justify-between w-full gap-4 pb-24 pt-8 px-4">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between w-full gap-4 pb-8 pt-8 px-4">
         <div className="space-y-2">
           <ul className="flex flex-wrap gap-4">
             {leftLinks.map((link, index) => (
@@ -138,7 +138,8 @@ const Footer: React.FC<FooterProps> = ({
       <div
         id="waveContainer"
         aria-hidden="true"
-        style={{ overflow: "hidden", height: 200 }}
+        style={{ overflow: "hidden", height: 100 }}
+        className="w-full"
       >
         <div style={{ marginTop: 0 }}>
           {Array.from({ length: barCount }).map((_, index) => (
