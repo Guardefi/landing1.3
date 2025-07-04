@@ -122,6 +122,49 @@ body {
   }
 }
 
+/* Slow fade-in animations for hero text */
+@keyframes fade-in-slow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-slower {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-slowest {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-slow {
+  animation: fade-in-slow 3s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-slower {
+  animation: fade-in-slower 4s ease-out 1s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-slowest {
+  animation: fade-in-slowest 5s ease-out 2s forwards;
+  opacity: 0;
+}
+
 /* Custom scrollbar for pricing features */
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
