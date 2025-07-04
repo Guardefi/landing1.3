@@ -228,6 +228,26 @@ const sections = [
 
 export default function ScrollUIOverlay() {
   const scroll = useScrollSync();
+  const [forcedSection, setForcedSection] = useState<number | null>(null);
+
+  // Listen for navigation events
+  useEffect(() => {
+    const handleNavigation = (event: CustomEvent) => {
+      setForcedSection(event.detail.sectionIndex);
+      // Clear forced section after 5 seconds
+      setTimeout(() => setForcedSection(null), 5000);
+    };
+
+    window.addEventListener(
+      "navigateToSection",
+      handleNavigation as EventListener,
+    );
+    return () =>
+      window.removeEventListener(
+        "navigateToSection",
+        handleNavigation as EventListener,
+      );
+  }, []);
 
   // Find sticky sections and carousel sections
   const stickyIndices = sections
