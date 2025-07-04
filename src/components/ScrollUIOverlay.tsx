@@ -294,7 +294,8 @@ export default function ScrollUIOverlay() {
     } else if (
       !section.sticky &&
       !section.carousel &&
-      !section.cyberpunkSlider
+      !section.cyberpunkSlider &&
+      !section.imageSlider
     ) {
       // Regular section
       if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
@@ -303,6 +304,12 @@ export default function ScrollUIOverlay() {
       }
     } else if (section.cyberpunkSlider) {
       // Cyberpunk slider section
+      if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
+        active = i;
+        break;
+      }
+    } else if (section.imageSlider) {
+      // Image slider section
       if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
         active = i;
         break;
