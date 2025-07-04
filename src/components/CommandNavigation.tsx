@@ -90,10 +90,12 @@ const ContactPopup = ({
 
 export default function CommandNavigation() {
   const [showContact, setShowContact] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <>
-      <div className="fixed top-6 right-6 z-30 pointer-events-auto">
+      {/* Desktop Navigation */}
+      <div className="fixed top-6 right-6 z-30 pointer-events-auto hidden md:block">
         <div className="flex items-center gap-4 px-6 py-3 rounded-2xl bg-war-room-void/80 backdrop-blur-md border border-cyber-cyan-dim/30">
           {/* Main Command Button */}
           <button
@@ -134,6 +136,66 @@ export default function CommandNavigation() {
             </MetalButton>
           </div>
         </div>
+      </div>
+
+      {/* Mobile Navigation */}
+      <div className="fixed top-4 right-4 z-30 pointer-events-auto md:hidden">
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="flex items-center justify-center w-12 h-12 rounded-xl bg-war-room-void/80 backdrop-blur-md border border-cyber-cyan-dim/30 text-cyber-cyan-bright hover:text-cyber-cyan-intense transition-colors"
+        >
+          <Terminal className="w-5 h-5" />
+        </button>
+
+        {/* Mobile Menu Dropdown */}
+        {isMobileMenuOpen && (
+          <div className="absolute top-14 right-0 w-48 rounded-xl bg-war-room-void/90 backdrop-blur-md border border-cyber-cyan-dim/30 p-2">
+            <button
+              onClick={() => {
+                scrollToSection(0);
+                setIsMobileMenuOpen(false);
+              }}
+              className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
+            >
+              <Terminal className="w-4 h-4 mr-2" />
+              Command Center
+            </button>
+
+            <button
+              onClick={() => {
+                scrollToSection(3);
+                setIsMobileMenuOpen(false);
+              }}
+              className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
+            >
+              <Play className="w-4 h-4 mr-2" />
+              Watch Demo
+            </button>
+
+            <button
+              onClick={() => {
+                scrollToSection(9);
+                setIsMobileMenuOpen(false);
+              }}
+              className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
+            >
+              <DollarSign className="w-4 h-4 mr-2" />
+              Pricing
+            </button>
+
+            <button
+              onClick={() => {
+                setShowContact(true);
+                setIsMobileMenuOpen(false);
+              }}
+              className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
+            >
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Contact Us
+            </button>
+          </div>
+        )}
       </div>
 
       <ContactPopup
