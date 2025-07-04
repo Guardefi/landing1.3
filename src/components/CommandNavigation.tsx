@@ -1,7 +1,14 @@
 "use client";
 import { MetalButton } from "./ui/liquid-glass-button";
-import { Terminal, Play, DollarSign, MessageCircle } from "lucide-react";
+import {
+  Terminal,
+  Play,
+  DollarSign,
+  MessageCircle,
+  CreditCard,
+} from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 
 const scrollToSection = (sectionIndex: number) => {
   const container = document.getElementById("scroll-container");
