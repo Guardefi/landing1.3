@@ -1,11 +1,13 @@
 "use client";
 import { MetalButton } from "./ui/liquid-glass-button";
 import {
+  Menu,
   Terminal,
   Play,
   DollarSign,
   MessageCircle,
   CreditCard,
+  X,
 } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
@@ -97,126 +99,79 @@ const ContactPopup = ({
 
 export default function CommandNavigation() {
   const [showContact, setShowContact] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
-      {/* Desktop Navigation */}
-      <div className="fixed top-6 right-6 z-30 pointer-events-auto hidden md:block">
-        <div className="flex items-center gap-4 px-6 py-3 rounded-2xl bg-war-room-void/80 backdrop-blur-md border border-cyber-cyan-dim/30">
-          {/* Main Command Button */}
-          <button
-            onClick={() => scrollToSection(0)}
-            className="flex items-center px-4 py-2 text-cyber-cyan-bright hover:text-cyber-cyan-intense transition-colors duration-300 font-terminal"
-          >
-            <Terminal className="w-4 h-4 mr-2" />
-            Command Center
-          </button>
-
-          {/* Action Buttons */}
-          <div className="flex items-center gap-2">
-            <MetalButton
-              variant="cyber"
-              className="px-4 py-2"
-              onClick={() => scrollToSection(2)}
-            >
-              <Play className="w-4 h-4 mr-1" />
-              Watch Demo
-            </MetalButton>
-
-            <MetalButton
-              variant="cyber"
-              className="px-4 py-2"
-              onClick={() => scrollToSection(9)}
-            >
-              <DollarSign className="w-4 h-4 mr-1" />
-              Pricing
-            </MetalButton>
-
-            <Link href="/demo-payments">
-              <MetalButton variant="cyber" className="px-4 py-2">
-                <CreditCard className="w-4 h-4 mr-1" />
-                Demo
-              </MetalButton>
-            </Link>
-
-            <MetalButton
-              variant="cyber"
-              className="px-4 py-2"
-              onClick={() => setShowContact(true)}
-            >
-              <MessageCircle className="w-4 h-4 mr-1" />
-              Contact Us
-            </MetalButton>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Navigation */}
-      <div className="fixed top-4 right-4 z-30 pointer-events-auto md:hidden">
-        {/* Mobile Menu Button */}
+      {/* Hamburger Menu - Top Left */}
+      <div className="fixed top-4 left-4 z-30 pointer-events-auto">
+        {/* Menu Button */}
         <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="flex items-center justify-center w-12 h-12 rounded-xl bg-war-room-void/80 backdrop-blur-md border border-cyber-cyan-dim/30 text-cyber-cyan-bright hover:text-cyber-cyan-intense transition-colors"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="flex items-center justify-center w-10 h-10 rounded-lg bg-war-room-void/80 backdrop-blur-md border border-cyber-cyan-dim/30 text-cyber-cyan-bright hover:text-cyber-cyan-intense transition-colors"
         >
-          <Terminal className="w-5 h-5" />
+          {isMenuOpen ? (
+            <X className="w-4 h-4" />
+          ) : (
+            <Menu className="w-4 h-4" />
+          )}
         </button>
 
-        {/* Mobile Menu Dropdown */}
-        {isMobileMenuOpen && (
-          <div className="absolute top-14 right-0 w-48 rounded-xl bg-war-room-void/90 backdrop-blur-md border border-cyber-cyan-dim/30 p-2">
+        {/* Menu Dropdown */}
+        {isMenuOpen && (
+          <div className="absolute top-12 left-0 w-44 rounded-lg bg-war-room-void/90 backdrop-blur-md border border-cyber-cyan-dim/30 p-1 shadow-lg">
             <button
               onClick={() => {
                 scrollToSection(0);
-                setIsMobileMenuOpen(false);
+                setIsMenuOpen(false);
               }}
-              className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
+              className="w-full flex items-center px-3 py-2 rounded-md text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-xs"
             >
-              <Terminal className="w-4 h-4 mr-2" />
+              <Terminal className="w-3 h-3 mr-2" />
               Command Center
             </button>
 
             <button
               onClick={() => {
                 scrollToSection(2);
-                setIsMobileMenuOpen(false);
+                setIsMenuOpen(false);
               }}
-              className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
+              className="w-full flex items-center px-3 py-2 rounded-md text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-xs"
             >
-              <Play className="w-4 h-4 mr-2" />
-              Watch Demo
+              <Play className="w-3 h-3 mr-2" />
+              Demo
             </button>
 
             <button
               onClick={() => {
                 scrollToSection(9);
-                setIsMobileMenuOpen(false);
+                setIsMenuOpen(false);
               }}
-              className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
+              className="w-full flex items-center px-3 py-2 rounded-md text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-xs"
             >
-              <DollarSign className="w-4 h-4 mr-2" />
+              <DollarSign className="w-3 h-3 mr-2" />
               Pricing
             </button>
 
             <Link href="/demo-payments">
               <button
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
+                onClick={() => setIsMenuOpen(false)}
+                className="w-full flex items-center px-3 py-2 rounded-md text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-xs"
               >
-                <CreditCard className="w-4 h-4 mr-2" />
-                Demo
+                <CreditCard className="w-3 h-3 mr-2" />
+                Payment Demo
               </button>
             </Link>
 
             <button
               onClick={() => {
                 setShowContact(true);
-                setIsMobileMenuOpen(false);
+                setIsMenuOpen(false);
               }}
-              className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
+              className="w-full flex items-center px-3 py-2 rounded-md text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-xs"
             >
-              <MessageCircle className="w-4 h-4 mr-2" />
-              Contact Us
+              <MessageCircle className="w-3 h-3 mr-2" />
+              Contact
             </button>
           </div>
         )}
