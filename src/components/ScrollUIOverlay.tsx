@@ -358,8 +358,14 @@ export default function ScrollUIOverlay() {
                 alt={sec.title}
                 className="w-full h-full object-cover"
               />
-              {/* Overlay to darken the image and maintain readability */}
-              <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]" />
+              {/* Enhanced overlay for demo video - darker and more blurred */}
+              <div
+                className={`absolute inset-0 transition-all duration-1000 ${
+                  sec.demoVideo
+                    ? "bg-black/80 backdrop-blur-[8px]"
+                    : "bg-black/60 backdrop-blur-[1px]"
+                }`}
+              />
             </div>
           );
         })}
