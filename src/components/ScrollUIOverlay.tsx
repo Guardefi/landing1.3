@@ -262,8 +262,18 @@ export default function ScrollUIOverlay() {
     ) {
       // Passed carousel section, adjust scroll position
       adjustedScrollPos -= carouselSubSections;
-    } else if (!section.sticky && !section.carousel) {
+    } else if (
+      !section.sticky &&
+      !section.carousel &&
+      !section.cyberpunkSlider
+    ) {
       // Regular section
+      if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
+        active = i;
+        break;
+      }
+    } else if (section.cyberpunkSlider) {
+      // Cyberpunk slider section
       if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
         active = i;
         break;
