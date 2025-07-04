@@ -2,6 +2,17 @@
 import AnimatedSection from "./AnimatedSection";
 import { useScrollSync } from "./useScrollSync";
 import { CyberpunkImageSlider } from "./ui/cyberpunk-image-slider";
+import { FeatureCard } from "./ui/grid-feature-cards";
+import {
+  Activity,
+  Code,
+  Bot,
+  Radio,
+  Shield,
+  Flask,
+  ClipboardCheck,
+  KeyRound,
+} from "lucide-react";
 
 const sections = [
   {
@@ -37,24 +48,28 @@ const sections = [
     sticky: true,
     stickyCards: [
       {
-        title: "🐝 Hive Alert",
-        subtitle: "Swarm Intelligence Network",
-        desc: "Distributed threat detection that learns from every attack pattern across the network.",
+        title: "Hive Alert",
+        icon: Activity,
+        description:
+          "Distributed threat detection that learns from every attack pattern across the network.",
       },
       {
-        title: "🧬 Bytecode Engine",
-        subtitle: "Code-Level Analysis",
-        desc: "Deep bytecode inspection that identifies malicious patterns before execution.",
+        title: "Bytecode Engine",
+        icon: Code,
+        description:
+          "Deep bytecode inspection that identifies malicious patterns before execution.",
       },
       {
-        title: "🤖 AI Trading Bot",
-        subtitle: "Autonomous Defense",
-        desc: "AI-powered response system that automatically counters financial attacks.",
+        title: "AI Trading Bot",
+        icon: Bot,
+        description:
+          "AI-powered response system that automatically counters financial attacks.",
       },
       {
-        title: "📡 Mempool Monitor",
-        subtitle: "Transaction Surveillance",
-        desc: "Real-time mempool analysis to detect and prevent malicious transactions.",
+        title: "Mempool Monitor",
+        icon: Radio,
+        description:
+          "Real-time mempool analysis to detect and prevent malicious transactions.",
       },
     ],
     features: [
@@ -72,24 +87,28 @@ const sections = [
     sticky: true,
     stickyCards: [
       {
-        title: "🔮 Quantum Security",
-        subtitle: "Quantum-Grade Encryption",
-        desc: "Unbreakable quantum encryption protocols that secure data at the subatomic level.",
+        title: "Quantum Security",
+        icon: Shield,
+        description:
+          "Unbreakable quantum encryption protocols that secure data at the subatomic level.",
       },
       {
-        title: "🧪 Simulation Sandbox",
-        subtitle: "Safe Testing Environment",
-        desc: "Isolated simulation environments for testing attack vectors without risk.",
+        title: "Simulation Sandbox",
+        icon: Flask,
+        description:
+          "Isolated simulation environments for testing attack vectors without risk.",
       },
       {
-        title: "📋 Compliance Grid",
-        subtitle: "Regulatory Compliance",
-        desc: "Automated compliance monitoring across SOC2, ISO27001, and custom frameworks.",
+        title: "Compliance Grid",
+        icon: ClipboardCheck,
+        description:
+          "Automated compliance monitoring across SOC2, ISO27001, and custom frameworks.",
       },
       {
-        title: "🛂 Access Control Matrix",
-        subtitle: "Identity & Access Management",
-        desc: "Military-grade access controls with biometric authentication and zero-trust architecture.",
+        title: "Access Control Matrix",
+        icon: KeyRound,
+        description:
+          "Military-grade access controls with biometric authentication and zero-trust architecture.",
       },
     ],
     features: [
@@ -332,14 +351,13 @@ export default function ScrollUIOverlay() {
                 {sec.desc}
               </p>
 
-              {/* Sticky Cards for any sticky section */}
+              {/* Sticky Cards for any sticky section - Grid Style */}
               {isStickySection &&
                 sec.stickyCards &&
                 activeStickyCard >= 0 &&
                 currentSticky === i && (
-                  <div className="mb-6">
+                  <div className="mb-6 max-w-md mx-auto">
                     <div
-                      className="bg-war-room-charcoal/80 rounded-lg p-6 border border-cyan-400/30"
                       style={{
                         opacity:
                           activeStickyCard < sec.stickyCards.length ? 1 : 0,
@@ -347,21 +365,29 @@ export default function ScrollUIOverlay() {
                       }}
                     >
                       {activeStickyCard < sec.stickyCards.length && (
-                        <>
-                          <h3 className="text-3xl font-command font-bold text-cyan-400 mb-2">
-                            {sec.stickyCards[activeStickyCard].title}
-                          </h3>
-                          <h4 className="text-xl text-white mb-3">
-                            {sec.stickyCards[activeStickyCard].subtitle}
-                          </h4>
-                          <p className="text-gray-300">
-                            {sec.stickyCards[activeStickyCard].desc}
-                          </p>
-                        </>
+                        <FeatureCard
+                          feature={sec.stickyCards[activeStickyCard]}
+                          className="bg-gradient-to-br from-war-room-charcoal/60 to-war-room-steel/30 border border-cyber-cyan-dim/40 hover:border-cyber-cyan-base/60 transition-all duration-300"
+                        />
                       )}
                     </div>
                   </div>
                 )}
+
+              {/* Grid overview when no specific card is active */}
+              {isStickySection && activeStickyCard < 0 && sec.stickyCards && (
+                <div className="mb-6 max-w-4xl mx-auto">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 divide-x-0 divide-y-0">
+                    {sec.stickyCards.map((card, idx) => (
+                      <FeatureCard
+                        key={idx}
+                        feature={card}
+                        className="bg-gradient-to-br from-war-room-charcoal/40 to-war-room-steel/20 border border-cyber-cyan-dim/30 hover:border-cyber-cyan-base/50 transition-all duration-300"
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Regular Features */}
               {sec.features && !isStickySection && (
