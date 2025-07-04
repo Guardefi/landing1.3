@@ -372,7 +372,9 @@ export default function ScrollUIOverlay() {
           if (sec.cta && isActive && adjustedScrollPos > i + 1) {
             // Fade out CTA background as we approach pricing
             const fadeProgress = Math.min((adjustedScrollPos - i - 1) / 0.5, 1);
-            sectionOpacity = `opacity-${Math.round(30 * (1 - fadeProgress))}`;
+            const finalOpacity = Math.round(30 * (1 - fadeProgress));
+            sectionOpacity =
+              finalOpacity > 0 ? `opacity-${finalOpacity}` : "opacity-0";
           }
 
           return (
