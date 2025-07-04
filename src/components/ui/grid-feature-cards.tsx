@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import React from "react";
+import { Box } from "lucide-react";
 
 type FeatureType = {
   title: string;
