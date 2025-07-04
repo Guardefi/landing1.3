@@ -22,7 +22,8 @@ const sections = [
     desc: "A new guardian awakens in the digital cosmos.",
     align: "center",
     heroSection: true,
-    image: "https://images.pexels.com/photos/7672875/pexels-photo-7672875.jpeg",
+    image:
+      "https://images.pexels.com/photos/18337644/pexels-photo-18337644.jpeg",
   },
   {
     title: "Quantum Threat Detection",
