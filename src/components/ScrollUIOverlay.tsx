@@ -494,7 +494,7 @@ export default function ScrollUIOverlay() {
                 {/* Demo Video Section - inline display */}
                 {sec.demoVideo && (
                   <div className="mb-8 pointer-events-auto">
-                    <div className="relative mx-auto max-w-4xl">
+                    <div className="relative mx-auto max-w-7xl">
                       <div className="relative aspect-video rounded-2xl overflow-hidden border-2 border-cyber-cyan-dim/40 hover:border-cyber-cyan-bright/60 transition-all duration-300 bg-war-room-charcoal/60 backdrop-blur">
                         <video
                           className="w-full h-full object-cover"
