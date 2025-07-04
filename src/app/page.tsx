@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import ScrollUIOverlay from "@/components/ScrollUIOverlay";
 import PricingTiers from "@/components/PricingTiers";
+import WarRoomFooter from "@/components/WarRoomFooter";
 
 const ScorpiusCore = dynamic(() => import("@/components/ScorpiusCore"), {
   ssr: false,
@@ -40,8 +41,11 @@ export default function Home() {
         <ScrollUIOverlay />
       </main>
 
-      {/* Pricing section at the very end */}
+      {/* Pricing section */}
       <PricingTiers />
+
+      {/* Footer */}
+      <WarRoomFooter />
     </>
   );
 }
