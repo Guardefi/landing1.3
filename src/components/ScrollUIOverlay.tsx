@@ -463,6 +463,13 @@ export default function ScrollUIOverlay() {
                 </div>
               )}
 
+              {/* Image Auto Slider for Digital Arsenal Gallery */}
+              {sec.imageSlider && isActive && (
+                <div className="fixed inset-0 z-30 pointer-events-none">
+                  <ImageAutoSlider />
+                </div>
+              )}
+
               {/* Carousel Images for Enterprise Command */}
               {isCarouselSection && sec.carouselImages && (
                 <div className="mb-6 relative overflow-hidden rounded-xl">
