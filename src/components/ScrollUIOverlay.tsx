@@ -388,8 +388,7 @@ export default function ScrollUIOverlay() {
             ${sec.align === "right" ? "text-right mr-0 md:mr-16" : ""}
             ${sec.align === "center" ? "text-center mx-auto" : ""}
             ${sec.fullScreenPricing ? "hidden" : ""}
-            ${sec.cyberpunkSlider ? "hidden" : ""}
-            ${sec.demoVideo ? "hidden" : ""}`}
+            ${sec.cyberpunkSlider ? "hidden" : ""}`}
             >
               <h1 className="font-bold cyan-glow mb-4 text-4xl md:text-6xl">
                 {sec.title}
