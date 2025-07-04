@@ -367,6 +367,13 @@ export default function ScrollUIOverlay() {
                 </div>
               )}
 
+              {/* Cyberpunk Image Slider for Enterprise Command */}
+              {sec.cyberpunkSlider && isActive && (
+                <div className="mb-6 -mx-8 -my-8">
+                  <CyberpunkImageSlider />
+                </div>
+              )}
+
               {/* Carousel Images for Enterprise Command */}
               {isCarouselSection && sec.carouselImages && (
                 <div className="mb-6 relative overflow-hidden rounded-xl">
