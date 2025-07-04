@@ -37,11 +37,11 @@ const sections = [
     align: "right",
   },
   {
-    title: "Digital Arsenal Gallery",
-    subtitle: "Weapons of Cyber Warfare",
-    desc: "Explore our collection of advanced cybersecurity tools and visualizations.",
+    title: "Watch Scorpius in Action",
+    subtitle: "Live Demo: Real-Time Threat Detection",
+    desc: "See how Scorpius identifies and neutralizes threats in milliseconds.",
     align: "center",
-    imageSlider: true,
+    demoVideo: true,
   },
   {
     title: "Enterprise Command",
