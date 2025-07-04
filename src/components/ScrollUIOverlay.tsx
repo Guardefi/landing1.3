@@ -130,7 +130,7 @@ const sections = [
     features: [
       "🔮 Quantum Security",
       "🧪 Simulation Sandbox",
-      "📋 Compliance Grid",
+      "��� Compliance Grid",
       "🛂 Access Control Matrix",
     ],
   },
@@ -252,12 +252,13 @@ export default function ScrollUIOverlay() {
     if (
       section.sticky &&
       adjustedScrollPos >= i &&
-      adjustedScrollPos <= i + stickySubSections
+      adjustedScrollPos <= i + stickySubSections - 0.5
     ) {
-      // We're in this sticky section
+      // We're in this sticky section, but end it early before pricing
       active = i;
       currentSticky = i;
-      const stickyProgress = (adjustedScrollPos - i) / stickySubSections;
+      const stickyProgress =
+        (adjustedScrollPos - i) / (stickySubSections - 0.5);
       activeStickyCard =
         stickyProgress > 0
           ? Math.floor(stickyProgress * stickySubSections)
@@ -273,9 +274,12 @@ export default function ScrollUIOverlay() {
       carouselProgress = (adjustedScrollPos - i) / carouselSubSections;
       activeCarouselImage = Math.floor(carouselProgress * carouselSubSections);
       break;
-    } else if (section.sticky && adjustedScrollPos > i + stickySubSections) {
+    } else if (
+      section.sticky &&
+      adjustedScrollPos > i + stickySubSections - 0.5
+    ) {
       // Passed this sticky section, adjust scroll position
-      adjustedScrollPos -= stickySubSections;
+      adjustedScrollPos -= stickySubSections - 0.5;
     } else if (
       section.carousel &&
       adjustedScrollPos > i + carouselSubSections
@@ -293,10 +297,10 @@ export default function ScrollUIOverlay() {
       }
     } else if (section.fullScreenPricing) {
       // Pricing section - add extra buffer space before it
-      if (adjustedScrollPos >= i + 0.3 && adjustedScrollPos < i + 1) {
+      if (adjustedScrollPos >= i + 0.5 && adjustedScrollPos < i + 1) {
         active = i;
         break;
-      } else if (adjustedScrollPos >= i && adjustedScrollPos < i + 0.3) {
+      } else if (adjustedScrollPos >= i && adjustedScrollPos < i + 0.5) {
         // Buffer zone before pricing - no active section
         active = -1;
         break;
