@@ -343,8 +343,13 @@ export default function ScrollUIOverlay() {
     active = Math.min(Math.floor(adjustedScrollPos), totalSections - 1);
   }
 
+  // Use forced section if available (from navigation buttons)
+  if (forcedSection !== null) {
+    active = forcedSection;
+  }
+
   // Ensure we can reach the final section (pricing) - simplified approach
-  if (scroll > 0.85) {
+  if (scroll > 0.85 && forcedSection === null) {
     active = totalSections - 1; // Force show pricing section when near the end
   }
 
