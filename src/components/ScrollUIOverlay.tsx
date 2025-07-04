@@ -1,6 +1,7 @@
 "use client";
 import AnimatedSection from "./AnimatedSection";
 import { useScrollSync } from "./useScrollSync";
+import { CyberpunkImageSlider } from "./ui/cyberpunk-image-slider";
 
 const sections = [
   {
@@ -26,57 +27,7 @@ const sections = [
     subtitle: "Total Control. Infinite Insight.",
     desc: "Executive dashboards, compliance, and instant incident response. All at your fingertips.",
     align: "center",
-    carousel: true,
-    carouselImages: [
-      {
-        title: "Executive Dashboard",
-        desc: "Real-time threat intelligence overview",
-        image:
-          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
-      },
-      {
-        title: "Threat Map",
-        desc: "Global attack visualization",
-        image:
-          "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&crop=center",
-      },
-      {
-        title: "Analytics Hub",
-        desc: "Advanced security metrics",
-        image:
-          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=center",
-      },
-      {
-        title: "Compliance Center",
-        desc: "Regulatory monitoring",
-        image:
-          "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop&crop=center",
-      },
-      {
-        title: "Incident Response",
-        desc: "Emergency action protocols",
-        image:
-          "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop&crop=center",
-      },
-      {
-        title: "Network Monitor",
-        desc: "Infrastructure surveillance",
-        image:
-          "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=600&fit=crop&crop=center",
-      },
-      {
-        title: "Alert System",
-        desc: "Priority notification center",
-        image:
-          "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&crop=center",
-      },
-      {
-        title: "Command Console",
-        desc: "Central control interface",
-        image:
-          "https://images.unsplash.com/photo-1551033406-611cf9a28f67?w=800&h=600&fit=crop&crop=center",
-      },
-    ],
+    cyberpunkSlider: true,
   },
   {
     title: "Under-the-Hood Firepower",
