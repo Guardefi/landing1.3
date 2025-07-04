@@ -133,6 +133,13 @@ export default function CommandNavigation() {
               Pricing
             </MetalButton>
 
+            <Link href="/demo-payments">
+              <MetalButton variant="cyber" className="px-4 py-2">
+                <CreditCard className="w-4 h-4 mr-1" />
+                Demo
+              </MetalButton>
+            </Link>
+
             <MetalButton
               variant="cyber"
               className="px-4 py-2"
@@ -190,6 +197,16 @@ export default function CommandNavigation() {
               <DollarSign className="w-4 h-4 mr-2" />
               Pricing
             </button>
+
+            <Link href="/demo-payments">
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
+              >
+                <CreditCard className="w-4 h-4 mr-2" />
+                Demo
+              </button>
+            </Link>
 
             <button
               onClick={() => {
