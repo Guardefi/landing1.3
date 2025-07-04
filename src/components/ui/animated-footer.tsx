@@ -7,18 +7,10 @@ interface LinkItem {
 }
 
 interface FooterProps {
-  leftLinks: LinkItem[];
-  rightLinks: LinkItem[];
-  copyrightText: string;
   barCount?: number;
 }
 
-const Footer: React.FC<FooterProps> = ({
-  leftLinks,
-  rightLinks,
-  copyrightText,
-  barCount = 23,
-}) => {
+const Footer: React.FC<FooterProps> = ({ barCount = 23 }) => {
   const waveRefs = useRef<(HTMLDivElement | null)[]>([]);
   const footerRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -77,64 +69,11 @@ const Footer: React.FC<FooterProps> = ({
     };
   }, [isVisible]);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <footer
       ref={footerRef}
-      className="bg-war-room-void text-cyber-cyan-base relative flex flex-col w-full justify-between select-none border-t border-cyber-cyan-dim/30"
+      className="bg-war-room-void relative w-full select-none"
     >
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between w-full gap-4 pb-8 pt-8 px-4">
-        <div className="space-y-2">
-          <ul className="flex flex-wrap gap-4">
-            {leftLinks.map((link, index) => (
-              <li key={index}>
-                <a
-                  href={link.href}
-                  className="text-sm hover:text-cyber-cyan-bright transition-colors duration-300 font-terminal"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <p className="text-sm mt-4 flex items-center gap-x-2 font-terminal">
-            <svg className="size-4 text-cyber-cyan-bright" viewBox="0 0 80 80">
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                fill="currentColor"
-                d="M67.4307 11.5693C52.005 -3.85643 26.995 -3.85643 11.5693 11.5693C-3.85643 26.995 -3.85643 52.005 11.5693 67.4307C26.995 82.8564 52.005 82.8564 67.4307 67.4307C82.8564 52.005 82.8564 26.995 67.4307 11.5693ZM17.9332 17.9332C29.8442 6.02225 49.1558 6.02225 61.0668 17.9332C72.9777 29.8442 72.9777 49.1558 61.0668 61.0668C59.7316 62.4019 58.3035 63.5874 56.8032 64.6232L56.8241 64.6023C46.8657 54.6439 46.8657 38.4982 56.8241 28.5398L58.2383 27.1256L51.8744 20.7617L50.4602 22.1759C40.5018 32.1343 24.3561 32.1343 14.3977 22.1759L14.3768 22.1968C15.4126 20.6965 16.5981 19.2684 17.9332 17.9332ZM34.0282 38.6078C25.6372 38.9948 17.1318 36.3344 10.3131 30.6265C7.56889 39.6809 9.12599 49.76 14.9844 57.6517L34.0282 38.6078ZM21.3483 64.0156C29.24 69.874 39.3191 71.4311 48.3735 68.6869C42.6656 61.8682 40.0052 53.3628 40.3922 44.9718L21.3483 64.0156Z"
-              />
-            </svg>
-            <span className="text-cyber-cyan-base/80">{copyrightText}</span>
-          </p>
-        </div>
-        <div className="space-y-4">
-          <ul className="flex flex-wrap gap-4">
-            {rightLinks.map((link, index) => (
-              <li key={index}>
-                <a
-                  href={link.href}
-                  className="text-sm hover:text-cyber-cyan-bright transition-colors duration-300 font-terminal"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <div className="text-right mt-4">
-            <button
-              onClick={scrollToTop}
-              className="text-sm hover:text-cyber-cyan-bright transition-colors duration-300 inline-flex items-center font-terminal uppercase tracking-wide"
-            >
-              ↑ RETURN TO COMMAND
-            </button>
-          </div>
-        </div>
-      </div>
       <div
         id="waveContainer"
         aria-hidden="true"
