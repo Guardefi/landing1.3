@@ -100,8 +100,7 @@ const sections = [
     desc: "Advanced tier capabilities that separate the knights from the peasants. Enterprise-grade digital battlefield tools.",
     align: "right",
     sticky: true,
-    image:
-      "https://images.pexels.com/photos/17323801/pexels-photo-17323801.jpeg",
+    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
     stickyCards: [
       {
         title: "Quantum Security",
@@ -140,8 +139,7 @@ const sections = [
     subtitle: "Trusted by Fortune 500 & DeFi Protocols",
     desc: "ScorpiusCore protects over $847B in digital assets. Join the defense against the Dark Forest.",
     align: "left",
-    image:
-      "https://images.pexels.com/photos/17323801/pexels-photo-17323801.jpeg",
+    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
     testimonials: [
       {
         quote:
