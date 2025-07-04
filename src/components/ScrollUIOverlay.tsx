@@ -135,23 +135,12 @@ const sections = [
     ],
   },
   {
-    title: "Battle-Tested by Leaders",
-    subtitle: "Trusted by Fortune 500 & DeFi Protocols",
-    desc: "ScorpiusCore protects over $847B in digital assets. Join the defense against the Dark Forest.",
-    align: "left",
+    title: "Ready to Deploy?",
+    subtitle: "The Dark Forest is Watching",
+    desc: "Book a live demo or deploy now—because 'maybe secure' is just another way to say next victim.",
+    align: "center",
+    cta: true,
     image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
-    testimonials: [
-      {
-        quote:
-          "ScorpiusCore detected a flash loan attack 3 seconds before execution. Saved us $2.3M.",
-        author: "Marcus Chen, CTO",
-      },
-      {
-        quote:
-          "The medieval aesthetic with Fortune 500 functionality is exactly what our board needed.",
-        author: "Sarah Williams, CISO",
-      },
-    ],
   },
   {
     title: "Ready to Deploy?",
