@@ -368,19 +368,18 @@ export default function ScrollUIOverlay() {
           const isPricingSection = sec.fullScreenPricing;
 
           // Calculate transition opacity for CTA -> Pricing fade
-          let sectionOpacity = isActive ? "opacity-30" : "opacity-0";
+          let finalOpacity = isActive ? 0.3 : 0;
           if (sec.cta && isActive && adjustedScrollPos > i + 1) {
             // Fade out CTA background as we approach pricing
             const fadeProgress = Math.min((adjustedScrollPos - i - 1) / 0.5, 1);
-            const finalOpacity = Math.round(30 * (1 - fadeProgress));
-            sectionOpacity =
-              finalOpacity > 0 ? `opacity-${finalOpacity}` : "opacity-0";
+            finalOpacity = 0.3 * (1 - fadeProgress);
           }
 
           return (
             <div
               key={i}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${sectionOpacity}`}
+              className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+              style={{ opacity: finalOpacity }}
             >
               <img
                 src={sec.image}
