@@ -111,7 +111,7 @@ export default function CommandNavigation() {
             <MetalButton
               variant="cyber"
               className="px-4 py-2"
-              onClick={() => scrollToSection(3)}
+              onClick={() => scrollToSection(2)}
             >
               <Play className="w-4 h-4 mr-1" />
               Watch Demo
