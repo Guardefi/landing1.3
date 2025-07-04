@@ -35,16 +35,16 @@ export default function CommandNavigation() {
           <MetalButton
             variant="cyber"
             className="px-4 py-2"
-            onClick={() => scrollToSection(2)}
+            onClick={() => scrollToSection(3)}
           >
             <Shield className="w-4 h-4 mr-1" />
-            Defense
+            Arsenal
           </MetalButton>
 
           <MetalButton
             variant="cyber"
             className="px-4 py-2"
-            onClick={() => scrollToSection(7)}
+            onClick={() => scrollToSection(8)}
           >
             <Zap className="w-4 h-4 mr-1" />
             Deploy
@@ -53,7 +53,7 @@ export default function CommandNavigation() {
           <MetalButton
             variant="cyber"
             className="px-4 py-2"
-            onClick={() => scrollToSection(8)}
+            onClick={() => scrollToSection(9)}
           >
             <Settings className="w-4 h-4 mr-1" />
             Config
