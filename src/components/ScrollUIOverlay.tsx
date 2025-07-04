@@ -36,6 +36,13 @@ const sections = [
     align: "right",
   },
   {
+    title: "Digital Arsenal Gallery",
+    subtitle: "Weapons of Cyber Warfare",
+    desc: "Explore our collection of advanced cybersecurity tools and visualizations.",
+    align: "center",
+    imageSlider: true,
+  },
+  {
     title: "Enterprise Command",
     subtitle: "Total Control. Infinite Insight.",
     desc: "Executive dashboards, compliance, and instant incident response. All at your fingertips.",
