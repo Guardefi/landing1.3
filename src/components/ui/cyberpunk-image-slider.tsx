@@ -103,7 +103,7 @@ export const CyberpunkImageSlider = () => {
         }
       `}</style>
 
-      <div className="w-full bg-war-room-abyss relative overflow-hidden py-16">
+      <div className="w-screen bg-war-room-abyss relative overflow-hidden py-24 -mx-[50vw] left-1/2 right-1/2">
         {/* Cyber grid background */}
         <div className="absolute inset-0 opacity-10">
           <div
@@ -121,11 +121,11 @@ export const CyberpunkImageSlider = () => {
         {/* Scrolling images container */}
         <div className="relative z-10 w-full flex items-center justify-center">
           <div className="cyber-scroll-container w-full">
-            <div className="cyber-infinite-scroll flex gap-8 w-max">
+            <div className="cyber-infinite-scroll flex gap-12 w-max">
               {duplicatedImages.map((image, index) => (
                 <div
                   key={index}
-                  className="cyber-image-item flex-shrink-0 w-64 h-64 lg:w-80 lg:h-80 rounded-xl overflow-hidden relative"
+                  className="cyber-image-item flex-shrink-0 w-80 h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] xl:w-[32rem] xl:h-[32rem] rounded-xl overflow-hidden relative"
                 >
                   <img
                     src={image}
@@ -138,10 +138,10 @@ export const CyberpunkImageSlider = () => {
                   {/* Scanning line effect */}
                   <div className="scan-line"></div>
                   {/* Corner accents */}
-                  <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-cyan-400"></div>
-                  <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-cyan-400"></div>
-                  <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-cyan-400"></div>
-                  <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-cyan-400"></div>
+                  <div className="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-cyan-400"></div>
+                  <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-cyan-400"></div>
+                  <div className="absolute bottom-3 left-3 w-6 h-6 border-l-2 border-b-2 border-cyan-400"></div>
+                  <div className="absolute bottom-3 right-3 w-6 h-6 border-r-2 border-b-2 border-cyan-400"></div>
                 </div>
               ))}
             </div>
