@@ -164,7 +164,7 @@ export default function CommandNavigation() {
 
             <button
               onClick={() => {
-                scrollToSection(3);
+                scrollToSection(2);
                 setIsMobileMenuOpen(false);
               }}
               className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
