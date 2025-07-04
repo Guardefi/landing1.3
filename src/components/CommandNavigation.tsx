@@ -4,7 +4,7 @@ import { Terminal, Shield, Zap, Settings } from "lucide-react";
 
 export default function CommandNavigation() {
   return (
-    <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-30 pointer-events-auto">
+    <div className="fixed top-6 right-6 z-30 pointer-events-auto">
       <div className="flex items-center gap-4 px-6 py-3 rounded-2xl bg-war-room-void/80 backdrop-blur-md border border-cyber-cyan-dim/30">
         {/* Main Command Button */}
         <LiquidButton
