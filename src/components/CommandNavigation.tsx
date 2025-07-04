@@ -101,7 +101,7 @@ export default function CommandNavigation() {
         <div className="flex items-center gap-4 px-6 py-3 rounded-2xl bg-war-room-void/80 backdrop-blur-md border border-cyber-cyan-dim/30">
           {/* Main Command Button */}
           <button
-            onClick={() => scrollToSection(0)}
+            onClick={() => navigateToSection(0)}
             className="flex items-center px-4 py-2 text-cyber-cyan-bright hover:text-cyber-cyan-intense transition-colors duration-300 font-terminal"
           >
             <Terminal className="w-4 h-4 mr-2" />
@@ -113,7 +113,7 @@ export default function CommandNavigation() {
             <MetalButton
               variant="cyber"
               className="px-4 py-2"
-              onClick={() => scrollToSection(3)}
+              onClick={() => navigateToSection(3)}
             >
               <Play className="w-4 h-4 mr-1" />
               Watch Demo
@@ -122,7 +122,7 @@ export default function CommandNavigation() {
             <MetalButton
               variant="cyber"
               className="px-4 py-2"
-              onClick={() => scrollToSection(9)}
+              onClick={() => navigateToSection(9)}
             >
               <DollarSign className="w-4 h-4 mr-1" />
               Pricing
