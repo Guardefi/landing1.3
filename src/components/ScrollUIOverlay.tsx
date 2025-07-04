@@ -242,6 +242,7 @@ export default function ScrollUIOverlay() {
     .map((sec, i) => (sec.sticky ? i : -1))
     .filter((i) => i >= 0);
   const carouselIndex = sections.findIndex((sec) => sec.carousel);
+  const demoIndex = sections.findIndex((sec) => sec.demoVideo);
   const totalSections = sections.length;
   const totalStickySubSections = stickyIndices.reduce(
     (sum, index) => sum + (sections[index]?.stickyCards?.length || 0),
@@ -256,8 +257,14 @@ export default function ScrollUIOverlay() {
   let currentSticky = -1;
   let carouselProgress = 0;
   let activeCarouselImage = -1;
+
+  // For demo section, add extra scroll weight to make it stickier
+  const demoSectionWeight = 2; // Demo section effectively takes 2x the scroll space
+  const adjustedTotalSections =
+    totalSections + (demoIndex >= 0 ? demoSectionWeight - 1 : 0);
   const scrollPosition =
-    scroll * (totalSections + totalStickySubSections + carouselSubSections - 1);
+    scroll *
+    (adjustedTotalSections + totalStickySubSections + carouselSubSections - 1);
 
   // Check each section sequentially
   let adjustedScrollPos = scrollPosition;
