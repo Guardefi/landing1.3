@@ -3,6 +3,7 @@ import AnimatedSection from "./AnimatedSection";
 import { useScrollSync } from "./useScrollSync";
 import { CyberpunkImageSlider } from "./ui/cyberpunk-image-slider";
 import { FeatureCard } from "./ui/grid-feature-cards";
+import { GlowCard } from "./ui/spotlight-card";
 import {
   Activity,
   Code,
