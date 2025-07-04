@@ -143,11 +143,11 @@ export default function PricingTiers() {
                     : "border-cyber-cyan-dim/40 hover:border-cyber-cyan-base/60"
                 }`}
               >
-                {/* Grid Pattern Background */}
-                <div className="absolute inset-0 pointer-events-none">
-                  <div className="from-cyber-cyan-dim/20 to-cyber-cyan-dim/5 absolute inset-0 bg-gradient-to-r opacity-100">
+                {/* Grid Pattern Background with gradient fade effect */}
+                <div className="pointer-events-none absolute top-0 left-1/2 -mt-2 -ml-20 h-full w-full [mask-image:linear-gradient(white,transparent)]">
+                  <div className="from-cyber-cyan-dim/20 to-cyber-cyan-dim/5 absolute inset-0 bg-gradient-to-r [mask-image:radial-gradient(farthest-side_at_top,white,transparent)] opacity-100">
                     <svg
-                      className="absolute inset-0 h-full w-full"
+                      className="fill-cyber-cyan-dim/10 stroke-cyber-cyan-base/30 absolute inset-0 h-full w-full mix-blend-overlay"
                       aria-hidden="true"
                     >
                       <defs>
@@ -159,19 +159,27 @@ export default function PricingTiers() {
                           x="-12"
                           y="4"
                         >
-                          <path
-                            d="M.5 20V.5H20"
-                            fill="none"
-                            stroke="rgb(0 139 139 / 0.3)"
-                            strokeWidth="0.5"
-                          />
+                          <path d="M.5 20V.5H20" fill="none" />
                         </pattern>
                       </defs>
                       <rect
                         width="100%"
                         height="100%"
+                        strokeWidth="0"
                         fill={`url(#grid-${i})`}
                       />
+                      <svg x="-12" y="4" className="overflow-visible">
+                        {Array.from({ length: 5 }).map((_, idx) => (
+                          <rect
+                            key={idx}
+                            strokeWidth="0"
+                            width="21"
+                            height="21"
+                            x={(Math.floor(Math.random() * 4) + 7) * 20}
+                            y={(Math.floor(Math.random() * 6) + 1) * 20}
+                          />
+                        ))}
+                      </svg>
                     </svg>
                   </div>
                 </div>
