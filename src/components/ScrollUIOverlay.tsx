@@ -295,7 +295,7 @@ export default function ScrollUIOverlay() {
       !section.sticky &&
       !section.carousel &&
       !section.cyberpunkSlider &&
-      !section.imageSlider
+      !section.demoVideo
     ) {
       // Regular section
       if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
@@ -308,8 +308,8 @@ export default function ScrollUIOverlay() {
         active = i;
         break;
       }
-    } else if (section.imageSlider) {
-      // Image slider section
+    } else if (section.demoVideo) {
+      // Demo video section
       if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
         active = i;
         break;
