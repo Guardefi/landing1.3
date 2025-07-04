@@ -22,24 +22,21 @@ const sections = [
     desc: "A new guardian awakens in the digital cosmos.",
     align: "center",
     heroSection: true,
-    image:
-      "https://images.pexels.com/photos/17323801/pexels-photo-17323801.jpeg",
+    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
   },
   {
     title: "Quantum Threat Detection",
     subtitle: "See the Unseen",
     desc: "AI-powered, zero-latency threat recognition. Every anomaly, every shadow, instantly mapped and neutralized.",
     align: "left",
-    image:
-      "https://images.pexels.com/photos/17323801/pexels-photo-17323801.jpeg",
+    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
   },
   {
     title: "Adaptive Defense Layers",
     subtitle: "Multi-Protocol. Multi-Chain. Multi-Reality.",
     desc: "Dynamic energy shields and protocol firewalls, adapting in real-time to the evolving threatscape.",
     align: "right",
-    image:
-      "https://images.pexels.com/photos/17323801/pexels-photo-17323801.jpeg",
+    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
   },
   {
     title: "Watch Scorpius in Action",
@@ -47,8 +44,7 @@ const sections = [
     desc: "See how Scorpius identifies and neutralizes threats in milliseconds.",
     align: "center",
     demoVideo: true,
-    image:
-      "https://images.pexels.com/photos/17323801/pexels-photo-17323801.jpeg",
+    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
   },
   {
     title: "Enterprise Command",
@@ -56,8 +52,7 @@ const sections = [
     desc: "Executive dashboards, compliance, and instant incident response. All at your fingertips.",
     align: "center",
     cyberpunkSlider: true,
-    image:
-      "https://images.pexels.com/photos/17323801/pexels-photo-17323801.jpeg",
+    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
   },
   {
     title: "Under-the-Hood Firepower",
@@ -65,8 +60,7 @@ const sections = [
     desc: "Seven combat-ready modules forged in quantum cybersecurity fires. Each weapon designed for digital warfare.",
     align: "left",
     sticky: true,
-    image:
-      "https://images.pexels.com/photos/17323801/pexels-photo-17323801.jpeg",
+    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
     stickyCards: [
       {
         title: "Hive Alert",
