@@ -141,6 +141,8 @@ const sections = [
     subtitle: "Trusted by Fortune 500 & DeFi Protocols",
     desc: "ScorpiusCore protects over $847B in digital assets. Join the defense against the Dark Forest.",
     align: "left",
+    image:
+      "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg",
     testimonials: [
       {
         quote:
@@ -160,6 +162,7 @@ const sections = [
     desc: "Book a live demo or deploy now—because 'maybe secure' is just another way to say next victim.",
     align: "center",
     cta: true,
+    image: "https://images.pexels.com/photos/5952651/pexels-photo-5952651.jpeg",
   },
   {
     title: "Choose Your Defense Level",
@@ -167,6 +170,7 @@ const sections = [
     desc: "From indie builders to Fortune 500 enterprises. Every tier forged for the digital battlefield.",
     align: "center",
     fullScreenPricing: true,
+    image: "https://images.pexels.com/photos/3582392/pexels-photo-3582392.jpeg",
     pricingTiers: [
       {
         name: "Pro",
