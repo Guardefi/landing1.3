@@ -40,14 +40,6 @@ const sections = [
     image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
   },
   {
-    title: "Watch Scorpius in Action",
-    subtitle: "Live Demo: Real-Time Threat Detection",
-    desc: "See how Scorpius identifies and neutralizes threats in milliseconds.",
-    align: "center",
-    demoVideo: true,
-    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
-  },
-  {
     title: "Enterprise Command",
     subtitle: "Total Control. Infinite Insight.",
     desc: "Executive dashboards, compliance, and instant incident response. All at your fingertips.",
@@ -91,7 +83,7 @@ const sections = [
     features: [
       "🐝 Hive Alert",
       "🧬 Bytecode Engine",
-      "�� AI Trading Bot",
+      "🤖 AI Trading Bot",
       "📡 Mempool Monitor",
     ],
   },
@@ -213,6 +205,14 @@ const sections = [
         popular: false,
       },
     ],
+  },
+  {
+    title: "Watch Scorpius in Action",
+    subtitle: "Live Demo: Real-Time Threat Detection",
+    desc: "See how Scorpius identifies and neutralizes threats in milliseconds.",
+    align: "center",
+    demoVideo: true,
+    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
   },
 ];
 
