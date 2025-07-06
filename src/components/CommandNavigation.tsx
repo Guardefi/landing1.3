@@ -1,5 +1,6 @@
 "use client";
 import { MetalButton } from "./ui/liquid-glass-button";
+import { VideoPopup } from "./ui/video-popup";
 import { Terminal, Play, DollarSign, MessageCircle } from "lucide-react";
 import { useState } from "react";
 
@@ -90,6 +91,7 @@ const ContactPopup = ({
 
 export default function CommandNavigation() {
   const [showContact, setShowContact] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -111,7 +113,7 @@ export default function CommandNavigation() {
             <MetalButton
               variant="cyber"
               className="px-4 py-2"
-              onClick={() => scrollToSection(2)}
+              onClick={() => setShowVideo(true)}
             >
               <Play className="w-4 h-4 mr-1" />
               Watch Demo
@@ -164,7 +166,7 @@ export default function CommandNavigation() {
 
             <button
               onClick={() => {
-                scrollToSection(2);
+                setShowVideo(true);
                 setIsMobileMenuOpen(false);
               }}
               className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
@@ -202,6 +204,7 @@ export default function CommandNavigation() {
         isOpen={showContact}
         onClose={() => setShowContact(false)}
       />
+      <VideoPopup isOpen={showVideo} onClose={() => setShowVideo(false)} />
     </>
   );
 }
