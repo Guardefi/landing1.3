@@ -13,6 +13,7 @@ import {
   TestTube,
   ClipboardCheck,
   KeyRound,
+  Play,
 } from "lucide-react";
 
 const sections = [
@@ -90,7 +91,7 @@ const sections = [
     features: [
       "🐝 Hive Alert",
       "🧬 Bytecode Engine",
-      "🤖 AI Trading Bot",
+      "�� AI Trading Bot",
       "📡 Mempool Monitor",
     ],
   },
@@ -524,16 +525,18 @@ export default function ScrollUIOverlay() {
                           </p>
                         </div>
 
-                        <button
-                          onClick={() => {
-                            // This will be handled by CommandNavigation
-                            const event = new CustomEvent("openVideoDemo");
-                            window.dispatchEvent(event);
-                          }}
-                          className="bg-cyber-cyan-bright text-black font-command font-bold px-8 py-4 rounded-lg hover:bg-cyber-cyan-intense transition-colors text-lg"
-                        >
-                          Watch Live Demo
-                        </button>
+                        <div className="text-center">
+                          <p className="text-gray-300 text-base mb-4">
+                            Click "Watch Demo" in the navigation to see Scorpius
+                            in action
+                          </p>
+                          <div className="inline-flex items-center px-6 py-3 bg-cyber-cyan-dim/20 rounded-lg border border-cyber-cyan-dim/40">
+                            <Play className="w-5 h-5 text-cyber-cyan-bright mr-2" />
+                            <span className="text-cyber-cyan-bright font-terminal">
+                              Available in Navigation
+                            </span>
+                          </div>
+                        </div>
                       </div>
 
                       {/* Demo features */}
