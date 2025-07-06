@@ -48,84 +48,60 @@ const sections = [
     image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
   },
   {
-    title: "Under-the-Hood Firepower",
-    subtitle: "Medieval Precision Meets Alien Technology",
-    desc: "Seven combat-ready modules forged in quantum cybersecurity fires. Each weapon designed for digital warfare.",
+    title: "Hive Alert",
+    subtitle: "Distributed Threat Intelligence",
+    desc: "Distributed threat detection that learns from every attack pattern across the network.",
     align: "left",
-    sticky: true,
     image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
-    stickyCards: [
-      {
-        title: "Hive Alert",
-        icon: Activity,
-        description:
-          "Distributed threat detection that learns from every attack pattern across the network.",
-      },
-      {
-        title: "Bytecode Engine",
-        icon: Code,
-        description:
-          "Deep bytecode inspection that identifies malicious patterns before execution.",
-      },
-      {
-        title: "AI Trading Bot",
-        icon: Bot,
-        description:
-          "AI-powered response system that automatically counters financial attacks.",
-      },
-      {
-        title: "Mempool Monitor",
-        icon: Radio,
-        description:
-          "Real-time mempool analysis to detect and prevent malicious transactions.",
-      },
-    ],
-    features: [
-      "🐝 Hive Alert",
-      "🧬 Bytecode Engine",
-      "🤖 AI Trading Bot",
-      "📡 Mempool Monitor",
-    ],
   },
   {
-    title: "Enterprise Arsenal",
-    subtitle: "When Fortune 500 Meets Medieval War Tactics",
-    desc: "Advanced tier capabilities that separate the knights from the peasants. Enterprise-grade digital battlefield tools.",
+    title: "Bytecode Engine",
+    subtitle: "Deep Code Analysis",
+    desc: "Deep bytecode inspection that identifies malicious patterns before execution.",
     align: "right",
-    sticky: true,
     image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
-    stickyCards: [
-      {
-        title: "Quantum Security",
-        icon: Shield,
-        description:
-          "Unbreakable quantum encryption protocols that secure data at the subatomic level.",
-      },
-      {
-        title: "Simulation Sandbox",
-        icon: TestTube,
-        description:
-          "Isolated simulation environments for testing attack vectors without risk.",
-      },
-      {
-        title: "Compliance Grid",
-        icon: ClipboardCheck,
-        description:
-          "Automated compliance monitoring across SOC2, ISO27001, and custom frameworks.",
-      },
-      {
-        title: "Access Control Matrix",
-        icon: KeyRound,
-        description:
-          "Military-grade access controls with biometric authentication and zero-trust architecture.",
-      },
-    ],
-    features: [
-      "🔮 Quantum Security",
-      "🧪 Simulation Sandbox",
-      "📋 Compliance Grid",
-      "🛂 Access Control Matrix",
-    ],
+  },
+  {
+    title: "AI Trading Bot",
+    subtitle: "Automated Financial Defense",
+    desc: "AI-powered response system that automatically counters financial attacks.",
+    align: "left",
+    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
+  },
+  {
+    title: "Mempool Monitor",
+    subtitle: "Real-Time Transaction Analysis",
+    desc: "Real-time mempool analysis to detect and prevent malicious transactions.",
+    align: "right",
+    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
+  },
+  {
+    title: "Quantum Security",
+    subtitle: "Subatomic-Level Protection",
+    desc: "Unbreakable quantum encryption protocols that secure data at the subatomic level.",
+    align: "left",
+    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
+  },
+  {
+    title: "Simulation Sandbox",
+    subtitle: "Risk-Free Testing Environment",
+    desc: "Isolated simulation environments for testing attack vectors without risk.",
+    align: "right",
+    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
+  },
+  {
+    title: "Compliance Grid",
+    subtitle: "Automated Regulatory Monitoring",
+    desc: "Automated compliance monitoring across SOC2, ISO27001, and custom frameworks.",
+    align: "left",
+    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
+  },
+  {
+    title: "Access Control Matrix",
+    subtitle: "Zero-Trust Architecture",
+    desc: "Military-grade access controls with biometric authentication and zero-trust architecture.",
+    align: "right",
+    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
   },
   {
     title: "Ready to Deploy?",
