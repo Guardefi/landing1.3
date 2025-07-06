@@ -308,9 +308,9 @@ export default function ScrollUIOverlay() {
     active = Math.min(Math.floor(adjustedScrollPos), totalSections - 1);
   }
 
-  // Ensure we can reach the final section (pricing) - only when very close to end
+  // Ensure we can reach the final section - only when very close to end
   if (scroll > 0.95) {
-    active = totalSections - 1; // Force show pricing section only when at the very end
+    active = totalSections - 1; // Force show final section only when at the very end
   }
 
   // Debug log removed to prevent infinite loop
