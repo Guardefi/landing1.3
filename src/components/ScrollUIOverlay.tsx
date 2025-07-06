@@ -510,29 +510,30 @@ export default function ScrollUIOverlay() {
                   </div>
                 )}
 
-                {/* Demo Video Section - inline display */}
+                {/* Demo Video Section - now shows call-to-action instead of inline video */}
                 {sec.demoVideo && (
                   <div className="mb-8 pointer-events-auto">
-                    <div className="relative mx-auto max-w-7xl">
-                      <div className="relative aspect-video rounded-2xl overflow-hidden border-2 border-cyber-cyan-dim/40 hover:border-cyber-cyan-bright/60 transition-all duration-300 bg-war-room-charcoal/60 backdrop-blur">
-                        <video
-                          className="w-full h-full object-cover"
-                          controls
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                          poster="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=1200&h=675&fit=crop"
-                        >
-                          <source
-                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                            type="video/mp4"
-                          />
-                          Your browser does not support the video tag.
-                        </video>
+                    <div className="relative mx-auto max-w-4xl">
+                      <div className="text-center bg-war-room-charcoal/60 backdrop-blur rounded-2xl p-8 border-2 border-cyber-cyan-dim/40">
+                        <div className="mb-6">
+                          <div className="w-16 h-16 mx-auto mb-4 bg-cyber-cyan-dim/20 rounded-full flex items-center justify-center">
+                            <Play className="w-8 h-8 text-cyber-cyan-bright" />
+                          </div>
+                          <p className="text-cyber-cyan-base text-lg font-terminal">
+                            Experience the power of Scorpius in action
+                          </p>
+                        </div>
 
-                        {/* Cyber overlay effect */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-cyber-cyan-dim/10 via-transparent to-cyber-cyan-dim/10 pointer-events-none" />
+                        <button
+                          onClick={() => {
+                            // This will be handled by CommandNavigation
+                            const event = new CustomEvent("openVideoDemo");
+                            window.dispatchEvent(event);
+                          }}
+                          className="bg-cyber-cyan-bright text-black font-command font-bold px-8 py-4 rounded-lg hover:bg-cyber-cyan-intense transition-colors text-lg"
+                        >
+                          Watch Live Demo
+                        </button>
                       </div>
 
                       {/* Demo features */}
