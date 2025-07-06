@@ -695,29 +695,6 @@ export default function ScrollUIOverlay() {
                   </div>
                 )}
 
-                {/* Regular Pricing (legacy) */}
-                {sec.pricing && !sec.fullScreenPricing && (
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                    {sec.pricing.map((tier, idx) => (
-                      <div
-                        key={idx}
-                        className={`p-4 rounded-lg bg-war-room-charcoal/60 border border-cyan-400/30 ${tier.popular ? "ring-2 ring-cyan-400" : ""}`}
-                      >
-                        <div className="text-2xl mb-2">{tier.icon}</div>
-                        <div className="text-sm text-cyan-400 font-bold">
-                          {tier.name}
-                        </div>
-                        <div className="text-xs text-white">{tier.price}</div>
-                        {tier.popular && (
-                          <div className="text-xs text-cyan-400 mt-1">
-                            POPULAR
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-
                 {/* Testimonials */}
                 {sec.testimonials && (
                   <div className="space-y-4 mb-6">
