@@ -116,7 +116,7 @@ const sections = [
     subtitle: "Pricing Tiers",
     desc: "From indie builders to Fortune 500 enterprises. Every tier forged for the digital battlefield.",
     align: "center",
-    fullScreenPricing: true,
+    pricing: true,
     image: "https://images.pexels.com/photos/3582392/pexels-photo-3582392.jpeg",
     pricingTiers: [
       {
@@ -412,7 +412,6 @@ export default function ScrollUIOverlay() {
             ${sec.align === "left" ? "text-left ml-0 md:ml-16" : ""}
             ${sec.align === "right" ? "text-right mr-0 md:mr-16" : ""}
             ${sec.align === "center" ? "text-center mx-auto" : ""}
-            ${sec.fullScreenPricing ? "hidden" : ""}
             ${sec.cyberpunkSlider ? "hidden" : ""}`}
               >
                 <h1 className="font-bold cyan-glow mb-4 text-4xl md:text-6xl">
@@ -616,15 +615,15 @@ export default function ScrollUIOverlay() {
                   </div>
                 )}
 
-                {/* Full-Screen Pricing Tiers */}
-                {sec.fullScreenPricing && sec.pricingTiers && (
-                  <div className="flex items-center justify-center min-h-screen bg-black/50 backdrop-blur-sm pt-16 pb-16">
-                    <div className="max-w-6xl w-full px-4 mx-auto">
+                {/* Pricing Tiers */}
+                {sec.pricing && sec.pricingTiers && (
+                  <div className="mb-8 pointer-events-auto">
+                    <div className="max-w-6xl w-full mx-auto">
                       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 justify-items-center">
                         {sec.pricingTiers.map((tier, idx) => (
                           <div
                             key={idx}
-                            className={`relative flex flex-col w-full max-w-sm h-[70vh] rounded-2xl p-6 transition-all duration-500 hover:scale-105 mx-auto ${
+                            className={`relative flex flex-col w-full max-w-sm min-h-[500px] rounded-2xl p-6 transition-all duration-500 hover:scale-105 mx-auto ${
                               tier.popular
                                 ? "bg-gradient-to-b from-cyan-400/20 to-war-room-void ring-2 ring-cyan-400 shadow-2xl shadow-cyan-400/20"
                                 : "bg-gradient-to-b from-war-room-charcoal/80 to-war-room-void border border-gray-600 hover:border-cyan-400/50"
@@ -640,15 +639,15 @@ export default function ScrollUIOverlay() {
 
                             {/* Header */}
                             <div className="text-center mb-4">
-                              <h3 className="text-3xl font-command font-bold text-white mb-2">
+                              <h3 className="text-2xl font-command font-bold text-white mb-2">
                                 {tier.name}
                               </h3>
                               <div className="flex items-baseline justify-center mb-2">
-                                <span className="text-4xl font-command text-cyan-400">
+                                <span className="text-3xl font-command text-cyan-400">
                                   {tier.price}
                                 </span>
                                 {tier.period && (
-                                  <span className="text-lg text-gray-400 ml-1">
+                                  <span className="text-base text-gray-400 ml-1">
                                     {tier.period}
                                   </span>
                                 )}
@@ -660,16 +659,16 @@ export default function ScrollUIOverlay() {
 
                             {/* Features */}
                             <div className="flex-1 mb-4">
-                              <h4 className="text-sm font-terminal text-cyan-400 mb-3 uppercase tracking-wide border-b border-cyan-400/30 pb-1">
+                              <h4 className="text-xs font-terminal text-cyan-400 mb-3 uppercase tracking-wide border-b border-cyan-400/30 pb-1">
                                 What You Get
                               </h4>
-                              <div className="space-y-2 max-h-80 overflow-y-auto custom-scrollbar">
+                              <div className="space-y-1 max-h-60 overflow-y-auto custom-scrollbar">
                                 {tier.features.map((feature, i) => (
                                   <div
                                     key={i}
                                     className="flex items-start text-xs text-gray-300"
                                   >
-                                    <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mr-2 mt-1.5 flex-shrink-0 animate-pulse"></div>
+                                    <div className="w-1 h-1 bg-cyan-400 rounded-full mr-2 mt-1.5 flex-shrink-0 animate-pulse"></div>
                                     <span>{feature}</span>
                                   </div>
                                 ))}
@@ -679,7 +678,7 @@ export default function ScrollUIOverlay() {
                             {/* CTA Button */}
                             <button
                               className={`
-                            w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 font-command
+                            w-full py-3 rounded-xl font-bold text-sm transition-all duration-300 font-command
                             ${
                               tier.popular
                                 ? "bg-cyan-400 text-black hover:bg-cyan-300 shadow-lg shadow-cyan-400/30"
