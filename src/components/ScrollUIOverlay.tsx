@@ -526,19 +526,15 @@ export default function ScrollUIOverlay() {
                 )}
 
                 {/* Mockup Section */}
-                {sec.mockupSection && sec.mockupData && (
-                  <div
-                    className={`fixed inset-0 z-30 flex items-center justify-center pointer-events-auto overflow-y-auto transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-                  >
-                    <div className="w-full">
-                      <SectionWithMockup
-                        title={sec.mockupData.title}
-                        description={sec.mockupData.description}
-                        primaryImageSrc={sec.mockupData.primaryImageSrc}
-                        secondaryImageSrc={sec.mockupData.secondaryImageSrc}
-                        reverseLayout={sec.mockupData.reverseLayout}
-                      />
-                    </div>
+                {sec.mockupSection && isActive && sec.mockupData && (
+                  <div className="fixed inset-0 z-30 pointer-events-auto overflow-y-auto">
+                    <SectionWithMockup
+                      title={sec.mockupData.title}
+                      description={sec.mockupData.description}
+                      primaryImageSrc={sec.mockupData.primaryImageSrc}
+                      secondaryImageSrc={sec.mockupData.secondaryImageSrc}
+                      reverseLayout={sec.mockupData.reverseLayout}
+                    />
                   </div>
                 )}
 
