@@ -282,9 +282,16 @@ export default function ScrollUIOverlay() {
       !section.carousel &&
       !section.cyberpunkSlider &&
       !section.quantumStickyScroll &&
+      !section.mockupSection &&
       !section.cta
     ) {
       // Regular section
+      if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
+        active = i;
+        break;
+      }
+    } else if (section.mockupSection) {
+      // Mockup section
       if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
         active = i;
         break;
