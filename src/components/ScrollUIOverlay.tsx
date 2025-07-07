@@ -526,6 +526,15 @@ export default function ScrollUIOverlay() {
                   </div>
                 )}
 
+                {/* Quantum Sticky Scroll */}
+                {sec.quantumStickyScroll && isActive && (
+                  <div className="fixed inset-0 z-30 flex items-center justify-center pointer-events-auto">
+                    <div className="w-full h-full">
+                      <QuantumStickyScroll />
+                    </div>
+                  </div>
+                )}
+
                 {/* Cyberpunk Image Slider for Enterprise Command */}
                 {sec.cyberpunkSlider && isActive && (
                   <div className="fixed inset-0 z-30 flex items-center justify-center pointer-events-none">
