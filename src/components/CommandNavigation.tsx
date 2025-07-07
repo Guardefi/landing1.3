@@ -95,70 +95,70 @@ export default function CommandNavigation() {
   return (
     <>
       {/* Desktop Navigation */}
-      <div className="fixed top-6 right-6 z-30 pointer-events-auto hidden md:block">
-        <div className="flex items-center gap-4 px-6 py-3 rounded-2xl bg-war-room-void/80 backdrop-blur-md border border-cyber-cyan-dim/30">
+      <div className="fixed top-3 right-4 z-30 pointer-events-auto hidden md:block">
+        <div className="flex items-center gap-2 px-4 py-1.5 rounded-lg bg-war-room-void/50 backdrop-blur-sm border border-cyber-cyan-dim/20">
           {/* Main Command Button */}
           <button
             onClick={() => scrollToSection(0)}
-            className="flex items-center px-4 py-2 text-cyber-cyan-bright hover:text-cyber-cyan-intense transition-colors duration-300 font-terminal"
+            className="flex items-center px-3 py-1.5 text-cyber-cyan-bright hover:text-cyber-cyan-intense transition-colors duration-300 font-terminal text-sm"
           >
-            <Terminal className="w-4 h-4 mr-2" />
+            <Terminal className="w-3.5 h-3.5 mr-1.5" />
             Command Center
           </button>
 
           {/* Action Buttons */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <MetalButton
               variant="cyber"
-              className="px-4 py-2"
+              className="px-3 py-1.5 text-xs"
               onClick={() => scrollToSection(2)}
             >
-              <Play className="w-4 h-4 mr-1" />
-              Watch Demo
+              <Play className="w-3.5 h-3.5 mr-1" />
+              Demo
             </MetalButton>
 
             <MetalButton
               variant="cyber"
-              className="px-4 py-2"
+              className="px-3 py-1.5 text-xs"
               onClick={() => scrollToSection(9)}
             >
-              <DollarSign className="w-4 h-4 mr-1" />
+              <DollarSign className="w-3.5 h-3.5 mr-1" />
               Pricing
             </MetalButton>
 
             <MetalButton
               variant="cyber"
-              className="px-4 py-2"
+              className="px-3 py-1.5 text-xs"
               onClick={() => setShowContact(true)}
             >
-              <MessageCircle className="w-4 h-4 mr-1" />
-              Contact Us
+              <MessageCircle className="w-3.5 h-3.5 mr-1" />
+              Contact
             </MetalButton>
           </div>
         </div>
       </div>
 
       {/* Mobile Navigation */}
-      <div className="fixed top-4 right-4 z-30 pointer-events-auto md:hidden">
+      <div className="fixed top-3 right-4 z-30 pointer-events-auto md:hidden">
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="flex items-center justify-center w-12 h-12 rounded-xl bg-war-room-void/80 backdrop-blur-md border border-cyber-cyan-dim/30 text-cyber-cyan-bright hover:text-cyber-cyan-intense transition-colors"
+          className="flex items-center justify-center w-10 h-10 rounded-lg bg-war-room-void/50 backdrop-blur-sm border border-cyber-cyan-dim/20 text-cyber-cyan-bright hover:text-cyber-cyan-intense transition-colors"
         >
-          <Terminal className="w-5 h-5" />
+          <Terminal className="w-4 h-4" />
         </button>
 
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
-          <div className="absolute top-14 right-0 w-48 rounded-xl bg-war-room-void/90 backdrop-blur-md border border-cyber-cyan-dim/30 p-2">
+          <div className="absolute top-12 right-0 w-44 rounded-lg bg-war-room-void/60 backdrop-blur-sm border border-cyber-cyan-dim/20 p-1.5">
             <button
               onClick={() => {
                 scrollToSection(0);
                 setIsMobileMenuOpen(false);
               }}
-              className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
+              className="w-full flex items-center px-2.5 py-1.5 rounded-md text-cyber-cyan-bright hover:bg-cyber-cyan-dim/15 transition-colors font-terminal text-xs"
             >
-              <Terminal className="w-4 h-4 mr-2" />
+              <Terminal className="w-3.5 h-3.5 mr-1.5" />
               Command Center
             </button>
 
@@ -167,10 +167,10 @@ export default function CommandNavigation() {
                 scrollToSection(2);
                 setIsMobileMenuOpen(false);
               }}
-              className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
+              className="w-full flex items-center px-2.5 py-1.5 rounded-md text-cyber-cyan-bright hover:bg-cyber-cyan-dim/15 transition-colors font-terminal text-xs"
             >
-              <Play className="w-4 h-4 mr-2" />
-              Watch Demo
+              <Play className="w-3.5 h-3.5 mr-1.5" />
+              Demo
             </button>
 
             <button
@@ -178,9 +178,9 @@ export default function CommandNavigation() {
                 scrollToSection(9);
                 setIsMobileMenuOpen(false);
               }}
-              className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
+              className="w-full flex items-center px-2.5 py-1.5 rounded-md text-cyber-cyan-bright hover:bg-cyber-cyan-dim/15 transition-colors font-terminal text-xs"
             >
-              <DollarSign className="w-4 h-4 mr-2" />
+              <DollarSign className="w-3.5 h-3.5 mr-1.5" />
               Pricing
             </button>
 
@@ -189,10 +189,10 @@ export default function CommandNavigation() {
                 setShowContact(true);
                 setIsMobileMenuOpen(false);
               }}
-              className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
+              className="w-full flex items-center px-2.5 py-1.5 rounded-md text-cyber-cyan-bright hover:bg-cyber-cyan-dim/15 transition-colors font-terminal text-xs"
             >
-              <MessageCircle className="w-4 h-4 mr-2" />
-              Contact Us
+              <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
+              Contact
             </button>
           </div>
         )}
