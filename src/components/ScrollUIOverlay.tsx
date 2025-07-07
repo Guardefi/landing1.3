@@ -405,30 +405,20 @@ export default function ScrollUIOverlay() {
           // Special rendering for hero section
           if (sec.heroSection && isActive) {
             return (
-              <div
-                key={i}
-                className="fixed inset-0 flex flex-col justify-between items-center z-20 pointer-events-none"
-              >
-                {/* Top text group */}
-                <div className="pt-16 space-y-4">
-                  <div className="animate-fade-in-slow">
-                    <h1 className="font-bold cyan-glow text-4xl md:text-6xl font-command text-center">
-                      {sec.title}
-                    </h1>
-                  </div>
-                  <div className="animate-fade-in-slower">
-                    <h2 className="text-cyan-400 text-2xl md:text-4xl font-command text-center">
-                      {sec.subtitle}
-                    </h2>
-                  </div>
-                </div>
-
-                {/* Bottom text */}
-                <div className="pb-16 animate-fade-in-slowest">
-                  <p className="text-cyber-cyan-base/80 text-lg md:text-xl font-terminal text-center">
-                    {sec.desc}
-                  </p>
-                </div>
+              <div key={i} className="fixed inset-0 z-20 pointer-events-auto">
+                <SectionWithMockup
+                  title={
+                    <>
+                      Hello
+                      <br />
+                      Dark Forest
+                    </>
+                  }
+                  description="A new guardian awakens in the digital cosmos. Advanced AI-powered detection systems ready to defend against quantum threats."
+                  primaryImageSrc="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop"
+                  secondaryImageSrc="https://images.unsplash.com/photo-1557838794-17df5f6b83b5?w=800&h=600&fit=crop"
+                  reverseLayout={false}
+                />
               </div>
             );
           }
