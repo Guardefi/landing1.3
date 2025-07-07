@@ -451,7 +451,8 @@ export default function ScrollUIOverlay() {
             ${sec.align === "right" ? "text-right mr-0 md:mr-16" : ""}
             ${sec.align === "center" ? "text-center mx-auto" : ""}
             ${sec.fullScreenPricing ? "hidden" : ""}
-            ${sec.cyberpunkSlider ? "hidden" : ""}`}
+            ${sec.cyberpunkSlider ? "hidden" : ""}
+            ${sec.quantumStickyScroll ? "hidden" : ""}`}
                 style={{
                   transform: isActive
                     ? `perspective(1000px) translateZ(${15 * Math.sin((adjustedScrollPos - i + 0.5) * Math.PI)}px) rotateX(${1.5 * Math.sin((adjustedScrollPos - i + 0.5) * Math.PI * 2)}deg) scale(${1 + 0.05 * Math.sin((adjustedScrollPos - i + 0.5) * Math.PI)})`
