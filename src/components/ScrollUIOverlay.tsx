@@ -1,8 +1,7 @@
 "use client";
 import AnimatedSection from "./AnimatedSection";
 import { useScrollSync } from "./useScrollSync";
-import { CyberpunkImageSlider } from "./ui/cyberpunk-image-slider";
-import { FeatureCard } from "./ui/grid-feature-cards";
+import SectionWithMockup from "./ui/section-with-mockup";
 import { GlowCard } from "./ui/spotlight-card";
 import {
   Activity,
@@ -25,114 +24,100 @@ const sections = [
     image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
   },
   {
-    title: "Quantum Threat Detection",
-    subtitle: "See the Unseen",
-    desc: "AI-powered, zero-latency threat recognition. Every anomaly, every shadow, instantly mapped and neutralized.",
+    title: "Real-Time Quantum Threat Detection",
+    subtitle: "Advanced AI-Powered Detection Systems",
+    desc: "Real-time quantum threat detection represents the cutting edge of cybersecurity, combining artificial intelligence with quantum-aware algorithms to identify and neutralize emerging threats before they can execute.",
     align: "left",
+    mockupSection: true,
+    mockupData: {
+      title: (
+        <>
+          Quantum Threat
+          <br />
+          Detection Systems
+        </>
+      ),
+      description: (
+        <>
+          Advanced AI-powered detection combining artificial intelligence
+          <br />
+          with quantum-aware algorithms to identify and neutralize
+          <br />
+          emerging threats before they execute. Real-time response
+          <br />
+          within milliseconds for maximum security.
+        </>
+      ),
+      primaryImageSrc:
+        "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop",
+      secondaryImageSrc:
+        "https://images.unsplash.com/photo-1557838794-17df5f6b83b5?w=800&h=600&fit=crop",
+      reverseLayout: false,
+    },
     image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
   },
   {
-    title: "Adaptive Defense Layers",
-    subtitle: "Multi-Protocol. Multi-Chain. Multi-Reality.",
-    desc: "Dynamic energy shields and protocol firewalls, adapting in real-time to the evolving threatscape.",
+    title: "Blockchain Security Monitoring",
+    subtitle: "Multi-Protocol Defense Architecture",
+    desc: "Sophisticated mempool monitoring and blockchain analysis providing enhanced network security through real-time transaction analysis and pattern recognition.",
     align: "right",
+    mockupSection: true,
+    mockupData: {
+      title: (
+        <>
+          Blockchain Security
+          <br />& Monitoring
+        </>
+      ),
+      description: (
+        <>
+          Sophisticated mempool monitoring systems providing enhanced
+          <br />
+          network security through real-time transaction analysis.
+          <br />
+          Identifies attacks through pattern recognition and
+          <br />
+          coordinated manipulation detection.
+        </>
+      ),
+      primaryImageSrc:
+        "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop",
+      secondaryImageSrc:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      reverseLayout: true,
+    },
     image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
   },
-
   {
-    title: "Enterprise Command",
-    subtitle: "Total Control. Infinite Insight.",
-    desc: "Executive dashboards, compliance, and instant incident response. All at your fingertips.",
-    align: "center",
-    cyberpunkSlider: true,
-    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
-  },
-  {
-    title: "Under-the-Hood Firepower",
-    subtitle: "Medieval Precision Meets Alien Technology",
-    desc: "Seven combat-ready modules forged in quantum cybersecurity fires. Each weapon designed for digital warfare.",
+    title: "Enterprise Command Center",
+    subtitle: "Total Control & Infinite Insight",
+    desc: "Executive dashboards, compliance monitoring, and instant incident response. Complete operational oversight with real-time analytics and threat intelligence.",
     align: "left",
-    sticky: true,
-    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
-    stickyCards: [
-      {
-        title: "Hive Alert",
-        icon: Activity,
-        description:
-          "Distributed threat detection that learns from every attack pattern across the network.",
-      },
-      {
-        title: "Bytecode Engine",
-        icon: Code,
-        description:
-          "Deep bytecode inspection that identifies malicious patterns before execution.",
-      },
-      {
-        title: "AI Trading Bot",
-        icon: Bot,
-        description:
-          "AI-powered response system that automatically counters financial attacks.",
-      },
-      {
-        title: "Mempool Monitor",
-        icon: Radio,
-        description:
-          "Real-time mempool analysis to detect and prevent malicious transactions.",
-      },
-    ],
-    features: [
-      "🐝 Hive Alert",
-      "🧬 Bytecode Engine",
-      "🤖 AI Trading Bot",
-      "📡 Mempool Monitor",
-    ],
-  },
-  {
-    title: "Enterprise Arsenal",
-    subtitle: "When Fortune 500 Meets Medieval War Tactics",
-    desc: "Advanced tier capabilities that separate the knights from the peasants. Enterprise-grade digital battlefield tools.",
-    align: "right",
-    sticky: true,
-    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
-    stickyCards: [
-      {
-        title: "Quantum Security",
-        icon: Shield,
-        description:
-          "Unbreakable quantum encryption protocols that secure data at the subatomic level.",
-      },
-      {
-        title: "Simulation Sandbox",
-        icon: TestTube,
-        description:
-          "Isolated simulation environments for testing attack vectors without risk.",
-      },
-      {
-        title: "Compliance Grid",
-        icon: ClipboardCheck,
-        description:
-          "Automated compliance monitoring across SOC2, ISO27001, and custom frameworks.",
-      },
-      {
-        title: "Access Control Matrix",
-        icon: KeyRound,
-        description:
-          "Military-grade access controls with biometric authentication and zero-trust architecture.",
-      },
-    ],
-    features: [
-      "🔮 Quantum Security",
-      "🧪 Simulation Sandbox",
-      "📋 Compliance Grid",
-      "🛂 Access Control Matrix",
-    ],
-  },
-  {
-    title: "Ready to Deploy?",
-    subtitle: "The Dark Forest is Watching",
-    desc: "Book a live demo or deploy now—because 'maybe secure' is just another way to say next victim.",
-    align: "left",
-    cta: true,
+    mockupSection: true,
+    mockupData: {
+      title: (
+        <>
+          Enterprise Command
+          <br />& Control Center
+        </>
+      ),
+      description: (
+        <>
+          Executive dashboards providing total operational oversight
+          <br />
+          with real-time analytics, compliance monitoring, and
+          <br />
+          instant incident response capabilities. Complete
+          <br />
+          situational awareness for security teams.
+        </>
+      ),
+      primaryImageSrc:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      secondaryImageSrc:
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+      reverseLayout: false,
+    },
     image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
   },
   {
@@ -296,6 +281,8 @@ export default function ScrollUIOverlay() {
       !section.sticky &&
       !section.carousel &&
       !section.cyberpunkSlider &&
+      !section.quantumStickyScroll &&
+      !section.mockupSection &&
       !section.cta
     ) {
       // Regular section
@@ -303,8 +290,20 @@ export default function ScrollUIOverlay() {
         active = i;
         break;
       }
+    } else if (section.mockupSection) {
+      // Mockup section
+      if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
+        active = i;
+        break;
+      }
     } else if (section.cyberpunkSlider) {
       // Cyberpunk slider section
+      if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
+        active = i;
+        break;
+      }
+    } else if (section.quantumStickyScroll) {
+      // Quantum sticky scroll section
       if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
         active = i;
         break;
@@ -328,10 +327,19 @@ export default function ScrollUIOverlay() {
     active = totalSections - 1; // Force show pricing section only when at the very end
   }
 
-  // Debug log removed to prevent infinite loop
+  // Debug removed
+
+  // Temporary debug
+  const currentSection = sections[active];
 
   return (
     <>
+      {/* Debug indicator */}
+      <div className="fixed top-4 right-4 z-[9999] bg-black/80 text-cyber-cyan-bright p-2 rounded text-xs font-mono">
+        Active: {active} | {currentSection?.title} | Mockup:{" "}
+        {currentSection?.mockupSection ? "YES" : "NO"}
+      </div>
+
       {/* Background Image that flips with each section - with tunnel vision effects */}
       <div className="fixed inset-0 z-[5] pointer-events-none perspective-[1000px] overflow-hidden">
         {sections.map((sec, i) => {
@@ -434,6 +442,21 @@ export default function ScrollUIOverlay() {
             );
           }
 
+          // Special rendering for mockup sections
+          if (sec.mockupSection && isActive && sec.mockupData) {
+            return (
+              <div key={i} className="fixed inset-0 z-[999] bg-war-room-void">
+                <SectionWithMockup
+                  title={sec.mockupData.title}
+                  description={sec.mockupData.description}
+                  primaryImageSrc={sec.mockupData.primaryImageSrc}
+                  secondaryImageSrc={sec.mockupData.secondaryImageSrc}
+                  reverseLayout={sec.mockupData.reverseLayout}
+                />
+              </div>
+            );
+          }
+
           return (
             <AnimatedSection
               key={i}
@@ -449,7 +472,9 @@ export default function ScrollUIOverlay() {
             ${sec.align === "right" ? "text-right mr-0 md:mr-16" : ""}
             ${sec.align === "center" ? "text-center mx-auto" : ""}
             ${sec.fullScreenPricing ? "hidden" : ""}
-            ${sec.cyberpunkSlider ? "hidden" : ""}`}
+            ${sec.cyberpunkSlider ? "hidden" : ""}
+            ${sec.quantumStickyScroll ? "hidden" : ""}
+            ${sec.mockupSection ? "hidden" : ""}`}
                 style={{
                   transform: isActive
                     ? `perspective(1000px) translateZ(${15 * Math.sin((adjustedScrollPos - i + 0.5) * Math.PI)}px) rotateX(${1.5 * Math.sin((adjustedScrollPos - i + 0.5) * Math.PI * 2)}deg) scale(${1 + 0.05 * Math.sin((adjustedScrollPos - i + 0.5) * Math.PI)})`
@@ -521,6 +546,15 @@ export default function ScrollUIOverlay() {
                         {feature}
                       </div>
                     ))}
+                  </div>
+                )}
+
+                {/* Quantum Sticky Scroll */}
+                {sec.quantumStickyScroll && isActive && (
+                  <div className="fixed inset-0 z-30 flex items-center justify-center pointer-events-auto">
+                    <div className="w-full h-full">
+                      <QuantumStickyScroll />
+                    </div>
                   </div>
                 )}
 
