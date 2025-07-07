@@ -1,10 +1,8 @@
 "use client";
 import AnimatedSection from "./AnimatedSection";
 import { useScrollSync } from "./useScrollSync";
-import { CyberpunkImageSlider } from "./ui/cyberpunk-image-slider";
-import { FeatureCard } from "./ui/grid-feature-cards";
+import SectionWithMockup from "./ui/section-with-mockup";
 import { GlowCard } from "./ui/spotlight-card";
-import { QuantumStickyScroll } from "./ui/quantum-sticky-scroll";
 import {
   Activity,
   Code,
