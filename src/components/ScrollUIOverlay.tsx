@@ -25,124 +25,12 @@ const sections = [
     image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
   },
   {
-    title: "Real-Time Quantum Threat Detection",
+    title: "Quantum Threat Detection",
     subtitle: "Advanced AI-Powered Detection Systems",
-    desc: "Real-time quantum threat detection represents the cutting edge of cybersecurity, combining artificial intelligence with quantum-aware algorithms to identify and neutralize emerging threats before they can execute. Modern systems leverage machine learning algorithms and AI models to instantly identify suspicious activities, enabling security teams to respond to quantum-enabled attacks within milliseconds.",
-    align: "left",
+    desc: "Real-time quantum threat detection represents the cutting edge of cybersecurity, combining artificial intelligence with quantum-aware algorithms to identify and neutralize emerging threats before they can execute.",
+    align: "center",
+    quantumStickyScroll: true,
     image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
-    sticky: true,
-    stickyCards: [
-      {
-        title: "Core Detection Metrics",
-        icon: Activity,
-        description:
-          "97.8% detection rate for malware, 96.5% accuracy for phishing attempts, 98.2% success rate against ransomware, 95.6% effectiveness against APTs. Ultra-low false positive rates of just 2.1%.",
-      },
-      {
-        title: "Blockchain Mempool Monitoring",
-        icon: Radio,
-        description:
-          "Real-time transaction analysis with anomaly detection for flood attacks, spam detection via unusual patterns, coordinated manipulation recognition, and suspicious fee market monitoring.",
-      },
-      {
-        title: "Pattern Recognition AI",
-        icon: Bot,
-        description:
-          "AI flags quantum-powered decryption attempts in real time using ML models trained on blockchain data. Detects harvest-now decrypt-later patterns and quantum brute-force signatures.",
-      },
-      {
-        title: "Enterprise Performance",
-        icon: Shield,
-        description:
-          "<50ms detection latency, 35ms cryptographic key rotation, sub-100ms threat mitigation response times with 99.99% uptime SLA guarantees.",
-      },
-    ],
-    features: [
-      "⚡ <50ms Detection Latency",
-      "🔄 35ms Key Rotation",
-      "🎯 97.8% Malware Detection",
-      "🛡️ 2.1% False Positive Rate",
-    ],
-  },
-  {
-    title: "Quantum Signature Validation",
-    subtitle: "Advanced Quantum Algorithms",
-    desc: "Quantum counting algorithms determine manipulated transaction counts while PageRank-based quantum search ranks tampered transactions. Achieves O(√N) time complexity providing quadratic speedup over classical methods.",
-    align: "right",
-    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
-    sticky: true,
-    stickyCards: [
-      {
-        title: "Quantum Counting",
-        icon: Code,
-        description:
-          "Advanced quantum algorithms enable efficient detection of fraudulent transactions through quantum counting algorithms to determine manipulated transaction counts.",
-      },
-      {
-        title: "PageRank Search",
-        icon: Activity,
-        description:
-          "PageRank-based quantum search for ranking tampered transactions with O(√N) time complexity providing quadratic speedup over classical methods.",
-      },
-      {
-        title: "Cryptographic Agility",
-        icon: KeyRound,
-        description:
-          "Automatic rotation from RSA/ECC to CRYSTALS-Kyber/Dilithium encryption with dynamic protocol adjustment based on threat levels.",
-      },
-      {
-        title: "Adaptive Security",
-        icon: Shield,
-        description:
-          "Predictive analytics enable preemptive security measures with autonomous incident response systems for immediate threat containment.",
-      },
-    ],
-    features: [
-      "⚡ O(√N) Time Complexity",
-      "🔄 Automatic Protocol Rotation",
-      "🎯 Predictive Analytics",
-      "🛡️ Autonomous Response",
-    ],
-  },
-  {
-    title: "Multi-Layer Detection Architecture",
-    subtitle: "AI-Enhanced Consensus Mechanisms",
-    desc: "Advanced systems incorporate AI-enhanced consensus mechanisms that identify compromised nodes during quantum attacks, adapt dynamically to introduce new security protocols, and rebalance network power to prevent quantum-assisted 51% attacks.",
-    align: "left",
-    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
-    sticky: true,
-    stickyCards: [
-      {
-        title: "Consensus Protection",
-        icon: Shield,
-        description:
-          "AI-enhanced consensus mechanisms identify compromised nodes during quantum attacks and dynamically adapt to introduce new security protocols.",
-      },
-      {
-        title: "Network Rebalancing",
-        icon: Activity,
-        description:
-          "Automatic network power rebalancing to prevent quantum-assisted 51% attacks with real-time threat assessment and response.",
-      },
-      {
-        title: "Hybrid Security Models",
-        icon: Code,
-        description:
-          "Quantum-AI blockchain security frameworks combine quantum cryptography with AI-driven fraud detection and multi-party computation for enhanced privacy.",
-      },
-      {
-        title: "Production Metrics",
-        icon: Radio,
-        description:
-          "Millions of transactions processed daily with <0.01% false positive rates, 24/7 monitoring capabilities across financial institutions and cryptocurrency exchanges.",
-      },
-    ],
-    features: [
-      "🔒 Quantum Cryptography",
-      "🤖 AI-Driven Fraud Detection",
-      "⚡ Millions Daily Transactions",
-      "📊 <0.01% False Positives",
-    ],
   },
   {
     title: "Adaptive Defense Layers",
