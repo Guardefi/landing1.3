@@ -444,12 +444,22 @@ export default function ScrollUIOverlay() {
                 customSize={true}
                 glowColor="cyan"
                 className={`max-w-3xl mx-auto p-8 rounded-xl backdrop-blur shadow-lg text-center
-            bg-black/70 glass-morphism corner-accent
+            bg-black/70 glass-morphism corner-accent transform-gpu
             ${sec.align === "left" ? "text-left ml-0 md:ml-16" : ""}
             ${sec.align === "right" ? "text-right mr-0 md:mr-16" : ""}
             ${sec.align === "center" ? "text-center mx-auto" : ""}
             ${sec.fullScreenPricing ? "hidden" : ""}
             ${sec.cyberpunkSlider ? "hidden" : ""}`}
+                style={{
+                  transform: isActive
+                    ? `perspective(1000px) translateZ(${15 * Math.sin((adjustedScrollPos - i + 0.5) * Math.PI)}px) rotateX(${1.5 * Math.sin((adjustedScrollPos - i + 0.5) * Math.PI * 2)}deg) scale(${1 + 0.05 * Math.sin((adjustedScrollPos - i + 0.5) * Math.PI)})`
+                    : "perspective(1000px) translateZ(0px) rotateX(0deg) scale(1)",
+                  transition:
+                    "transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                  filter: isActive
+                    ? `blur(${Math.abs(adjustedScrollPos - i - 0.5) * 0.5}px)`
+                    : "blur(0px)",
+                }}
               >
                 <h1 className="font-bold cyan-glow mb-4 text-4xl md:text-6xl">
                   {sec.title}
