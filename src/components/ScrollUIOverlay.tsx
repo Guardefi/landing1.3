@@ -311,6 +311,12 @@ export default function ScrollUIOverlay() {
         active = i;
         break;
       }
+    } else if (section.quantumStickyScroll) {
+      // Quantum sticky scroll section
+      if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
+        active = i;
+        break;
+      }
     } else {
       // Regular section
       if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
