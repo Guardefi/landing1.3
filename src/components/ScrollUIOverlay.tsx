@@ -298,6 +298,7 @@ export default function ScrollUIOverlay() {
       !section.sticky &&
       !section.carousel &&
       !section.cyberpunkSlider &&
+      !section.quantumStickyScroll &&
       !section.cta
     ) {
       // Regular section
