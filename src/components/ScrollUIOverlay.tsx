@@ -549,19 +549,6 @@ export default function ScrollUIOverlay() {
                   </div>
                 )}
 
-                {/* Mockup Section */}
-                {sec.mockupSection && isActive && sec.mockupData && (
-                  <div className="fixed inset-0 z-[999] pointer-events-auto overflow-y-auto bg-war-room-void">
-                    <SectionWithMockup
-                      title={sec.mockupData.title}
-                      description={sec.mockupData.description}
-                      primaryImageSrc={sec.mockupData.primaryImageSrc}
-                      secondaryImageSrc={sec.mockupData.secondaryImageSrc}
-                      reverseLayout={sec.mockupData.reverseLayout}
-                    />
-                  </div>
-                )}
-
                 {/* Quantum Sticky Scroll */}
                 {sec.quantumStickyScroll && isActive && (
                   <div className="fixed inset-0 z-30 flex items-center justify-center pointer-events-auto">
