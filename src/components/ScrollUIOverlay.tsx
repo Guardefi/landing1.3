@@ -329,8 +329,17 @@ export default function ScrollUIOverlay() {
 
   // Debug removed
 
+  // Temporary debug
+  const currentSection = sections[active];
+
   return (
     <>
+      {/* Debug indicator */}
+      <div className="fixed top-4 right-4 z-[9999] bg-black/80 text-cyber-cyan-bright p-2 rounded text-xs font-mono">
+        Active: {active} | {currentSection?.title} | Mockup:{" "}
+        {currentSection?.mockupSection ? "YES" : "NO"}
+      </div>
+
       {/* Background Image that flips with each section - with tunnel vision effects */}
       <div className="fixed inset-0 z-[5] pointer-events-none perspective-[1000px] overflow-hidden">
         {sections.map((sec, i) => {
