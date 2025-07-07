@@ -38,14 +38,7 @@ const sections = [
     align: "right",
     image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
   },
-  {
-    title: "Watch Scorpius in Action",
-    subtitle: "Live Demo: Real-Time Threat Detection",
-    desc: "See how Scorpius identifies and neutralizes threats in milliseconds.",
-    align: "center",
-    demoVideo: true,
-    image: "https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg",
-  },
+
   {
     title: "Enterprise Command",
     subtitle: "Total Control. Infinite Insight.",
@@ -303,7 +296,6 @@ export default function ScrollUIOverlay() {
       !section.sticky &&
       !section.carousel &&
       !section.cyberpunkSlider &&
-      !section.demoVideo &&
       !section.cta
     ) {
       // Regular section
@@ -317,8 +309,8 @@ export default function ScrollUIOverlay() {
         active = i;
         break;
       }
-    } else if (section.demoVideo) {
-      // Demo video section
+    } else {
+      // Regular section
       if (adjustedScrollPos >= i && adjustedScrollPos < i + 1) {
         active = i;
         break;
@@ -340,8 +332,8 @@ export default function ScrollUIOverlay() {
 
   return (
     <>
-      {/* Background Image that flips with each section */}
-      <div className="fixed inset-0 z-[5] pointer-events-none">
+      {/* Background Image that flips with each section - with tunnel vision effects */}
+      <div className="fixed inset-0 z-[5] pointer-events-none perspective-[1000px] overflow-hidden">
         {sections.map((sec, i) => {
           if (!sec.image) return null;
           const isActive = active === i;
@@ -356,21 +348,39 @@ export default function ScrollUIOverlay() {
             finalOpacity = 0.3 * (1 - fadeProgress);
           }
 
+          // Calculate tunnel vision effects based on scroll position
+          const sectionProgress = adjustedScrollPos - i;
+          const tunnelScale = isActive
+            ? 1 + Math.sin(sectionProgress * Math.PI) * 0.1
+            : 1;
+          const tunnelBlur = isActive ? Math.abs(sectionProgress - 0.5) * 2 : 0;
+          const depthZ = isActive
+            ? Math.sin(sectionProgress * Math.PI) * 20
+            : 0;
+
           return (
             <div
               key={i}
-              className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
-              style={{ opacity: finalOpacity }}
+              className="absolute inset-0 transition-all duration-1000 ease-in-out transform-gpu"
+              style={{
+                opacity: finalOpacity,
+                transform: `scale(${tunnelScale}) translateZ(${depthZ}px)`,
+                filter: `blur(${tunnelBlur}px)`,
+              }}
             >
               <img
                 src={sec.image}
                 alt={sec.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transform-gpu"
+                style={{
+                  transform: `scale(${1 + tunnelScale * 0.1}) translateZ(${depthZ * 0.5}px)`,
+                  filter: `brightness(${0.7 + Math.sin(sectionProgress * Math.PI) * 0.3})`,
+                }}
               />
-              {/* Enhanced overlay for different section types */}
+              {/* Enhanced overlay for different section types with depth effects */}
               <div
                 className={`absolute inset-0 transition-all duration-1000 ${
-                  sec.demoVideo
+                  false
                     ? "bg-black/80 backdrop-blur-[8px]"
                     : sec.cta
                       ? "bg-black/70 backdrop-blur-[2px]"
@@ -378,13 +388,16 @@ export default function ScrollUIOverlay() {
                         ? "bg-black/90 backdrop-blur-[4px]"
                         : "bg-black/60 backdrop-blur-[1px]"
                 }`}
+                style={{
+                  background: `radial-gradient(circle at center, rgba(0,0,0,${isActive ? 0.4 + tunnelBlur * 0.1 : 0.6}) 0%, rgba(0,0,0,${isActive ? 0.8 + tunnelBlur * 0.1 : 0.9}) 100%)`,
+                }}
               />
             </div>
           );
         })}
       </div>
 
-      <div className="pointer-events-none fixed inset-0 flex flex-col items-center justify-center z-10">
+      <div className="pointer-events-none fixed inset-0 flex flex-col items-center justify-center z-10 perspective-[1500px]">
         {sections.map((sec, i) => {
           const isActive = active === i;
           const isStickySection = sec.sticky && isActive;
@@ -430,13 +443,23 @@ export default function ScrollUIOverlay() {
               <GlowCard
                 customSize={true}
                 glowColor="cyan"
-                className={`${sec.demoVideo ? "max-w-7xl" : "max-w-3xl"} mx-auto p-8 rounded-xl backdrop-blur shadow-lg text-center
-            bg-black/70 glass-morphism corner-accent
+                className={`max-w-3xl mx-auto p-8 rounded-xl backdrop-blur shadow-lg text-center
+            bg-black/70 glass-morphism corner-accent transform-gpu
             ${sec.align === "left" ? "text-left ml-0 md:ml-16" : ""}
             ${sec.align === "right" ? "text-right mr-0 md:mr-16" : ""}
             ${sec.align === "center" ? "text-center mx-auto" : ""}
             ${sec.fullScreenPricing ? "hidden" : ""}
             ${sec.cyberpunkSlider ? "hidden" : ""}`}
+                style={{
+                  transform: isActive
+                    ? `perspective(1000px) translateZ(${15 * Math.sin((adjustedScrollPos - i + 0.5) * Math.PI)}px) rotateX(${1.5 * Math.sin((adjustedScrollPos - i + 0.5) * Math.PI * 2)}deg) scale(${1 + 0.05 * Math.sin((adjustedScrollPos - i + 0.5) * Math.PI)})`
+                    : "perspective(1000px) translateZ(0px) rotateX(0deg) scale(1)",
+                  transition:
+                    "transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                  filter: isActive
+                    ? `blur(${Math.abs(adjustedScrollPos - i - 0.5) * 0.5}px)`
+                    : "blur(0px)",
+                }}
               >
                 <h1 className="font-bold cyan-glow mb-4 text-4xl md:text-6xl">
                   {sec.title}
@@ -506,62 +529,6 @@ export default function ScrollUIOverlay() {
                   <div className="fixed inset-0 z-30 flex items-center justify-center pointer-events-none">
                     <div className="bg-red-500 text-white p-8 text-2xl">
                       CYBERPUNK SLIDER DETECTED - SECTION ACTIVE
-                    </div>
-                  </div>
-                )}
-
-                {/* Demo Video Section - inline display */}
-                {sec.demoVideo && (
-                  <div className="mb-8 pointer-events-auto">
-                    <div className="relative mx-auto max-w-7xl">
-                      <div className="relative aspect-video rounded-2xl overflow-hidden border-2 border-cyber-cyan-dim/40 hover:border-cyber-cyan-bright/60 transition-all duration-300 bg-war-room-charcoal/60 backdrop-blur">
-                        <video
-                          className="w-full h-full object-cover"
-                          controls
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                          poster="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=1200&h=675&fit=crop"
-                        >
-                          <source
-                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                            type="video/mp4"
-                          />
-                          Your browser does not support the video tag.
-                        </video>
-
-                        {/* Cyber overlay effect */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-cyber-cyan-dim/10 via-transparent to-cyber-cyan-dim/10 pointer-events-none" />
-                      </div>
-
-                      {/* Demo features */}
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 text-sm">
-                        <div className="bg-war-room-charcoal/60 backdrop-blur rounded-lg p-4 border border-cyber-cyan-dim/30">
-                          <div className="text-cyber-cyan-bright font-terminal mb-2">
-                            ⚡ Real-Time Detection
-                          </div>
-                          <div className="text-gray-300">
-                            Watch threats identified in milliseconds
-                          </div>
-                        </div>
-                        <div className="bg-war-room-charcoal/60 backdrop-blur rounded-lg p-4 border border-cyber-cyan-dim/30">
-                          <div className="text-cyber-cyan-bright font-terminal mb-2">
-                            🛡️ Auto Response
-                          </div>
-                          <div className="text-gray-300">
-                            See automated countermeasures deploy
-                          </div>
-                        </div>
-                        <div className="bg-war-room-charcoal/60 backdrop-blur rounded-lg p-4 border border-cyber-cyan-dim/30">
-                          <div className="text-cyber-cyan-bright font-terminal mb-2">
-                            📊 Live Analytics
-                          </div>
-                          <div className="text-gray-300">
-                            Monitor security metrics in real-time
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 )}

@@ -6,6 +6,7 @@ export function useScrollSync() {
   const scrollAccumulator = useRef(0);
   const lastRawScroll = useRef(0);
   const stickyLocked = useRef(false);
+  const cinematicBuffer = useRef(0);
 
   useEffect(() => {
     const onScroll = () => {
@@ -14,15 +15,24 @@ export function useScrollSync() {
       const now = Date.now();
       const deltaTime = now - lastScrollTime.current;
 
+      // Enhanced cinematic scroll smoothing
+      const scrollDelta = rawScroll - lastRawScroll.current;
+      cinematicBuffer.current += scrollDelta;
+
+      // Apply cinematic easing - slower transitions between sections
+      const cinematicEasing = 0.15; // Slower easing for more cinematic feel
+      cinematicBuffer.current *= cinematicEasing;
+
       // Define demo section boundaries (section index 3 out of total sections)
-      const totalSections = 11;
+      const totalSections = 10; // Updated for new structure without demo section
       const demoSectionIndex = 3;
       const demoStartPercent = demoSectionIndex / totalSections;
       const demoEndPercent = (demoSectionIndex + 1) / totalSections;
       const demoCenter =
         demoStartPercent + 0.5 * (demoEndPercent - demoStartPercent);
 
-      let adjustedScrollValue = rawScroll;
+      // Apply cinematic smoothing to base scroll value
+      let adjustedScrollValue = lastRawScroll.current + cinematicBuffer.current;
 
       // Check if we're in demo section
       const inDemoSection =
@@ -33,37 +43,43 @@ export function useScrollSync() {
           (rawScroll - demoStartPercent) / (demoEndPercent - demoStartPercent);
 
         // Calculate scroll delta since last frame
-        const scrollDelta = Math.abs(rawScroll - lastRawScroll.current);
+        const scrollDelta = Math.abs(
+          adjustedScrollValue - lastRawScroll.current,
+        );
 
-        // Accumulate scroll intent when in sticky zone (middle 70% of demo section)
-        if (demoProgress >= 0.15 && demoProgress <= 0.85) {
+        // Enhanced cinematic scroll resistance in middle zones
+        if (demoProgress >= 0.2 && demoProgress <= 0.8) {
           if (!stickyLocked.current) {
             stickyLocked.current = true;
             scrollAccumulator.current = 0;
           }
 
-          // Accumulate scroll attempts
+          // Accumulate scroll attempts with momentum consideration
           if (deltaTime > 0) {
-            scrollAccumulator.current += scrollDelta * 100; // Amplify small movements
+            const momentum = Math.min(scrollDelta * 150, 0.1); // Enhanced momentum scaling
+            scrollAccumulator.current += momentum;
           }
 
-          // Require significant accumulated scroll to exit (much higher threshold)
-          const exitThreshold = 0.15; // Need 15% worth of scroll accumulation to exit
+          // Higher threshold for more cinematic feel
+          const exitThreshold = 0.25; // Increased resistance for dramatic effect
 
           if (scrollAccumulator.current < exitThreshold) {
-            // Lock to demo center until enough scroll accumulated
-            adjustedScrollValue = demoCenter;
+            // Create tunnel vision lock with slight breathing effect
+            const breathingOffset = Math.sin(now * 0.001) * 0.02;
+            adjustedScrollValue = demoCenter + breathingOffset;
           } else {
-            // Allow exit once threshold met
+            // Smooth exit with cinematic easing
             stickyLocked.current = false;
             scrollAccumulator.current = 0;
             adjustedScrollValue = rawScroll;
           }
         } else {
-          // At edges of demo section - allow easier entry/exit
+          // Cinematic entry/exit zones
           stickyLocked.current = false;
           scrollAccumulator.current = 0;
-          adjustedScrollValue = rawScroll;
+          // Apply subtle easing even in transition zones
+          adjustedScrollValue =
+            lastRawScroll.current + (rawScroll - lastRawScroll.current) * 0.3;
         }
       } else {
         // Outside demo section - reset sticky state

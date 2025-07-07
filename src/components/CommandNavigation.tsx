@@ -18,6 +18,83 @@ const scrollToSection = (sectionIndex: number) => {
   }
 };
 
+// Demo Popup Component
+const DemoPopup = ({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+      <div className="bg-war-room-void border-2 border-cyber-cyan-dim/40 rounded-2xl p-6 md:p-8 max-w-6xl w-full relative">
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-cyber-cyan-base hover:text-cyber-cyan-bright transition-colors text-xl z-10"
+        >
+          ✕
+        </button>
+
+        <h2 className="text-xl md:text-2xl font-command text-cyber-cyan-bright mb-6 text-center">
+          Scorpius Live Demo: Real-Time Threat Detection
+        </h2>
+
+        <div className="relative aspect-video rounded-2xl overflow-hidden border-2 border-cyber-cyan-dim/40 hover:border-cyber-cyan-bright/60 transition-all duration-300 bg-war-room-charcoal/60 backdrop-blur mb-6">
+          <video
+            className="w-full h-full object-cover"
+            controls
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=1200&h=675&fit=crop"
+          >
+            <source
+              src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+
+          {/* Cyber overlay effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-cyber-cyan-dim/10 via-transparent to-cyber-cyan-dim/10 pointer-events-none" />
+        </div>
+
+        {/* Demo features */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div className="bg-war-room-charcoal/60 backdrop-blur rounded-lg p-4 border border-cyber-cyan-dim/30">
+            <div className="text-cyber-cyan-bright font-terminal mb-2">
+              ⚡ Real-Time Detection
+            </div>
+            <div className="text-gray-300">
+              Watch threats identified in milliseconds
+            </div>
+          </div>
+          <div className="bg-war-room-charcoal/60 backdrop-blur rounded-lg p-4 border border-cyber-cyan-dim/30">
+            <div className="text-cyber-cyan-bright font-terminal mb-2">
+              🛡️ Auto Response
+            </div>
+            <div className="text-gray-300">
+              See automated countermeasures deploy
+            </div>
+          </div>
+          <div className="bg-war-room-charcoal/60 backdrop-blur rounded-lg p-4 border border-cyber-cyan-dim/30">
+            <div className="text-cyber-cyan-bright font-terminal mb-2">
+              📊 Live Analytics
+            </div>
+            <div className="text-gray-300">
+              Monitor security metrics in real-time
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Contact Popup Component
 const ContactPopup = ({
   isOpen,
@@ -90,87 +167,88 @@ const ContactPopup = ({
 
 export default function CommandNavigation() {
   const [showContact, setShowContact] = useState(false);
+  const [showDemo, setShowDemo] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <>
       {/* Desktop Navigation */}
-      <div className="fixed top-6 right-6 z-30 pointer-events-auto hidden md:block">
-        <div className="flex items-center gap-4 px-6 py-3 rounded-2xl bg-war-room-void/80 backdrop-blur-md border border-cyber-cyan-dim/30">
+      <div className="fixed top-3 right-4 z-30 pointer-events-auto hidden md:block">
+        <div className="flex items-center gap-2 px-4 py-1.5 rounded-lg bg-war-room-void/50 backdrop-blur-sm border border-cyber-cyan-dim/20">
           {/* Main Command Button */}
           <button
             onClick={() => scrollToSection(0)}
-            className="flex items-center px-4 py-2 text-cyber-cyan-bright hover:text-cyber-cyan-intense transition-colors duration-300 font-terminal"
+            className="flex items-center px-3 py-1.5 text-cyber-cyan-bright hover:text-cyber-cyan-intense transition-colors duration-300 font-terminal text-sm"
           >
-            <Terminal className="w-4 h-4 mr-2" />
+            <Terminal className="w-3.5 h-3.5 mr-1.5" />
             Command Center
           </button>
 
           {/* Action Buttons */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <MetalButton
               variant="cyber"
-              className="px-4 py-2"
-              onClick={() => scrollToSection(2)}
+              className="px-3 py-1.5 text-xs"
+              onClick={() => setShowDemo(true)}
             >
-              <Play className="w-4 h-4 mr-1" />
-              Watch Demo
+              <Play className="w-3.5 h-3.5 mr-1" />
+              Demo
             </MetalButton>
 
             <MetalButton
               variant="cyber"
-              className="px-4 py-2"
+              className="px-3 py-1.5 text-xs"
               onClick={() => scrollToSection(9)}
             >
-              <DollarSign className="w-4 h-4 mr-1" />
+              <DollarSign className="w-3.5 h-3.5 mr-1" />
               Pricing
             </MetalButton>
 
             <MetalButton
               variant="cyber"
-              className="px-4 py-2"
+              className="px-3 py-1.5 text-xs"
               onClick={() => setShowContact(true)}
             >
-              <MessageCircle className="w-4 h-4 mr-1" />
-              Contact Us
+              <MessageCircle className="w-3.5 h-3.5 mr-1" />
+              Contact
             </MetalButton>
           </div>
         </div>
       </div>
 
       {/* Mobile Navigation */}
-      <div className="fixed top-4 right-4 z-30 pointer-events-auto md:hidden">
+      <div className="fixed top-3 right-4 z-30 pointer-events-auto md:hidden">
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="flex items-center justify-center w-12 h-12 rounded-xl bg-war-room-void/80 backdrop-blur-md border border-cyber-cyan-dim/30 text-cyber-cyan-bright hover:text-cyber-cyan-intense transition-colors"
+          className="flex items-center justify-center w-10 h-10 rounded-lg bg-war-room-void/50 backdrop-blur-sm border border-cyber-cyan-dim/20 text-cyber-cyan-bright hover:text-cyber-cyan-intense transition-colors"
         >
-          <Terminal className="w-5 h-5" />
+          <Terminal className="w-4 h-4" />
         </button>
 
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
-          <div className="absolute top-14 right-0 w-48 rounded-xl bg-war-room-void/90 backdrop-blur-md border border-cyber-cyan-dim/30 p-2">
+          <div className="absolute top-12 right-0 w-44 rounded-lg bg-war-room-void/60 backdrop-blur-sm border border-cyber-cyan-dim/20 p-1.5">
             <button
               onClick={() => {
                 scrollToSection(0);
                 setIsMobileMenuOpen(false);
               }}
-              className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
+              className="w-full flex items-center px-2.5 py-1.5 rounded-md text-cyber-cyan-bright hover:bg-cyber-cyan-dim/15 transition-colors font-terminal text-xs"
             >
-              <Terminal className="w-4 h-4 mr-2" />
+              <Terminal className="w-3.5 h-3.5 mr-1.5" />
               Command Center
             </button>
 
             <button
               onClick={() => {
-                scrollToSection(2);
+                setShowDemo(true);
                 setIsMobileMenuOpen(false);
               }}
-              className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
+              className="w-full flex items-center px-2.5 py-1.5 rounded-md text-cyber-cyan-bright hover:bg-cyber-cyan-dim/15 transition-colors font-terminal text-xs"
             >
-              <Play className="w-4 h-4 mr-2" />
-              Watch Demo
+              <Play className="w-3.5 h-3.5 mr-1.5" />
+              Demo
             </button>
 
             <button
@@ -178,9 +256,9 @@ export default function CommandNavigation() {
                 scrollToSection(9);
                 setIsMobileMenuOpen(false);
               }}
-              className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
+              className="w-full flex items-center px-2.5 py-1.5 rounded-md text-cyber-cyan-bright hover:bg-cyber-cyan-dim/15 transition-colors font-terminal text-xs"
             >
-              <DollarSign className="w-4 h-4 mr-2" />
+              <DollarSign className="w-3.5 h-3.5 mr-1.5" />
               Pricing
             </button>
 
@@ -189,14 +267,16 @@ export default function CommandNavigation() {
                 setShowContact(true);
                 setIsMobileMenuOpen(false);
               }}
-              className="w-full flex items-center px-3 py-2 rounded-lg text-cyber-cyan-bright hover:bg-cyber-cyan-dim/20 transition-colors font-terminal text-sm"
+              className="w-full flex items-center px-2.5 py-1.5 rounded-md text-cyber-cyan-bright hover:bg-cyber-cyan-dim/15 transition-colors font-terminal text-xs"
             >
-              <MessageCircle className="w-4 h-4 mr-2" />
-              Contact Us
+              <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
+              Contact
             </button>
           </div>
         )}
       </div>
+
+      <DemoPopup isOpen={showDemo} onClose={() => setShowDemo(false)} />
 
       <ContactPopup
         isOpen={showContact}
