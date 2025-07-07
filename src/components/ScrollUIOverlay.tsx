@@ -332,8 +332,8 @@ export default function ScrollUIOverlay() {
 
   return (
     <>
-      {/* Background Image that flips with each section */}
-      <div className="fixed inset-0 z-[5] pointer-events-none">
+      {/* Background Image that flips with each section - with tunnel vision effects */}
+      <div className="fixed inset-0 z-[5] pointer-events-none perspective-[1000px] overflow-hidden">
         {sections.map((sec, i) => {
           if (!sec.image) return null;
           const isActive = active === i;
@@ -348,18 +348,36 @@ export default function ScrollUIOverlay() {
             finalOpacity = 0.3 * (1 - fadeProgress);
           }
 
+          // Calculate tunnel vision effects based on scroll position
+          const sectionProgress = adjustedScrollPos - i;
+          const tunnelScale = isActive
+            ? 1 + Math.sin(sectionProgress * Math.PI) * 0.1
+            : 1;
+          const tunnelBlur = isActive ? Math.abs(sectionProgress - 0.5) * 2 : 0;
+          const depthZ = isActive
+            ? Math.sin(sectionProgress * Math.PI) * 20
+            : 0;
+
           return (
             <div
               key={i}
-              className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
-              style={{ opacity: finalOpacity }}
+              className="absolute inset-0 transition-all duration-1000 ease-in-out transform-gpu"
+              style={{
+                opacity: finalOpacity,
+                transform: `scale(${tunnelScale}) translateZ(${depthZ}px)`,
+                filter: `blur(${tunnelBlur}px)`,
+              }}
             >
               <img
                 src={sec.image}
                 alt={sec.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transform-gpu"
+                style={{
+                  transform: `scale(${1 + tunnelScale * 0.1}) translateZ(${depthZ * 0.5}px)`,
+                  filter: `brightness(${0.7 + Math.sin(sectionProgress * Math.PI) * 0.3})`,
+                }}
               />
-              {/* Enhanced overlay for different section types */}
+              {/* Enhanced overlay for different section types with depth effects */}
               <div
                 className={`absolute inset-0 transition-all duration-1000 ${
                   false
@@ -370,13 +388,16 @@ export default function ScrollUIOverlay() {
                         ? "bg-black/90 backdrop-blur-[4px]"
                         : "bg-black/60 backdrop-blur-[1px]"
                 }`}
+                style={{
+                  background: `radial-gradient(circle at center, rgba(0,0,0,${isActive ? 0.4 + tunnelBlur * 0.1 : 0.6}) 0%, rgba(0,0,0,${isActive ? 0.8 + tunnelBlur * 0.1 : 0.9}) 100%)`,
+                }}
               />
             </div>
           );
         })}
       </div>
 
-      <div className="pointer-events-none fixed inset-0 flex flex-col items-center justify-center z-10">
+      <div className="pointer-events-none fixed inset-0 flex flex-col items-center justify-center z-10 perspective-[1500px]">
         {sections.map((sec, i) => {
           const isActive = active === i;
           const isStickySection = sec.sticky && isActive;

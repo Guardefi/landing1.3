@@ -15,7 +15,7 @@ export default function Home() {
       <CommandNavigation />
 
       <main
-        className="relative w-screen h-[1000vh] bg-black"
+        className="relative w-screen h-[2000vh] bg-black"
         id="scroll-container"
       >
         {/* Starfield background */}
@@ -39,8 +39,10 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="sticky top-0 left-0 w-screen h-screen pointer-events-none z-10">
-          <ScorpiusCore />
+        <div className="sticky top-0 left-0 w-screen h-screen pointer-events-none z-10 overflow-hidden">
+          <div className="w-full h-full perspective-[1000px] transform-gpu">
+            <ScorpiusCore />
+          </div>
         </div>
         <ScrollUIOverlay />
       </main>
