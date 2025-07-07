@@ -327,7 +327,14 @@ export default function ScrollUIOverlay() {
     active = totalSections - 1; // Force show pricing section only when at the very end
   }
 
-  // Debug log removed to prevent infinite loop
+  // Debug log
+  console.log("ScrollUIOverlay Debug:", {
+    scroll,
+    active,
+    totalSections,
+    adjustedScrollPos,
+    scrollPosition,
+  });
 
   return (
     <>
