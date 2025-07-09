@@ -330,64 +330,33 @@ function WireframeSphere({ scroll }: { scroll: number }) {
   useFrame((state) => {
     meshRef.current.rotation.y += 0.005 + scroll * 0.04;
 
-    // Text alignment sections (matching ScrollUIOverlay sections with sticky adjustments)
-    const sections = [
-      "center", // Hello Dark Forest
-      "center", // ScorpiusCore
-      "left", // Quantum Threat Detection
-      "right", // Adaptive Defense Layers
-      "center", // Enterprise Command
-      "left", // Under-the-Hood Firepower + 4 sticky cards
-      "right", // Enterprise Arsenal + 4 sticky cards
-      "center", // Pricing
-      "left", // Testimonials
-      "center", // CTA
-    ];
-
-    const totalSections = sections.length;
-    const totalStickySubSections = 8; // 4 for firepower + 4 for arsenal
-
-    // Adjust scroll calculation for multiple sticky sections
-    const scrollPosition =
-      scroll * (totalSections + totalStickySubSections - 1);
-
-    let sectionIndex;
-    let adjustedScrollPos = scrollPosition;
-
-    // Handle Under-the-Hood Firepower (index 5)
-    if (adjustedScrollPos >= 5 && adjustedScrollPos <= 9) {
-      // 5 + 4 sticky cards
-      sectionIndex = 5;
-    } else if (adjustedScrollPos > 9) {
-      adjustedScrollPos -= 4; // Subtract firepower sticky cards
-
-      // Handle Enterprise Arsenal (index 6, but adjusted to 6 after firepower)
-      if (adjustedScrollPos >= 6 && adjustedScrollPos <= 10) {
-        // 6 + 4 sticky cards
-        sectionIndex = 6;
-      } else if (adjustedScrollPos > 10) {
-        adjustedScrollPos -= 4; // Subtract arsenal sticky cards
-        sectionIndex = Math.floor(adjustedScrollPos);
-      } else {
-        sectionIndex = Math.floor(adjustedScrollPos);
-      }
-    } else {
-      sectionIndex = Math.floor(adjustedScrollPos);
-    }
-
-    const currentAlign = sections[sectionIndex] || "center";
+    // Calculate which section we're in based on scroll (matching PetalBloom logic)
+    const totalSections = 10;
+    const currentSection = Math.floor(scroll * totalSections);
 
     let targetX = 0;
-    if (currentAlign === "left") {
-      targetX = 4; // Move sphere to right when text is on left
-    } else if (currentAlign === "right") {
-      targetX = -4; // Move sphere to left when text is on right
+    let targetY = 0;
+
+    // Alternate sides for sections with content
+    if (currentSection === 2 || currentSection === 4 || currentSection === 6) {
+      targetX = 5; // Right side when content is on left
+      targetY = -0.5;
+    } else if (
+      currentSection === 3 ||
+      currentSection === 5 ||
+      currentSection === 7
+    ) {
+      targetX = -5; // Left side when content is on right
+      targetY = -0.5;
+    } else {
+      targetX = 0; // Center for hero/pricing/CTA sections
+      targetY = 0;
     }
 
     // Smooth transition between positions
-    meshRef.current.position.x += (targetX - meshRef.current.position.x) * 0.05;
-    meshRef.current.position.y = Math.sin(scroll * Math.PI * 2) * 0.3;
-    meshRef.current.position.z = Math.cos(scroll * Math.PI * 2) * 0.2;
+    meshRef.current.position.x += (targetX - meshRef.current.position.x) * 0.08;
+    meshRef.current.position.y += (targetY - meshRef.current.position.y) * 0.08;
+    meshRef.current.position.z = Math.cos(scroll * Math.PI * 2) * 0.3;
   });
 
   return (
