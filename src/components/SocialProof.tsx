@@ -83,48 +83,38 @@ export default function SocialProof() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {testimonials.map((testimonial, index) => (
-            <motion.div
+            <EnhancedCard
               key={index}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{
-                scale: 1.02,
-                boxShadow: "0 20px 40px rgba(0, 255, 247, 0.2)",
-              }}
-              transition={{
-                duration: 0.8,
-                delay: index * 0.2,
-                ease: [0.23, 1, 0.32, 1],
-              }}
-              viewport={{ once: true }}
-              className="glass-morphism rounded-xl p-6 corner-accent"
-            >
-              <div className="mb-6">
-                <p className="text-gray-300 italic leading-relaxed">
-                  "{testimonial.quote}"
-                </p>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full flex items-center justify-center">
-                  <span className="text-black font-bold text-sm">
-                    {testimonial.avatar}
-                  </span>
-                </div>
-                <div>
-                  <div className="text-white font-bold">
-                    {testimonial.author}
+              title={testimonial.author}
+              description={
+                <>
+                  <p className="text-gray-300 italic leading-relaxed mb-6">
+                    "{testimonial.quote}"
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full flex items-center justify-center">
+                      <span className="text-black font-bold text-sm">
+                        {testimonial.avatar}
+                      </span>
+                    </div>
+                    <div>
+                      <div className="text-cyan-400 text-sm">
+                        {testimonial.role}
+                      </div>
+                      <div className="text-gray-400 text-xs">
+                        {testimonial.company}
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-cyan-400 text-sm">
-                    {testimonial.role}
-                  </div>
-                  <div className="text-gray-400 text-xs">
-                    {testimonial.company}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+                </>
+              }
+              delay={index * 0.2}
+              size="medium"
+              variant="glass"
+              className="hover:shadow-xl hover:shadow-cyber-cyan-bright/20"
+            />
           ))}
         </div>
       </div>
