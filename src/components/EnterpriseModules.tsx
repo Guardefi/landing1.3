@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import { EnhancedCard } from "@/components/ui/enhanced-card";
 
 const enterpriseModules = [
   {
@@ -71,44 +72,19 @@ export default function EnterpriseModules() {
         </motion.div>
 
         {/* Enterprise Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {enterpriseModules.map((module, index) => (
-            <motion.div
+            <EnhancedCard
               key={module.name}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              whileHover={{
-                scale: 1.02,
-                boxShadow: "0 20px 40px rgba(0, 255, 247, 0.3)",
-              }}
-              transition={{
-                duration: 0.8,
-                delay: index * 0.15,
-                ease: [0.23, 1, 0.32, 1],
-              }}
-              viewport={{ once: true }}
-              className="glass-morphism rounded-xl p-8 corner-accent relative overflow-hidden"
+              title={module.name}
+              description={module.readiness}
+              icon={module.icon}
+              badge={module.tier}
+              delay={index * 0.15}
+              size="large"
+              variant="glass"
+              className="hover:shadow-xl hover:shadow-cyber-cyan-bright/20"
             >
-              {/* Tier Badge */}
-              <div className="absolute top-4 right-4">
-                <span className="px-3 py-1 bg-gradient-to-r from-cyan-400 to-cyan-600 text-black text-xs font-terminal font-bold rounded-full">
-                  {module.tier}
-                </span>
-              </div>
-
-              {/* Content */}
-              <div className="flex items-start gap-4">
-                <div className="text-4xl">{module.icon}</div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-command font-bold text-white mb-4">
-                    {module.name}
-                  </h3>
-                  <p className="text-gray-300 leading-relaxed">
-                    {module.readiness}
-                  </p>
-                </div>
-              </div>
-
               {/* Combat Readiness Bar */}
               <div className="mt-6 pt-4 border-t border-cyan-400/20">
                 <div className="flex justify-between items-center mb-2">
@@ -123,7 +99,7 @@ export default function EnterpriseModules() {
                   <div className="bg-gradient-to-r from-cyan-400 to-green-400 h-full rounded-full w-full pulse-glow"></div>
                 </div>
               </div>
-            </motion.div>
+            </EnhancedCard>
           ))}
         </div>
       </div>
