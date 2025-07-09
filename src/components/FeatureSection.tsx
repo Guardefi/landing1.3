@@ -44,9 +44,9 @@ const features = [
 
 export default function FeatureSection() {
   return (
-    <section className="py-16 md:py-32 relative bg-gradient-to-b from-war-room-void to-war-room-abyss">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.05),transparent_70%)]" />
+    <section className="py-16 md:py-32 relative">
+      {/* Background effects - removed solid backgrounds for 3D sphere visibility */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.02),transparent_70%)]" />
 
       <div className="mx-auto w-full max-w-5xl space-y-8 px-4 relative z-10">
         <AnimatedContainer className="mx-auto max-w-3xl text-center">
@@ -61,7 +61,7 @@ export default function FeatureSection() {
 
         <AnimatedContainer
           delay={0.4}
-          className="grid grid-cols-1 divide-x divide-y divide-dashed divide-cyber-cyan-dim/30 border border-dashed border-cyber-cyan-dim/50 sm:grid-cols-2 md:grid-cols-3 bg-war-room-charcoal/20 backdrop-blur-sm"
+          className="grid grid-cols-1 divide-x divide-y divide-dashed divide-cyber-cyan-dim/30 border border-dashed border-cyber-cyan-dim/50 sm:grid-cols-2 md:grid-cols-3 bg-transparent"
         >
           {features.map((feature, i) => (
             <FeatureCard
