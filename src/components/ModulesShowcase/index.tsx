@@ -112,7 +112,10 @@ const modules = [
 
 export default function ModulesShowcase() {
   return (
-    <section className="relative py-32 px-8 z-20 bg-transparent" id="modules">
+    <section
+      className="relative py-16 px-8 z-20 bg-transparent mt-8 md:mt-12"
+      id="modules"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
