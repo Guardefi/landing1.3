@@ -1,7 +1,7 @@
 "use client";
 import { Zap, Cpu, Shield, Target, Satellite, Sparkles } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
-import { FeatureCard } from "@/components/ui/grid-feature-cards";
+import { EnhancedFeatureCard } from "@/components/ui/enhanced-card";
 
 const features = [
   {
@@ -61,13 +61,14 @@ export default function FeatureSection() {
 
         <AnimatedContainer
           delay={0.4}
-          className="grid grid-cols-1 divide-x divide-y divide-dashed divide-cyber-cyan-dim/30 border border-dashed border-cyber-cyan-dim/50 sm:grid-cols-2 md:grid-cols-3 bg-transparent"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto"
         >
           {features.map((feature, i) => (
-            <FeatureCard
+            <EnhancedFeatureCard
               key={i}
               feature={feature}
-              className="bg-gradient-to-br from-war-room-charcoal/40 to-war-room-steel/20 border-cyber-cyan-dim/20 hover:border-cyber-cyan-base/40 transition-all duration-300 hover:bg-gradient-to-br hover:from-war-room-charcoal/60 hover:to-war-room-steel/40"
+              delay={i * 0.1}
+              className="hover:shadow-xl hover:shadow-cyber-cyan-bright/20"
             />
           ))}
         </AnimatedContainer>
