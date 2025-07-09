@@ -1,7 +1,7 @@
 "use client";
 import { Zap, Cpu, Shield, Target, Satellite, Sparkles } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
-import { FeatureCard } from "@/components/ui/grid-feature-cards";
+import { EnhancedFeatureCard } from "@/components/ui/enhanced-card";
 
 const features = [
   {
@@ -44,9 +44,9 @@ const features = [
 
 export default function FeatureSection() {
   return (
-    <section className="py-16 md:py-32 relative bg-gradient-to-b from-war-room-void to-war-room-abyss">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.05),transparent_70%)]" />
+    <section className="py-8 md:py-16 relative mt-8 md:mt-12">
+      {/* Background effects - removed solid backgrounds for 3D sphere visibility */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.02),transparent_70%)]" />
 
       <div className="mx-auto w-full max-w-5xl space-y-8 px-4 relative z-10">
         <AnimatedContainer className="mx-auto max-w-3xl text-center">
@@ -61,13 +61,14 @@ export default function FeatureSection() {
 
         <AnimatedContainer
           delay={0.4}
-          className="grid grid-cols-1 divide-x divide-y divide-dashed divide-cyber-cyan-dim/30 border border-dashed border-cyber-cyan-dim/50 sm:grid-cols-2 md:grid-cols-3 bg-war-room-charcoal/20 backdrop-blur-sm"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto"
         >
           {features.map((feature, i) => (
-            <FeatureCard
+            <EnhancedFeatureCard
               key={i}
               feature={feature}
-              className="bg-gradient-to-br from-war-room-charcoal/40 to-war-room-steel/20 border-cyber-cyan-dim/20 hover:border-cyber-cyan-base/40 transition-all duration-300 hover:bg-gradient-to-br hover:from-war-room-charcoal/60 hover:to-war-room-steel/40"
+              delay={i * 0.1}
+              className="hover:shadow-xl hover:shadow-cyber-cyan-bright/20"
             />
           ))}
         </AnimatedContainer>
