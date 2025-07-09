@@ -67,7 +67,7 @@ export function EnhancedCard({
         className,
       )}
     >
-      {/* Decorative Background Element (inspired by SectionWithMockup) */}
+      {/* Decorative Background Element */}
       {secondaryImage && (
         <motion.div
           className="absolute w-full h-full bg-war-room-charcoal rounded-[24px] z-0 opacity-30"
@@ -145,9 +145,9 @@ export function EnhancedCard({
           </h3>
 
           {description && (
-            <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-4 flex-1">
+            <div className="text-gray-300 text-sm md:text-base leading-relaxed mb-4 flex-1">
               {description}
-            </p>
+            </div>
           )}
 
           {children}
@@ -162,7 +162,7 @@ export function EnhancedCard({
         </div>
       </motion.div>
 
-      {/* Decorative bottom gradient (from SectionWithMockup) */}
+      {/* Decorative bottom gradient */}
       <div
         className="absolute w-full h-px bottom-0 left-0 z-0 opacity-50"
         style={{
