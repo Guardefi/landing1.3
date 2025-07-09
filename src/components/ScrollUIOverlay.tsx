@@ -405,7 +405,7 @@ export default function ScrollUIOverlay() {
         })}
       </div>
 
-      <div className="pointer-events-none fixed inset-0 flex flex-col items-center justify-center z-10 perspective-[1500px]">
+      <div className="pointer-events-none fixed inset-0 flex flex-col items-center justify-start pt-16 md:pt-20 z-10 perspective-[1500px]">
         {sections.map((sec, i) => {
           const isActive = active === i;
           const isStickySection = sec.sticky && isActive;
