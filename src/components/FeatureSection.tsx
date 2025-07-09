@@ -44,7 +44,7 @@ const features = [
 
 export default function FeatureSection() {
   return (
-    <section className="py-16 md:py-32 relative">
+    <section className="py-8 md:py-16 relative mt-8 md:mt-12">
       {/* Background effects - removed solid backgrounds for 3D sphere visibility */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.02),transparent_70%)]" />
 
