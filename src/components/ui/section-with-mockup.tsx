@@ -45,7 +45,7 @@ const SectionWithMockup: React.FC<SectionWithMockupProps> = ({
   const imageOrderClass = reverseLayout ? "md:col-start-1" : "";
 
   return (
-    <section className="relative py-24 md:py-48 bg-war-room-void overflow-hidden">
+    <section className="relative py-24 md:py-48 bg-transparent overflow-hidden">
       <div className="container max-w-[1220px] w-full px-6 md:px-10 relative z-10 mx-auto">
         <motion.div
           className={`grid grid-cols-1 gap-16 md:gap-8 w-full items-center ${layoutClasses}`}
