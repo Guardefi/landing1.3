@@ -445,7 +445,7 @@ export default function ScrollUIOverlay() {
           // Special rendering for mockup sections
           if (sec.mockupSection && isActive && sec.mockupData) {
             return (
-              <div key={i} className="fixed inset-0 z-[999] bg-war-room-void">
+              <div key={i} className="fixed inset-0 z-[999] bg-transparent">
                 <SectionWithMockup
                   title={sec.mockupData.title}
                   description={sec.mockupData.description}
